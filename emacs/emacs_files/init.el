@@ -1,3 +1,8 @@
+
+;; Can be used if signature of gnu key fails
+;; (setq package-check-signature 'nil)
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; Settings path
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
@@ -21,6 +26,10 @@
   (add-to-list
    'package-archives
    '("melpa" . "http://melpa.org/packages/")
+   t)
+  (add-to-list
+   'package-archives
+   '("gnu" . "http://elpa.gnu.org/packages/")
    t)
   (package-initialize))
 
@@ -66,6 +75,7 @@
 ;;javascript autocomplete
 (require 'company)
 (require 'company-tern)
+(require 'tern)
 
 (add-to-list 'company-backends 'company-tern)
 (add-hook 'js2-mode-hook (lambda ()
@@ -111,7 +121,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (auctex cuda-mode helm-pages vue-mode vue-html-mode web-mode evil-smartparens smartparens rainbow-delimiters company-tern auto-complete-c-headers indium ac-js2 company go-mode counsel-projectile projectile column-marker aggressive-indent dashboard use-package yaml-mode vcl-mode subr+ solarized-theme solaire-mode rich-minority nlinum neotree material-theme markdown-mode magit latex-preview-pane jedi hlinum flycheck-irony flx evil dumb-jump doom-themes diff-hl counsel company-jedi company-irony-c-headers company-irony company-c-headers color-theme-sanityinc-tomorrow cmake-project cmake-ide arduino-mode)))
+    (neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
@@ -121,3 +131,8 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'dired-find-alternate-file 'disabled nil)
+
+
+ ;; '(package-selected-packages
+ ;;   (quote
+ ;;    (cuda-mode helm-pages web-mode evil-smartparens smartparens rainbow-delimiters company-tern auto-complete-c-headers indium ac-js2 company go-mode counsel-projectile projectile column-marker aggressive-indent dashboard use-package yaml-mode vcl-mode subr+ solarized-theme solaire-mode rich-minority nlinum neotree material-theme markdown-mode magit latex-preview-pane jedi hlinum flycheck-irony flx evil dumb-jump doom-themes diff-hl counsel company-jedi company-irony-c-headers company-irony company-c-headers color-theme-sanityinc-tomorrow cmake-project cmake-ide arduino-mode)))
