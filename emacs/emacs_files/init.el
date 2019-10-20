@@ -64,6 +64,7 @@
 (require 'latex-init)
 (require 'markdown-init)
 (require 'org-init)
+(require 'java-init)
 
 ;; Key bindings.
 (require 'key-bindings)
@@ -121,7 +122,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
+    (spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
