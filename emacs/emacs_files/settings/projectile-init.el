@@ -1,6 +1,6 @@
 
-;;(projectile-global-mode)
-;;(counsel-projectile-mode)
+(projectile-global-mode)
+(counsel-projectile-mode)
 
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
