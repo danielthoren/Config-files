@@ -1,5 +1,7 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-;; (org-display-inline-images)
+
+;; Enables latex-like equations etc
+(setq org-pretty-entities t)
 
 ;;Enables the use of the following formatting for images:
 ;; #+ATTR_HTML: width="100px"
@@ -70,7 +72,9 @@ BEG and END default to the buffer boundaries."
 
 ;;hooks
 (defun my-org-mode-hook ()
-  (org-display-inline-images-custom))
+  (org-display-inline-images-custom)
+  (org-bullets-mode 1)
+  )
 
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 
