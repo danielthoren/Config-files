@@ -46,6 +46,9 @@
 
 (solaire-mode-swap-bg)
 
+;; Key bindings.
+(require 'key-bindings)
+
 ;; General functions.
 (require 'general-funs)
 
@@ -56,6 +59,7 @@
 (require 'irony-init)
 (require 'compile-init)
 (require 'neotree-init)
+(require 'dap-init)
 
 ;; Init major modes.
 (require 'elisp-init)
@@ -66,12 +70,8 @@
 (require 'org-init)
 (require 'java-init)
 
-;; Key bindings.
-(require 'key-bindings)
-
 ;; Highlight line numbers.
 (linum-mode)
-
 
 ;;javascript autocomplete
 (require 'company)
@@ -122,7 +122,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
+    (flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
