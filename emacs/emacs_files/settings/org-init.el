@@ -8,6 +8,9 @@
 ;; #+ATTR_ORG: :width 100
 (setq org-image-actual-width nil)
 
+;;; display Info mode buffers in proportional font
+(add-hook 'Info-mode-hook 'variable-pitch-mode)
+
 ;; Original source code wich one modified row. Makes the background of images
 ;; White so that transparent images are not  invisible
 (defun org-display-inline-images-custom (&optional include-linked refresh beg end)
@@ -69,6 +72,7 @@ BEG and END default to the buffer boundaries."
 		  (overlay-put ov 'modification-hooks
 			       (list 'org-display-inline-remove-overlay))
 		  (push ov org-inline-image-overlays))))))))))
+
 
 ;;hooks
 (defun my-org-mode-hook ()
