@@ -33,6 +33,10 @@
    t)
   (package-initialize))
 
+;; Automatically update packages
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 ;; Theme.
 (load-theme 'doom-one t)
 (doom-themes-visual-bell-config)
@@ -68,7 +72,7 @@
 (require 'latex-init)
 (require 'markdown-init)
 (require 'org-init)
-(require 'java-init)
+;;(require 'java-init)
 
 ;; Highlight line numbers.
 (linum-mode)
@@ -122,7 +126,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
+    (ranger flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
