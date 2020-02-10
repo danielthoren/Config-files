@@ -138,6 +138,6 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 
- ;; '(package-selected-packages
- ;;   (quote
- ;;    (cuda-mode helm-pages web-mode evil-smartparens smartparens rainbow-delimiters company-tern auto-complete-c-headers indium ac-js2 company go-mode counsel-projectile projectile column-marker aggressive-indent dashboard use-package yaml-mode vcl-mode subr+ solarized-theme solaire-mode rich-minority nlinum neotree material-theme markdown-mode magit latex-preview-pane jedi hlinum flycheck-irony flx evil dumb-jump doom-themes diff-hl counsel company-jedi company-irony-c-headers company-irony company-c-headers color-theme-sanityinc-tomorrow cmake-project cmake-ide arduino-mode)))
+;; '(package-selected-packages
+;;   (quote
+;;    (cuda-mode helm-pages web-mode evil-smartparens smartparens rainbow-delimiters company-tern auto-complete-c-headers indium ac-js2 company go-mode counsel-projectile projectile column-marker aggressive-indent dashboard use-package yaml-mode vcl-mode subr+ solarized-theme solaire-mode rich-minority nlinum neotree material-theme markdown-mode magit latex-preview-pane jedi hlinum flycheck-irony flx evil dumb-jump doom-themes diff-hl counsel company-jedi company-irony-c-headers company-irony company-c-headers color-theme-sanityinc-tomorrow cmake-project cmake-ide arduino-mode)))
