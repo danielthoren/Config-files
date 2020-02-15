@@ -3,13 +3,19 @@
 (defun insert-java-comp ()
   "Insert komplettering at cursor point."
   (interactive)
-  (insert "/*************** Komplettering ***************/\n/* TODO: */\n/*********************************************/")
+  (beginning-of-line)
+  (insert "/*************** Komplettering ***************/\n")
+  (insert "/* TODO: */\n")
+  (insert "/*********************************************/")
   (backward-char 50))
 
 (defun insert-java-comm ()
   "Insert comment at cursor point."
   (interactive)
-  (insert "/***************** Kommentar *****************/\n/* */\n/*********************************************/")
+  (beginning-of-line)
+  (insert "/***************** Kommentar *****************/\n")
+  (insert "/* */\n")
+  (insert "/*********************************************/")
   (backward-char 50))
 
 (define-minor-mode labass-mode
