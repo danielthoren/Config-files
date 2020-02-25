@@ -1,7 +1,13 @@
 #!/bin/bash
 
-
 dir=~/.emacs.d/
+
+source ../functions.sh
+
+if ! command_exists emacs26 ; then
+    echo "emacs26 not installed, installing..."
+    sudo apt install emacs26
+fi
 
 echo "Configuring emacs in folder $dir"
 
@@ -11,6 +17,8 @@ if [ ! -d $dir ]; then
 else
     echo "Folder exists, purging data"
     rm "${dir}/init.el"
+    rm -r "${dir}/funs"
+    rm -r "${dir}/settings"
 fi
 
 ln -s "${PWD}/emacs_files/settings" "${dir}"
