@@ -9,6 +9,12 @@ if ! command_exists emacs26 ; then
     sudo apt install emacs26
 fi
 
+#Regex program used for dumb-jump-mode
+if ! command_exists ag ; then
+    echo "ag not installed, installing..."
+    sudo apt install silversearcher-ag
+fi
+
 echo "Configuring emacs in folder $dir"
 
 if [ ! -d $dir ]; then
