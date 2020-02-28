@@ -15,6 +15,7 @@
                              (thing-at-point 'line)))))
   
   (dumb-jump-mode)
+  (setq dumb-jump-force-searcher 'ag)
   (local-set-key (kbd "M-i") 'dumb-jump-go)
   (local-set-key (kbd "C-M-i") 'dumb-jump-back)
   
@@ -22,14 +23,13 @@
   
   (local-set-key (kbd "C-c m") 'cmake-ide-compile)
 
-  (local-set-key (kbd "C-M-k") 'c-doc-comment))
+  (local-set-key (kbd "C-c k") 'c-doc-comment))
 
 
 ;; Insert function doc comment.
 (defun c-doc-comment ()
   (interactive)
   (beginning-of-line)
-  (open-line 1)
   (indent-according-to-mode)
   (let* ((indentation (current-column)))
     (insert "/**\n")
