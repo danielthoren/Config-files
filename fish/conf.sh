@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=~/.config/fish/
+dir=~/.config/fish
 
 source ../functions.sh
 

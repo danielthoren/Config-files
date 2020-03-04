@@ -6,6 +6,9 @@ source ../functions.sh
 
 if ! command_exists emacs26 ; then
     echo "emacs26 not installed, installing..."
+    echo "Adding repository to sources list..."
+    sudo add-apt-repository ppa:kelleyk/emacs
+    sudo apt update
     sudo apt install emacs26
 fi
 
