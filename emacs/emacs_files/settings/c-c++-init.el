@@ -3,8 +3,15 @@
   (company-mode)
   (irony-mode)
   (add-to-list 'company-backends 'company-irony-c-headers)
-  (add-to-list 'company-backends 'company-irony)
-  (flycheck-mode)
+  (add-to-list 'company-backends 'company-irony)  
+  (define-key c-mode-map  [(C-return)] 'company-complete)
+  (define-key c++-mode-map  [(C-return)] 'company-complete)
+  (setq company-idle-delay 999999)
+
+  (use-package flycheck
+  	       :ensure t
+	       :init (global-flycheck-mode))
+
   (flycheck-irony-setup)
 
   (aggressive-indent-mode)
@@ -55,6 +62,6 @@
 ;; Hooks
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
-
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
 
 (provide 'c-c++-init)
