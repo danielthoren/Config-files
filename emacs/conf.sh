@@ -18,6 +18,12 @@ if ! command_exists ag ; then
     sudo apt install silversearcher-ag
 fi
 
+#used by jedi (python autocomplete)
+if ! command_exists virtualenv ; then
+    echo "virtualenv not installed, installing..."
+    sudo apt install virtualenv
+fi
+
 echo "Configuring emacs in folder $dir"
 
 if [ ! -d $dir ]; then

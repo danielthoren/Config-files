@@ -9,8 +9,8 @@
   (setq company-idle-delay 999999)
 
   (use-package flycheck
-  	       :ensure t
-	       :init (global-flycheck-mode))
+    :ensure t
+    :init (flycheck-mode))
 
   (flycheck-irony-setup)
 
