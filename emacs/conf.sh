@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir=~/.emacs.d/
+dir=~/.emacs.d
 
 source ../functions.sh
 
