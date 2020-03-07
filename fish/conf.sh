@@ -9,9 +9,10 @@ if ! command_exists fish ; then
     sudo apt install fish
     fpath= which fish
     echo $fpath | sudo tee -a /etc/shells
-    chsh -s $fpath
-    echo "Set fish as default shell"
 fi
+
+chsh -s $fpath
+echo "Set fish as default shell"
 
 echo "Configuring fish in folder $dir"
 
