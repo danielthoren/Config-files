@@ -61,8 +61,8 @@ bindsym $mod+Ctrl+space exec rofi -show window -theme $rofiTheme
 bindsym $mod+v+plus exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym $mod+v+minus exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 
-bindsym $mod+b+plus exec xbacklight -inc 10;
-bindsym $mod+b+minus exec xbacklight -dec 10;
+#bindsym $mod+b+plus exec xbacklight -inc 10;
+#bindsym $mod+b+minus exec xbacklight -dec 10;
 
 # change focus
 bindsym $mod+Left focus left
