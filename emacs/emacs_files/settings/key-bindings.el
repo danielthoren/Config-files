@@ -4,7 +4,8 @@
 
 ;; Window switching.
 (global-set-key (kbd "C-.") 'other-window)
-(global-set-key (kbd "C-,") 'prev-window)
+;;(global-set-key (kbd "C-,") 'prev-window)
+(bind-key* "C-," 'prev-window)
 
 ;; Unbind pageup and pagedown
 (global-unset-key (kbd "<next>"))

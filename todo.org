@@ -1,6 +1,7 @@
 
 - [ ] Install japanese lang
-- [ ] Fix audio keybindings in i3
-- [ ] Fix screen brightness keybindings i3
+- [X] Fix audio keybindings in i3
+- [X] Fix screen brightness keybindings i3
 - [ ] Fix global dumb jump mode emacs (only in c++ mode now)
 - [ ] Fix hide bold markers org mode
+
