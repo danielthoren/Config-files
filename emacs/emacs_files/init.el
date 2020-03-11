@@ -11,11 +11,10 @@
       (expand-file-name "funs" user-emacs-directory))
 
 ;; Add to load path
-(add-to-list 'load-path settings-dir)
 (add-to-list 'load-path funs-dir)
+(add-to-list 'load-path settings-dir)
 
 ;; Require packages without dependencies.
-(require 'base-settings)
 (require 'font-settings)
 
 (load-library "url-handlers")
@@ -37,8 +36,8 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; Theme.
-(load-theme 'doom-one t)
+  ;; Theme.
+  (load-theme 'doom-one t)
 (doom-themes-visual-bell-config)
 (doom-themes-neotree-config)
 
@@ -49,6 +48,11 @@
 (add-hook 'minibuffer-setup-hook #'turn-on-solaire-mode)
 
 (solaire-mode-swap-bg)
+
+;;Package management
+(require 'use-package)
+
+(require 'base-settings)
 
 ;; Key bindings.
 (require 'key-bindings)
@@ -129,7 +133,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
+    (use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
