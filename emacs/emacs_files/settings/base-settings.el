@@ -5,7 +5,7 @@
 (setq inhibit-splash-screen t)
 
 ;; Line numbering
-(global-linum-mode t)
+(global-display-line-numbers-mode)
 
 ;; Column numbering
 (setq column-number-mode t)
