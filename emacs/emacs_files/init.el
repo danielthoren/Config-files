@@ -16,6 +16,7 @@
 
 ;; Require packages without dependencies.
 (require 'font-settings)
+(require 'base-settings)
 
 (load-library "url-handlers")
 
@@ -51,8 +52,6 @@
 
 ;;Package management
 (require 'use-package)
-
-(require 'base-settings)
 
 ;; Key bindings.
 (require 'key-bindings)
