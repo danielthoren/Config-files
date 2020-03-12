@@ -12,14 +12,14 @@
     :ensure t
     :init (flycheck-mode))
 
-  (flycheck-irony-setup)
+  ;;(flycheck-irony-setup)  
 
-  (aggressive-indent-mode)
-  (add-to-list
-   'aggressive-indent-dont-indent-if
-   '(and (derived-mode-p 'c++-mode)
-	 (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
-                             (thing-at-point 'line)))))
+  ;; (aggressive-indent-mode)
+  ;; (add-to-list
+  ;;  'aggressive-indent-dont-indent-if
+  ;;  '(and (derived-mode-p 'c++-mode)
+  ;; 	 (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+  ;;                            (thing-at-point 'line)))))
   
   (dumb-jump-mode)
   (setq dumb-jump-force-searcher 'ag)

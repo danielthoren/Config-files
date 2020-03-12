@@ -17,6 +17,11 @@
 (setq auto-save-default nil)
 ;;(setq backup-directory-alist '(("" . (expand-file-name "backup" user-emacs-directory))))
 
+;;Limit savehisp-mode length to reduce lag
+(setq history-length 100)
+(put 'minibuffer-history 'history-length 50)
+(put 'evil-ex-history 'history-length 50)
+(put 'kill-ring 'history-length 25)
 
 ;; Set opacity
 
@@ -39,5 +44,7 @@
 	 '(85 . 50) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+
+(global-hl-line-mode 0)
 
 (provide 'base-settings)
