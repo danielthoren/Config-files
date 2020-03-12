@@ -52,7 +52,7 @@
 (cmake-ide-setup)
 (setq cmake-ide-flags-c++ (append '("-std=c++11")))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
+(add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
 
 ;; C
 (setq c-basic-offset 4
