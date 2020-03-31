@@ -132,7 +132,7 @@
  '(irony-additional-clang-options nil)
  '(package-selected-packages
    (quote
-    (use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
+    (counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 
 (custom-set-faces
@@ -143,7 +143,3 @@
  )
 (put 'dired-find-alternate-file 'disabled nil)
 
-
-;; '(package-selected-packages
-;;   (quote
-;;    (cuda-mode helm-pages web-mode evil-smartparens smartparens rainbow-delimiters company-tern auto-complete-c-headers indium ac-js2 company go-mode counsel-projectile projectile column-marker aggressive-indent dashboard use-package yaml-mode vcl-mode subr+ solarized-theme solaire-mode rich-minority nlinum neotree material-theme markdown-mode magit latex-preview-pane jedi hlinum flycheck-irony flx evil dumb-jump doom-themes diff-hl counsel company-jedi company-irony-c-headers company-irony company-c-headers color-theme-sanityinc-tomorrow cmake-project cmake-ide arduino-mode)))

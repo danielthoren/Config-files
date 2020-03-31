@@ -74,6 +74,14 @@ BEG and END default to the buffer boundaries."
 		  (push ov org-inline-image-overlays))))))))))
 
 
+;;--------------------------------------------------------------------------------------------------------------------------------------
+;; Latex export config
+;;--------------------------------------------------------------------------------------------------------------------------------------
+
+;;Makes captions appear below item
+(setq org-latex-caption-above nil)
+
+
 ;;hooks
 (defun my-org-mode-hook ()
   (org-display-inline-images-custom)
