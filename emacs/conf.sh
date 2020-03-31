@@ -9,19 +9,24 @@ if ! command_exists emacs ; then
     #echo "Adding repository to sources list..."
     #sudo add-apt-repository ppa:kelleyk/emacs
     #sudo apt update
-    sudo apt install emacs
+    sudo apt install -y emacs
 fi
 
 #Regex program used for dumb-jump-mode
 if ! command_exists ag ; then
     echo "ag not installed, installing..."
-    sudo apt install silversearcher-ag
+    sudo apt install -y silversearcher-ag
+fi
+
+if ! command_exists ditaa ; then
+    echo "ditaa not installed, installing..."
+    sudo apt-get install -y ditaa
 fi
 
 #used by jedi (python autocomplete)
 if ! command_exists virtualenv ; then
     echo "virtualenv not installed, installing..."
-    sudo apt install virtualenv
+    sudo apt install -y virtualenv
 fi
 
 echo "Configuring emacs in folder $dir"

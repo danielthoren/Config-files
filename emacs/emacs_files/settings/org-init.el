@@ -81,6 +81,11 @@ BEG and END default to the buffer boundaries."
 ;;Makes captions appear below item
 (setq org-latex-caption-above nil)
 
+;;Enable ditaa
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t))) ; this line activates ditaa
+
 
 ;;hooks
 (defun my-org-mode-hook ()
