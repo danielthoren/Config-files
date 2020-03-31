@@ -81,6 +81,8 @@ BEG and END default to the buffer boundaries."
 ;;Makes captions appear below item
 (setq org-latex-caption-above nil)
 
+(setq org-ditaa-jar-path "/usr/bin/ditaa")
+
 ;;Enable ditaa
 (org-babel-do-load-languages
  'org-babel-load-languages
