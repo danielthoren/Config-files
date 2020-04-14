@@ -88,6 +88,17 @@ BEG and END default to the buffer boundaries."
  'org-babel-load-languages
  '((ditaa . t))) ; this line activates ditaa
 
+;;Converts tabs into 4 spaces when in source block of unknown language
+;;Helps make ditaa editing easier, graph not rendered correctly if block
+;;contains tabs
+(add-hook 'org-tab-first-hook
+          (lambda ()
+            (when (org-in-src-block-p t)
+              (let* ((elt (org-element-at-point))
+                     (lang (intern (org-element-property :language elt)))
+                     (langs org-babel-load-languages))
+                (unless (alist-get lang langs)
+                  (indent-to 4))))))
 
 ;;hooks
 (defun my-org-mode-hook ()
