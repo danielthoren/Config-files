@@ -19,9 +19,9 @@ ln -s "${PWD}/regolith_files/i3" "${dir}"
 ln -s "${PWD}/regolith_files/i3xrocks" "${dir}"
 
 #Setup i3xblocks scripts
-git submodules init
+git submodule init
 
-cd "${dir}/scripts/i3blocks-contrib/"
+cd "${dir}/i3xrocks/scripts/i3blocks-contrib/"
 make
 
 echo -e "Done configuring regolith"
