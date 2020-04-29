@@ -35,12 +35,6 @@ SCRIPT_DIR=/home/daniel5908/.config/regolith/i3xrocks/scripts/i3blocks-contrib
 full_text=xresource:i3xrocks.label.help
 command=i3-msg -q exec /usr/bin/remontoire-toggle
 
-# Network manager VPN
-#
-# Displays currently connected VPN using the nm-cli tool.
-#[nm-vpn]
-#interval=5
-
 # Volume
 [volume-pulseaudio]
 command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio
@@ -54,42 +48,22 @@ SUBSCRIBE=1
 
 SCONTROL=[determined automatically]
 
-# Wifi
-#
-# Displays the wifi network's name
-# If the auto-discovered wifi device is incorrect,
-# override the "instance" value with the desired device
-[wifi2]
-# Replace with your wifi device if you need on next line
-instance=wlp2s0
-interval=5
 
-# nettraffic
-#
-# Displays network load
-#[nettraffic]
-#interval=10
-
-# Keyboard layout
-#
-# Displays current keyboard layout.
-#[keyboard_layout]
-#interval=persist
-
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-[cpu_usage]
-interval=1
-min_width=100%
-
-# Battery indicator
-#
-# Displays total percentage charge left of specified battery.
-[battery3]
+[key_layout]
+command=$SCRIPT_DIR/key_layout/key_layout
+label=Layout
 interval=30
-instance=BAT0
+
+[cpu_usage2]
+command=$SCRIPT_DIR/cpu_usage2/cpu_usage2
+markup=pango
+interval=persist
+min_width=CPU 100.00%
+REFRESH_TIME=1
+#LABEL=CPU 
+WARN_PERCENT=50
+CRIT_PERCENT=80
+DECIMALS=1
 
 # Rofication
 #
@@ -98,13 +72,11 @@ instance=BAT0
 command=/usr/share/i3xrocks/rofication-statusi3blocks.py
 interval=10
 
-# Date Time
 [time]
+command=$SCRIPT_DIR/time/time
 interval=1
+#TZ_FILE=~/.tz
+STRFTIME_FORMAT=%Y-%m-%d %H:%M
+TZONES=$DEFAULT_TZ,Brazil/East,Australia/Brisbane,Asia/Calcutta
+TZ_LABELS=,Brazil,AU,Hyderabad
 
-# Show title of focused window
-#[focused-window-name]
-#label=  # uncomment to show an icon
-#interval=1
-#filter_list=evince libreoffice # uncomment to show only for these window instances
-#short_length=10 # uncomment to change maximum size of shortened text
