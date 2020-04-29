@@ -9,7 +9,7 @@ set $alt Mod1
 
 # i3xrocks config file. Override this for custom status indicators on the bar.
 #set $i3xrocks_config /etc/regolith/i3xrocks/config
-set $i3xrocks_config /home/daniel5908/.config/regolith/i3xrocks/config
+set $i3xrocks_config ~/.config/regolith/i3xrocks/config
 
 # path to terminal. Override this to specify a custom terminal.
 set $terminal_path exec kitty
