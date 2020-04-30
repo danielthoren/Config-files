@@ -14,4 +14,5 @@ konsole -e sshpass -p $password ssh -p $sshPort -L 5050:192.168.1.100:5050 $user
 konsole -e sshpass -p $password ssh -p $sshPort -L 5000:192.168.1.214:5000 $user@$global_ip &
 konsole -e sshpass -p $password ssh -p $sshPort -L 8006:192.168.1.7:8006 $user@$global_ip &
 konsole -e sshpass -p $password ssh -p $sshPort -L 9117:192.168.1.100:9117 $user@$global_ip &
+konsole -e sshpass -p $password ssh -p $sshPort -L 8080:192.168.1.100:8080 $user@$global_ip &
 
