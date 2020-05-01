@@ -100,6 +100,14 @@ BEG and END default to the buffer boundaries."
                 (unless (alist-get lang langs)
                   (indent-to 4))))))
 
+(setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+        "xelatex -interaction nonstopmode -output-directory %o %f"
+        "xelatex -interaction nonstopmode -output-directory %o %f"))
+
+(setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
+
 ;;hooks
 (defun my-org-mode-hook ()
   (org-display-inline-images-custom)
