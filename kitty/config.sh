@@ -4,13 +4,20 @@ dir=~/.config/kitty
 
 source ../functions.sh
 
+source ../commandParser.sh -scope kitty "$@"
+
 if ! command_exists kitty ; then
+    if ${kittyBooleans[no-sudo]} ; then
+	echo "kitty not installed, cant install without sudo, exiting..."
+	exit no-sudo
+    fi
+    
     echo "kitty not installed, installing..."
     sudo apt update
     sudo apt install kitty
 fi
 
-echo "kity emacs in folder $dir"
+echo "installing kitty in folder $dir"
 
 if [ ! -d $dir ]; then
     echo "Folder does not exist, creating folder"

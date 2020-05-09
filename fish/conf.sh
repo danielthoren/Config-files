@@ -4,7 +4,14 @@ dir=~/.config/fish
 
 source ../functions.sh
 
+source ../commandParser.sh -scope fish "$@"
+
 if ! command_exists fish ; then
+    if ${fishBooleans[no-sudo]} ; then
+	echo "fish not installed, cant install without sudo, exiting..."
+	exit no-sudo
+    fi
+    
     echo "fish not installed, installing..."
     sudo apt install fish
     fpath= which fish
