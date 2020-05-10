@@ -20,10 +20,10 @@ fi
 
 ln -s "${PWD}/regolith_files/i3" "${dir}"
 
-if ${booleanArrayName[laptop]} ; then
+if [ ${array[laptop]+abc} ] && ${booleanArrayName[laptop]} ; then
     ln -s "${PWD}/regolith_files/laptop/i3xrocks" "${dir}"
 
-    if ${booleanArrayName[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${booleanArrayName[no-sudo]} ; then
 	echo "acpi for battery status not installed, cant install without sudo..."
     else
 	echo "Installing acpi for battery status..."	

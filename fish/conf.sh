@@ -7,7 +7,7 @@ source ../functions.sh
 source ../commandParser.sh -scope fish "$@"
 
 if ! command_exists fish ; then
-    if ${fishBooleans[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${fishBooleans[no-sudo]} ; then
 	echo "fish not installed, cant install without sudo, exiting..."
 	exit no-sudo
     fi
