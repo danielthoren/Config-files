@@ -7,7 +7,7 @@ source ../functions.sh
 source ../commandParser.sh -scope kitty "$@"
 
 if ! command_exists kitty ; then
-    if ${kittyBooleans[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${kittyBooleans[no-sudo]} ; then
 	echo "kitty not installed, cant install without sudo, exiting..."
 	exit no-sudo
     fi

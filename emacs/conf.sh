@@ -6,16 +6,20 @@ source ../functions.sh
 
 source ../commandParser.sh -scope emacs "$@"
 
+add_source ppa:kelleyk/emacs
+
 if ! command_exists emacs ; then
-    if ${booleanArrayName[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${booleanArrayName[no-sudo]} ; then
 	echo "emacs not installed, cant install without sudo, exiting..."
 	exit no-sudo
     fi
     
     echo "emacs not installed, installing..."
+
+    add_source ppa:kelleyk/emacs
     
-    #echo "Adding repository to sources list..."
-    #sudo add-apt-repository ppa:kelleyk/emacs
+    # echo "Adding repository to sources list..."
+    # sudo add-apt-repository ppa:kelleyk/emacs
     
     if ! ${emacsBooleans[all-conf]}; then
        sudo apt update
@@ -25,7 +29,7 @@ fi
 
 #Regex program used for dumb-jump-mode
 if ! command_exists ag ; then    
-    if ${emacsBooleans[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${emacsBooleans[no-sudo]} ; then
 	echo "ag not installed, cant install without sudo..."
     else
 	echo "ag not installed, installing..."
@@ -34,7 +38,7 @@ if ! command_exists ag ; then
 fi
 
 if ! command_exists ditaa ; then
-    if ${emacsBooleans[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${emacsBooleans[no-sudo]} ; then
 	echo "ditaa not installed, cant install without sudo..."
     else
 	echo "ditaa not installed, installing..."
@@ -44,7 +48,7 @@ fi
 
 #used by jedi (python autocomplete)
 if ! command_exists virtualenv ; then
-    if ${emacsBooleans[no-sudo]} ; then
+    if [ ${array[no-sudo]+abc} ] && ${emacsBooleans[no-sudo]} ; then
 	echo "virtualenv not installed, cant install without sudo..."	
     else
 	echo "virtualenv not installed, installing..."
