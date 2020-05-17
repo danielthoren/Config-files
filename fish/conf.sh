@@ -19,8 +19,11 @@ fi
 fpath=$(which fish)
 
 echo "output: $fpath"
-
-sudo chsh -s $fpath
+if [ ${array[no-sudo]+abc} ] && ${fishBooleans[no-sudo]} ; then
+    chsh -s $fpath
+else    
+    sudo chsh -s $fpath
+fi
 
 echo "Set fish as default shell"
 
