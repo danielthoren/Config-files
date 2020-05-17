@@ -6,12 +6,15 @@ source ../functions.sh
 
 if ! command_exists fish ; then
     echo "fish not installed, installing..."
-    sudo apt install fish
-    fpath= which fish
-    echo $fpath | sudo tee -a /etc/shells
+    sudo apt install -y fish
 fi
 
-chsh -s $fpath
+fpath=$(which fish)
+
+echo "output: $fpath"
+
+sudo chsh -s $fpath
+
 echo "Set fish as default shell"
 
 echo "Configuring fish in folder $dir"
