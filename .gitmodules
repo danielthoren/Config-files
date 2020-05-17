@@ -1,6 +1,3 @@
-[submodule "regolith/regolith_files/i3xrocks/scripts/i3blocks-contrib"]
-	path = regolith/regolith_files/i3xrocks/scripts/i3blocks-contrib
-	url = https://github.com/vivien/i3blocks-contrib.git
 [submodule "regolith/regolith_files/scripts/i3blocks-contrib"]
 	path = regolith/regolith_files/scripts/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib.git
