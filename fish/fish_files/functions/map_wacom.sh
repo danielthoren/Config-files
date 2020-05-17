@@ -1,15 +1,19 @@
 #!/bin/bash
 
+DISP_FILE=~/.config/fish/functions/main_display
+echo $DISP_FILE
+
+if [ -e "$DISP_FILE" ]; then
+    read MAIN_DISPLAY < $DISP_FILE
+    echo $MAIN_DISPLAY
+else
+    echo "No $DISP_FILE file detected, aborting..."
+    exit -1
+fi
+
 for num in $(xinput list | grep Wacom | awk '{print $9}' | sed $num 's/id=//');
 do
     echo $num
-    xinput map-to-output $num DVI-D-0
+    xinput map-to-output $num $MAIN_DISPLAY
 done
-
-
-# xinput map-to-output 12 DVI-D-0
-# xinput map-to-output 10 DVI-D-0
-# xinput map-to-output 11 DVI-D-0
-# xinput map-to-output 15 DVI-D-0
-# xinput map-to-output 16 DVI-D-0
   
