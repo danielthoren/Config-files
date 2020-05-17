@@ -13,7 +13,7 @@ if ! command_exists ranger ; then
     fi
     
     echo "ranger not installed, installing..."
-    sudo apt install ranger
+    sudo apt install -y ranger
 fi
 
 echo "Configuring ranger in folder $dir"
