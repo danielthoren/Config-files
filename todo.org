@@ -1,7 +1,7 @@
 
-- [ ] Install japanese lang
-- [X] Fix audio keybindings in i3
-- [X] Fix screen brightness keybindings i3
+- [ ] Move emacs config files to the "use-package" system
 - [ ] Fix global dumb jump mode emacs (only in c++ mode now)
-- [ ] Fix hide bold markers org mode
+- [ ] Fix emacs config so that it works with major version 24, 25, 26
+
+- [ ] Install japanese lang
 

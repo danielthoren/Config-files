@@ -2,9 +2,16 @@
 
 source ../functions.sh
 
-dir=~/.config/ranger/
+source ../commandParser.sh -scope ranger "$@"
+
+dir=~/.config/ranger
 
 if ! command_exists ranger ; then
+    if [ ${array[no-sudo]+abc} ] && ${rangerBooleans[no-sudo]} ; then
+	echo "ranger not installed, cant install without sudo, exiting..."
+	exit no-sudo
+    fi
+    
     echo "ranger not installed, installing..."
     sudo apt install ranger
 fi

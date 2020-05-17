@@ -1,12 +1,12 @@
 #!/bin/bash
 
 cd emacs
-./conf.sh
+./conf.sh -all-conf "$@"
 cd ../fish
-./conf.sh
+./conf.sh -all-conf "$@"
 cd ../kitty
-.conf.sh
+.conf.sh -all-conf "$@"
 cd ../ranger
-./conf.sh
+./conf.sh -all-conf "$@"
 cd ../regolith
-./conf.sh
+./conf.sh -all-conf "$@"

@@ -4,6 +4,8 @@ dir=~/.config/regolith
 
 source ../functions.sh
 
+source ../commandParser.sh -scope regolith "$@"
+
 echo "Configuring regolith in folder ${dir}"
 
 if [ ! -d $dir ]; then
@@ -18,14 +20,15 @@ fi
 
 ln -s "${PWD}/regolith_files/i3" "${dir}"
 
-echo "Is this a laptop? [y/n]"
-read laptop
-
-if [ $laptop == "y" ]; then
+if [ ${array[laptop]+abc} ] && ${booleanArrayName[laptop]} ; then
     ln -s "${PWD}/regolith_files/laptop/i3xrocks" "${dir}"
 
-    echo "Installing acpi for battery status..."
-    sudo apt install acpi
+    if [ ${array[no-sudo]+abc} ] && ${booleanArrayName[no-sudo]} ; then
+	echo "acpi for battery status not installed, cant install without sudo..."
+    else
+	echo "Installing acpi for battery status..."	
+	sudo apt install acpi
+    fi
     
 else
     ln -s "${PWD}/regolith_files/stationary/i3xrocks" "${dir}"
