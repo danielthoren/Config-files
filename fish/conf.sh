@@ -13,7 +13,7 @@ if ! command_exists fish ; then
     fi
     
     echo "fish not installed, installing..."
-    sudo apt install -y fish
+    $APT_INSTALL fish
 fi
 
 fpath=$(which fish)
