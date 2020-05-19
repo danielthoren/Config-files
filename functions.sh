@@ -1,5 +1,7 @@
 #!/bin/bash
 
+APT_INSTALL="sudo apt -qq install -y"
+
 command_exists () {
     type "$1" &> /dev/null ;
 }

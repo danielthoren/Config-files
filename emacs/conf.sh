@@ -24,7 +24,24 @@ if ! command_exists emacs ; then
     if ! ${emacsBooleans[all-conf]}; then
        sudo apt update
     fi
-    sudo apt install -y emacs
+    $APT_INSTALL emacs
+fi
+
+#installing libclang
+if [ ${array[no-sudo]+abc} ] && ${booleanArrayName[no-sudo]} ; then
+    echo "cant install libclang without sudo..."
+else
+    echo "installing libclang 10..."
+    $APT_INSTALL libclang-10-dev
+    $APT_INSTALL libclang-cpp10-dev
+    $APT_INSTALL libclang1-10
+fi
+
+if [ ${array[no-sudo]+abc} ] && ${booleanArrayName[no-sudo]} ; then
+    echo "cant install irony-server without sudo..."
+else
+    echo "installing irony-server..."
+    $APT_INSTALL irony-server
 fi
 
 #Regex program used for dumb-jump-mode
@@ -33,7 +50,7 @@ if ! command_exists ag ; then
 	echo "ag not installed, cant install without sudo..."
     else
 	echo "ag not installed, installing..."
-	sudo apt install -y silversearcher-ag
+	$APT_INSTALL silversearcher-ag
     fi
 fi
 
@@ -52,7 +69,7 @@ if ! command_exists virtualenv ; then
 	echo "virtualenv not installed, cant install without sudo..."	
     else
 	echo "virtualenv not installed, installing..."
-	sudo apt install -y virtualenv
+	$APT_INSTALL virtualenv
     fi
 fi
 

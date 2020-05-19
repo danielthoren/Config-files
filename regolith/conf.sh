@@ -27,7 +27,7 @@ if [ ${array[laptop]+abc} ] && ${booleanArrayName[laptop]} ; then
 	echo "acpi for battery status not installed, cant install without sudo..."
     else
 	echo "Installing acpi for battery status..."	
-	sudo apt install acpi
+	$APT_INSTALL acpi
     fi
     
 else
