@@ -5,8 +5,10 @@
 (setq inhibit-splash-screen t)
 
 ;; Line numbering
-(global-display-line-numbers-mode)
-
+(if (version< emacs-version "26")
+    (global-linum-mode)
+    (global-display-line-numbers-mode))
+  
 ;; Column numbering
 (setq column-number-mode t)
 

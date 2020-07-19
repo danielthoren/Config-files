@@ -3,6 +3,7 @@
 ;; (setq package-check-signature 'nil)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+
 ;; Settings path
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
@@ -85,7 +86,7 @@
 
 ;;javascript autocomplete
 (require 'company)
-(require 'company-tern)
+;;(require 'company-tern)
 (require 'tern)
 
 (add-to-list 'company-backends 'company-tern)
@@ -106,7 +107,10 @@
 (add-hook 'prog-mode-hook 'my-diff-hook)
 
 ;; Dashboard
-(dashboard-setup-startup-hook)
+(if (version< emacs-version "26")
+    ()
+    (dashboard-setup-startup-hook))
+
 (setq dashboard-startup-banner 'logo)
 
 ;; YAML
