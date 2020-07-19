@@ -15,3 +15,7 @@ add_source () {
 	sudo apt update
     fi    
 }
+
+flag_exists () {
+    [[ -n ${booleans[$1]} || -z ${booleans[$1]-foo} ]]
+}
