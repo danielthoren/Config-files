@@ -1,5 +1,5 @@
 
-set PATH /home/daniel5908/git/pintos/src/utils/ $PATH
+set PATH /home/daniel5908/git/pintos/src/utils $PATH
 export EDITOR='emacs'
 
 alias arduino="/home/daniel5908/programs/arduino-1.8.10/arduino"
