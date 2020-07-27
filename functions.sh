@@ -1,6 +1,7 @@
 #!/bin/bash
 
 APT_INSTALL="sudo apt -qq install -y"
+APT_UPDATE="sudo apt update"
 
 command_exists () {
     type "$1" &> /dev/null ;

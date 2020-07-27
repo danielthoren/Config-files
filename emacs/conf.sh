@@ -24,9 +24,8 @@ if ! command_exists emacs ; then
     # echo "Adding repository to sources list..."
     # sudo add-apt-repository ppa:kelleyk/emacs
     
-    if ! flag_exists all-conf ; then
-       sudo apt update
-    fi
+    $APT_UPDATE
+
     $APT_INSTALL emacs
 fi
 
