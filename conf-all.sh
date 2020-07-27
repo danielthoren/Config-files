@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Vible flags are:
+# -no-sudo  (for installation wighout sudo)
+# -laptop   (for installation with laptop specific settings)
+
 cd emacs
 ./conf.sh -all-conf "$@"
 cd ../fish
