@@ -3,8 +3,8 @@
 #Viable flags are:
 # -l (local connection)
 
-source ../../../functions.sh
-source ../../../commandParser.sh "$@"
+source $FIFUNC/functions.sh
+source $FIFUNC/commandParser.sh "$@"
 
 export HISTIGNORE='*sudo -S*'
 
