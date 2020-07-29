@@ -25,6 +25,16 @@ fi
 echo "Enter password:"
 read -s password
 
+if ! [ -d "/mnt/server" ]; then
+	echo "Dir '/mnt/server' does not exist, creating dir..."
+	sudo mkdir /mnt/server
+fi
+
+if ! [ -d "/mnt/download" ]; then
+	echo "Dir '/mnt/download' does not exist, creating dir..."
+	sudo mkdir /mnt/download
+fi
+
 echo "Connecting using ip ${ip}..."
     
 echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage /mnt/server <<< $password
