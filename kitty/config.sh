@@ -14,7 +14,7 @@ if ! command_exists kitty ; then
     
     echo "kitty not installed, installing..."
     sudo apt update
-    $APT_INSTALL kitty
+    install kitty
 fi
 
 echo "installing kitty in folder $dir"
