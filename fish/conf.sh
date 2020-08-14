@@ -13,7 +13,7 @@ if ! command_exists fish ; then
     fi
     
     echo "fish not installed, installing..."
-    $APT_INSTALL fish
+    install fish
 fi
 
 fpath=$(which fish)

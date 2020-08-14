@@ -7,6 +7,21 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
+install() {
+    is_pkg_installed=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
+		       
+    if ! [[ "${is_pkg_installed}" == "install ok installed" ]]; then
+	echo "$1 not installed, installing..."
+
+	if ! $updated; then	    
+	    $APT_UPDATE
+	    export updated=true
+	fi
+	$APT_INSTALL "$1"
+    fi
+    echo "$output"
+}
+
 add_source () {
     echo $1
     

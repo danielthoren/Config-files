@@ -27,7 +27,7 @@ if flag_exists laptop ; then
 	echo "acpi for battery status not installed, cant install without sudo..."
     else
 	echo "Installing acpi for battery status..."	
-	$APT_INSTALL acpi
+	install acpi
     fi
     
 else

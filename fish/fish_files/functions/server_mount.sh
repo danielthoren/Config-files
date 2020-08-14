@@ -1,9 +1,10 @@
 #!/bin/bash
 
-#Viable flags are:
-# -l (local connection)
-
 source $FIFUNC/functions.sh
+
+install net-tools
+
+install htop
 
 export HISTIGNORE='*sudo -S*'
 

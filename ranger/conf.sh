@@ -13,7 +13,7 @@ if ! command_exists ranger ; then
     fi
     
     echo "ranger not installed, installing..."
-    $APT_INSTALL ranger
+    install ranger
 fi
 
 echo "Configuring ranger in folder $dir"

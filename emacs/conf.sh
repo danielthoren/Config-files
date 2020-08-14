@@ -3,7 +3,6 @@
 dir=~/.emacs.d
 
 source ../functions.sh
-#source ../commandParser.sh -scope emacs "$@"
 
 source ../commandParser.sh "$@"
 
@@ -26,7 +25,7 @@ if ! command_exists emacs ; then
     
     $APT_UPDATE
 
-    $APT_INSTALL emacs
+    install emacs
 fi
 
 #installing libclang
@@ -34,16 +33,16 @@ if flag_exists no-sudo ; then
     echo "cant install libclang without sudo..."
 else
     echo "installing libclang 10..."
-    $APT_INSTALL libclang-10-dev
-    $APT_INSTALL libclang-cpp10-dev
-    $APT_INSTALL libclang1-10
+    install libclang-10-dev
+    install libclang-cpp10-dev
+    install libclang1-10
 fi
 
 if flag_exists no-sudo ; then
     echo "cant install irony-server without sudo..."
 else
     echo "installing irony-server..."
-    $APT_INSTALL irony-server
+    install irony-server
 fi
 
 #Regex program used for dumb-jump-mode
@@ -52,7 +51,7 @@ if ! command_exists ag ; then
 	echo "ag not installed, cant install without sudo..."
     else
 	echo "ag not installed, installing..."
-	$APT_INSTALL silversearcher-ag
+	install silversearcher-ag
     fi
 fi
 
@@ -71,7 +70,7 @@ if ! command_exists virtualenv ; then
 	echo "virtualenv not installed, cant install without sudo..."	
     else
 	echo "virtualenv not installed, installing..."
-	$APT_INSTALL virtualenv
+	install virtualenv
     fi
 fi
 
