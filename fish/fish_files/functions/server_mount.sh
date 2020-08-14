@@ -4,7 +4,6 @@
 # -l (local connection)
 
 source $FIFUNC/functions.sh
-source $FIFUNC/commandParser.sh "$@"
 
 export HISTIGNORE='*sudo -S*'
 
@@ -14,7 +13,9 @@ local_ip="192.168.1.100"
 sshPort=2022
 user=daniel5908
 
-if flag_exists l ; then
+home_mac="38:d5:47:7f:39:60"
+
+if arp 192.168.1.1 | grep $home_mac; then
     echo "Using local ip..."
     ip=$local_ip
 else
