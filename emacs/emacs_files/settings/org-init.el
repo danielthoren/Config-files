@@ -11,6 +11,9 @@
 ;;; display Info mode buffers in proportional font
 (add-hook 'Info-mode-hook 'variable-pitch-mode)
 
+;; fontify code in code blocks
+(setq org-src-fontify-natively t)
+
 ;; Original source code wich one modified row. Makes the background of images
 ;; White so that transparent images are not  invisible
 (defun org-display-inline-images-custom (&optional include-linked refresh beg end)
