@@ -27,18 +27,30 @@ fi
 echo "Enter password:"
 read -s password
 
-if ! [ -d "/mnt/server" ]; then
-	echo "Dir '/mnt/server' does not exist, creating dir..."
-	sudo mkdir /mnt/server
+if ! [ -d "~/server" ]; then
+	echo "Dir '~/server' does not exist, creating dir..."
+	sudo mkdir ~/server
 fi
 
-if ! [ -d "/mnt/download" ]; then
-	echo "Dir '/mnt/download' does not exist, creating dir..."
-	sudo mkdir /mnt/download
+if ! [ -d "~/server/download" ]; then
+	echo "Dir '~/server/download' does not exist, creating dir..."
+	sudo mkdir ~/server/download
+fi
+
+if ! [ -d "~/server/storage" ]; then
+	echo "Dir '~/server/storage' does not exist, creating dir..."
+	sudo mkdir ~/server/storage
+fi
+
+if ! [ -d "~/labbass" ]; then
+	echo "Dir '~/labbass' does not exist, creating dir..."
+	sudo mkdir ~/labbass
 fi
 
 echo "Connecting using ip ${ip}..."
     
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage /mnt/server <<< $password
+echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage ~/server/storage <<< $password
 
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download /mnt/download <<< $password
+echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $password
+
+echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage/Daniel/Documents/labass ~/labbass <<< $password
