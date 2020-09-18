@@ -4,7 +4,7 @@
   "Insert komplettering at cursor point."
   (interactive)
   (beginning-of-line)
-  (insert "/*************** Komplettering ***************/\n")
+  (insert "/*************** Complementary work ***************/\n")
   (insert "/* TODO: */\n")
   (insert "/*********************************************/")
   (backward-char 50))
@@ -13,7 +13,7 @@
   "Insert comment at cursor point."
   (interactive)
   (beginning-of-line)
-  (insert "/***************** Kommentar *****************/\n")
+  (insert "/***************** Comment *****************/\n")
   (insert "/* */\n")
   (insert "/*********************************************/")
   (backward-char 50))
