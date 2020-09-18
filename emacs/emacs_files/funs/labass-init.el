@@ -6,8 +6,8 @@
   (beginning-of-line)
   (insert "/*************** Complementary work ***************/\n")
   (insert "/* TODO: */\n")
-  (insert "/*********************************************/")
-  (backward-char 50))
+  (insert "/**************************************************/")
+  (backward-char 55))
 
 (defun insert-java-comm ()
   "Insert comment at cursor point."
@@ -15,8 +15,8 @@
   (beginning-of-line)
   (insert "/***************** Comment *****************/\n")
   (insert "/* */\n")
-  (insert "/*********************************************/")
-  (backward-char 50))
+  (insert "/*******************************************/")
+  (backward-char 48))
 
 (define-minor-mode labass-mode
   "Toggle labass-mode"
@@ -29,4 +29,3 @@
 (define-global-minor-mode labass-mode-global labass-mode (lambda () (labass-mode 1)))
 
 (provide 'labass-init)
-
