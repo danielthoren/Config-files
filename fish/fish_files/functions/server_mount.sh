@@ -27,24 +27,24 @@ fi
 echo "Enter password:"
 read -s password
 
-if ! [ -d "~/server" ]; then
+if ! [ -d ~/server ]; then
 	echo "Dir '~/server' does not exist, creating dir..."
-	sudo mkdir ~/server
+	mkdir ~/server
 fi
 
-if ! [ -d "~/server/download" ]; then
+if ! [ -d ~/server/download ]; then
 	echo "Dir '~/server/download' does not exist, creating dir..."
-	sudo mkdir ~/server/download
+	mkdir ~/server/download
 fi
 
-if ! [ -d "~/server/storage" ]; then
+if ! [ -d ~/server/storage ]; then
 	echo "Dir '~/server/storage' does not exist, creating dir..."
-	sudo mkdir ~/server/storage
+	mkdir ~/server/storage
 fi
 
-if ! [ -d "~/labbass" ]; then
+if ! [ -d ~/labbass ]; then
 	echo "Dir '~/labbass' does not exist, creating dir..."
-	sudo mkdir ~/labbass
+	mkdir ~/labbass
 fi
 
 echo "Connecting using ip ${ip}..."
