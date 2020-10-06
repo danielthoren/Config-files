@@ -51,8 +51,8 @@ fi
 
 echo "Connecting using ip ${ip}..."
     
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage ~/server/storage <<< $password
+echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $password
 
 echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $password
 
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-storage/Daniel/Documents/labass ~/labbass <<< $password
+echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $password
