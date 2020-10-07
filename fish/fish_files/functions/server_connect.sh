@@ -1,6 +1,6 @@
 #!/bin/bash
 
-global_ip="155.4.155.164"
+global_ip="155.4.147.233"
 sshPort=2022
 user=daniel5908
 
