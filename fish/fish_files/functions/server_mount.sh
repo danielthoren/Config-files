@@ -8,7 +8,7 @@ install htop
 
 export HISTIGNORE='*sudo -S*'
 
-global_ip="155.4.155.164"
+global_ip="155.4.147.233"
 local_ip="192.168.1.100"
 
 sshPort=2022
