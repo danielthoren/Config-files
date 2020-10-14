@@ -9,6 +9,7 @@ alias javac_pack="/home/daniel5908/git/Config-files/fish/fish_files/functions/ja
 alias lab1_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab1_tdde22.sh"
 alias lab2_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab2_tdde22.sh"
 alias lab3_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab3_tdde22.sh"
+alias lab4_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab4_tdde22.sh"
 
 alias
 alias
