@@ -16,7 +16,7 @@ user=daniel5908
 
 home_mac="38:d5:47:7f:39:60"
 
-./server_diss.sh
+$FIFUNC/fish/fish_files/functions/server_diss.sh
 
 if arp 192.168.1.1 | grep $home_mac; then
     echo "Using local ip..."
