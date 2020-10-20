@@ -16,8 +16,6 @@ user=daniel5908
 
 home_mac="38:d5:47:7f:39:60"
 
-$FIFUNC/fish/fish_files/functions/server_diss.sh
-
 if arp 192.168.1.1 | grep $home_mac; then
     echo "Using local ip..."
     ip=$local_ip
@@ -28,6 +26,8 @@ fi
 
 echo "Enter password:"
 read -s password
+
+sudo -S bash $FIFUNC/fish/fish_files/functions/server_diss.sh <<< $password
 
 if ! [ -d ~/server ]; then
 	echo "Dir '~/server' does not exist, creating dir..."
@@ -51,8 +51,8 @@ fi
 
 echo "Connecting using ip ${ip}..."
     
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $password
 
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $password
 
-echo $password | sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $password
