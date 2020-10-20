@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo umount -f ~/server/download
-sudo umount -f ~/server/storage
-sudo umount -f ~/labbass
+sudo umount -f /home/daniel5908/server/download
+sudo umount -f /home/daniel5908/server/storage
+sudo umount -f /home/daniel5908/labbass
