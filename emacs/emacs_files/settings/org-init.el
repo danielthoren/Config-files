@@ -111,6 +111,22 @@ BEG and END default to the buffer boundaries."
 
 (setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;latex export;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Add latex class to global expor tvariable "org-latex-classes" to
+;; make org mode recognize IEEEtran class
+(setq ieeetran-class
+      '("IEEEtran" "\\documentclass[11pt]{IEEEtran}"
+        ("\\section{%s}" . "\\section*{%s}")
+        ("\\subsection{%s}" . "\\subsection*{%s}")
+        ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+        ("\\paragraph{%s}" . "\\paragraph*{%s}")
+        ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes ieeetran-class t))
+
 ;;hooks
 (defun my-org-mode-hook ()
   (org-display-inline-images-custom)
