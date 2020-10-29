@@ -1,3 +1,7 @@
+
+;;--------------------------------------------------------------------------------------------------------------------------------------
+;; Org mode behaviour
+;;--------------------------------------------------------------------------------------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; Enables latex-like equations etc
@@ -14,8 +18,10 @@
 ;; fontify code in code blocks
 (setq org-src-fontify-natively t)
 
+;;--------------------------------------------------------------------------------------------------------------------------------------
 ;; Original source code wich one modified row. Makes the background of images
-;; White so that transparent images are not  invisible
+;; White so that transparent images are visible
+;;--------------------------------------------------------------------------------------------------------------------------------------
 (defun org-display-inline-images-custom (&optional include-linked refresh beg end)
   "Display inline images.
 Normally only links without a description part are inlined, because this
@@ -84,6 +90,7 @@ BEG and END default to the buffer boundaries."
 ;;Makes captions appear below item
 (setq org-latex-caption-above nil)
 
+;; Sets path to ditaa installation
 (setq org-ditaa-jar-path "/usr/bin/ditaa")
 
 ;;Enable ditaa
@@ -111,7 +118,10 @@ BEG and END default to the buffer boundaries."
 
 (setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;latex export;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;--------------------------------------------------------------------------------------------------------------------------------------
+;; Add latex classes
+;;--------------------------------------------------------------------------------------------------------------------------------------
 
 ;; Add latex class to global expor tvariable "org-latex-classes" to
 ;; make org mode recognize IEEEtran class
