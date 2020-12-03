@@ -3,7 +3,6 @@
 source $FIFUNC/functions.sh
 
 install net-tools
-
 install htop
 
 export HISTIGNORE='*sudo -S*'
@@ -13,6 +12,15 @@ local_ip="192.168.1.100"
 
 sshPort=2022
 user=daniel5908
+
+PASSW_FILE=~/.config/fish/server_passw
+
+if [ -e "$PASSW_FILE" ]; then
+    read PASSW < $PASSW_FILE
+else
+    echo "No $PASSW_FILE file detected, aborting..."
+    exit -1
+fi
 
 home_mac="38:d5:47:7f:39:60"
 
@@ -24,10 +32,8 @@ else
     ip=$global_ip
 fi
 
-echo "Enter password:"
-read -s password
-
-sudo -S bash $FIFUNC/fish/fish_files/functions/server_diss.sh <<< $password
+#sudo -S bash $FIFUNC/fish/fish_files/functions/server_diss.sh
+bash $FIFUNC/fish/fish_files/functions/server_diss.sh
 
 if ! [ -d ~/server ]; then
 	echo "Dir '~/server' does not exist, creating dir..."
@@ -51,8 +57,8 @@ fi
 
 echo "Connecting using ip ${ip}..."
     
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $PASSW
 
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $PASSW
 
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $password
+sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $PASSW

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DISP_FILE=~/.config/fish/functions/main_display
+DISP_FILE=~/.config/fish/main_display
 echo $DISP_FILE
 
 if [ -e "$DISP_FILE" ]; then
