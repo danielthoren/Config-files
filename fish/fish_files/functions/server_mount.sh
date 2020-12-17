@@ -22,7 +22,7 @@ else
     exit -1
 fi
 
-home_mac="38:d5:47:7f:39:60"
+home_mac="e0:b9:e5:e1:1b:7e"
 
 if arp 192.168.1.1 | grep $home_mac; then
     echo "Using local ip..."

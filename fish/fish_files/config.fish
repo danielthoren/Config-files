@@ -11,6 +11,8 @@ alias lab2_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/l
 alias lab3_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab3_tdde22.sh"
 alias lab4_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab4_tdde22.sh"
 
+sfconn
+
 alias
 alias
 clear
