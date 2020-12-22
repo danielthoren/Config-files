@@ -7,7 +7,7 @@ install htop
 
 export HISTIGNORE='*sudo -S*'
 
-global_ip="155.4.147.233"
+global_ip="158.174.68.120"
 local_ip="192.168.1.100"
 
 sshPort=2022
@@ -50,15 +50,8 @@ if ! [ -d ~/server/storage ]; then
 	mkdir ~/server/storage
 fi
 
-if ! [ -d ~/labbass ]; then
-	echo "Dir '~/labbass' does not exist, creating dir..."
-	mkdir ~/labbass
-fi
-
 echo "Connecting using ip ${ip}..."
     
 sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $PASSW
 
 sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $PASSW
-
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage/Daniel/Documents/labass ~/labbass <<< $PASSW
