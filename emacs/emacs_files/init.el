@@ -107,9 +107,8 @@
 (add-hook 'prog-mode-hook 'my-diff-hook)
 
 ;; Dashboard
-(if (version< emacs-version "26")
-    ()
-    (dashboard-setup-startup-hook))
+(when (>= emacs-major-version 26)
+  (dashboard-setup-startup-hook))
 
 (setq dashboard-startup-banner 'logo)
 
