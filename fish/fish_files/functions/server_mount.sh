@@ -1,26 +1,21 @@
 #!/bin/bash
 
+#sudo sshfs -p 2022 daniel5908@158.174.68.120:/storage ~/server/storage
+
 source $FIFUNC/functions.sh
+
+source $FIFUNC/fish/fish_files/functions/read_server_config.sh
+
+echo $user
+echo $passw
+echo $local_ip
+echo $global_ip
+echo $ssh_port
 
 install net-tools
 install htop
 
 export HISTIGNORE='*sudo -S*'
-
-global_ip="158.174.68.120"
-local_ip="192.168.1.100"
-
-sshPort=2022
-user=daniel5908
-
-PASSW_FILE=~/.config/fish/server_passw
-
-if [ -e "$PASSW_FILE" ]; then
-    read PASSW < $PASSW_FILE
-else
-    echo "No $PASSW_FILE file detected, aborting..."
-    exit -1
-fi
 
 home_mac="e0:b9:e5:e1:1b:7e"
 
@@ -52,6 +47,6 @@ fi
 
 echo "Connecting using ip ${ip}..."
     
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/storage ~/server/storage <<< $PASSW
+sshfs -o password_stdin -p ${ssh_port} ${user}@${ip}:/storage ~/server/storage <<< $passw
 
-sudo -S sshfs -o password_stdin -o allow_other -p ${sshPort} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $PASSW
+sshfs -o password_stdin -p ${ssh_port} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $passw
