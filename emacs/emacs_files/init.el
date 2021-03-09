@@ -63,9 +63,6 @@
 ;; General functions.
 (require 'general-funs)
 
-;; Init labass mode
-(require 'labass-init)
-
 ;; Init minor modes.
 (require 'projectile-init)
 (require 'ivy-init)
