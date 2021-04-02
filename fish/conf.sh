@@ -22,7 +22,8 @@ echo "output: $fpath"
 if flag_exists no-sudo ; then
     chsh -s $fpath
 else    
-    sudo chsh -s $fpath
+    sudo chsh -s $fpath $USER
+#    sudo usermod --shell $fpath $USER
 fi
 
 echo "Set fish as default shell"
