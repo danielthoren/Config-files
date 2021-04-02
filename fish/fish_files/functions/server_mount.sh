@@ -6,12 +6,6 @@ source $FIFUNC/functions.sh
 
 source $FIFUNC/fish/fish_files/functions/read_server_config.sh
 
-echo $user
-echo $passw
-echo $local_ip
-echo $global_ip
-echo $ssh_port
-
 install net-tools
 install htop
 

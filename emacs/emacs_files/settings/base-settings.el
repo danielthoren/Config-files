@@ -15,6 +15,9 @@
 ;; Autofollow symlinks
 (setq vc-follow-symlinks t)
 
+;; Remvoe trailing whitespace when save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Disable autosaving
 (setq auto-save-default nil)
 ;;(setq backup-directory-alist '(("" . (expand-file-name "backup" user-emacs-directory))))

@@ -1,17 +1,21 @@
 
-set PATH /home/daniel5908/git/pintos/src/utils $PATH
+set PATH ~/.local/bin $PATH
+
 export EDITOR='emacs'
 export FIFUNC='/home/daniel5908/git/Config-files'
 
+alias c++17="g++ -Wall -Wextra -Weffc++ -Wold-style-cast -Woverloaded-virtual -std=c++17 -pedantic"
+
 alias arduino="/home/daniel5908/programs/arduino-1.8.10/arduino"
-alias javac_pack="/home/daniel5908/git/Config-files/fish/fish_files/functions/javac_package.sh"
 
-alias lab1_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab1_tdde22.sh"
-alias lab2_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab2_tdde22.sh"
-alias lab3_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab3_tdde22.sh"
-alias lab4_tdde22="/home/daniel5908/git/Config-files/fish/fish_files/functions/lab4_tdde22.sh"
+alias logout="gnome-screensaver-command -l"
 
-sfconn
+alias usbl="~/.config/fish/functions/list_usb.sh"
+
+
+alias sfconn="~/.config/fish/functions/server_mount.sh"
+alias sfdiss="~/.config/fish/functions/server_diss.sh"
+alias swconn="~/.config/fish/functions/server_connect.sh"
 
 alias
 alias

@@ -15,14 +15,14 @@
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 ;; Poker3 bindings
-(global-set-key (kbd "H-i") 'previous-line)
-(global-set-key (kbd "H-k") 'next-line)
-(global-set-key (kbd "H-l") 'right-char)
-(global-set-key (kbd "H-j") 'left-char)
-(global-set-key (kbd "H-M-i") 'backward-paragraph)
-(global-set-key (kbd "H-M-k") 'forward-paragraph)
-(global-set-key (kbd "H-M-l") 'right-word)
-(global-set-key (kbd "H-M-j") 'left-word)
+;; (global-set-key (kbd "H-i") 'previous-line)
+;; (global-set-key (kbd "H-k") 'next-line)
+;; (global-set-key (kbd "H-l") 'right-char)
+;; (global-set-key (kbd "H-j") 'left-char)
+;; (global-set-key (kbd "H-M-i") 'backward-paragraph)
+;; (global-set-key (kbd "H-M-k") 'forward-paragraph)
+;; (global-set-key (kbd "H-M-l") 'right-word)
+;; (global-set-key (kbd "H-M-j") 'left-word)
 
 ;; Allows reopening recently killed buffers with C-x j and C-x C-j
 (global-set-key (kbd "C-x j") 'reopen-killed-file)
@@ -33,6 +33,6 @@
 
 (global-set-key (kbd "C-;") 'company-complete-common)
 
-(global-set-key (kbd "C-]") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c k") 'comment-or-uncomment-region)
 
 (provide 'key-bindings)
