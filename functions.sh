@@ -2,9 +2,17 @@
 
 APT_INSTALL="sudo apt -qq install -y"
 APT_UPDATE="sudo apt update"
+APT_UPGRADE="sudo apt upgrade"
 
 command_exists () {
     type "$1" &> /dev/null ;
+}
+
+update() {
+    if ! $updated; then	    
+	$APT_UPDATE
+	export updated=true
+    fi
 }
 
 install() {
@@ -13,10 +21,7 @@ install() {
     if ! [[ "${is_pkg_installed}" == "install ok installed" ]]; then
 	echo "$1 not installed, installing..."
 
-	if ! $updated; then	    
-	    $APT_UPDATE
-	    export updated=true
-	fi
+	update 
 	$APT_INSTALL "$1"
     fi
     echo "$output"

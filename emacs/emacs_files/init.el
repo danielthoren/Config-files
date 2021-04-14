@@ -57,10 +57,6 @@
 
 (solaire-mode-swap-bg)
 
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
 (use-package dumb-jump
   :bind (("M-S-i" . dumb-jump-go-other-window)
          ("M-i"   . dumb-jump-go)
