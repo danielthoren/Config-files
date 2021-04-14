@@ -97,15 +97,12 @@
 ;; Highlight line numbers.
 (linum-mode)
 
-;;javascript autocomplete
 (require 'company)
-;;(require 'company-tern)
-(require 'tern)
+(setq company-idle-delay 0.2
+      company-minimum-prefix-length 3)
+(add-hook 'after-init-hook 'global-company-mode)
 
-(add-to-list 'company-backends 'company-tern)
-(add-hook 'js2-mode-hook (lambda ()
-                           (tern-mode)
-                           (company-mode)))
+(require 'tern)
 
 ;; Disable completion keybindings, as we use xref-js2 instead
 (define-key tern-mode-keymap (kbd "M-.") nil)
@@ -158,4 +155,3 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'dired-find-alternate-file 'disabled nil)
-
