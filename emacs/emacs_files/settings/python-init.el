@@ -5,6 +5,7 @@
   (use-package flycheck
     :ensure t
     :init (flycheck-mode))
+  )
 
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
