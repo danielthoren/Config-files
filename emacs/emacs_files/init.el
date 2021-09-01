@@ -75,9 +75,6 @@
   :config (setq dumb-jump-selector 'ivy dumb-jump-force-searcher 'ag dumb-jump-aggressive nil dumb-jump-debug nil dumb-jump-use-visible-window nil) ;; (setq dumb-jump-selector 'helm)
   :ensure t)
 
-;; Key bindings.
-(require 'key-bindings)
-
 ;; (use-package key-bindings
 ;;   :load-path "settings/key-bindings"
 ;;   )
@@ -89,8 +86,6 @@
 (use-package projectile
   :ensure t)
 (use-package ivy
-  :ensure t)
-(use-package company
   :ensure t)
 (use-package irony
   :ensure t)
@@ -119,16 +114,12 @@
 (require 'markdown-init)
 (require 'org-init)
 (require 'java-init)
+(require 'company-init)
+(require 'key-bindings)
 
 ;; Highlight line numbers.
 (linum-mode)
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.2
-	company-minimum-prefix-length 3)
-  )
 
 (use-package tern
   :ensure t)
