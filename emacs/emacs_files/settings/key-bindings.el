@@ -4,8 +4,8 @@
 
 ;; Window switching.
 (global-set-key (kbd "C-.") 'other-window)
-;;(global-set-key (kbd "C-,") 'prev-window)
-(bind-key* "C-," 'prev-window)
+(global-set-key (kbd "C-,") 'prev-window)
+;;(bind-key* "C-," 'prev-window)
 
 ;; Unbind pageup and pagedown
 (global-unset-key (kbd "<next>"))
@@ -30,9 +30,10 @@
 
 ;; Ivy mode M-x
 (global-set-key (kbd "M-x") 'counsel-M-x)
-
 (global-set-key (kbd "C-;") 'company-complete-common)
-
 (global-set-key (kbd "C-c k") 'comment-or-uncomment-region)
+
+;;Neotree
+(global-set-key (kbd "C-x t") 'neotree-toggle)
 
 (provide 'key-bindings)
