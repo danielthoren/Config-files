@@ -3,7 +3,7 @@
   (company-mode)
   (irony-mode)
   (add-to-list 'company-backends 'company-irony-c-headers)
-  (add-to-list 'company-backends 'company-irony)  
+  (add-to-list 'company-backends 'company-irony)
   (define-key c-mode-map  [(C-return)] 'company-complete)
   (define-key c++-mode-map  [(C-return)] 'company-complete)
   (setq company-idle-delay 999999)
@@ -12,7 +12,7 @@
     :ensure t
     :init (flycheck-mode))
 
-  ;;(flycheck-irony-setup)  
+  ;;(flycheck-irony-setup)
 
   ;; (aggressive-indent-mode)
   ;; (add-to-list
@@ -20,14 +20,14 @@
   ;;  '(and (derived-mode-p 'c++-mode)
   ;; 	 (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
   ;;                            (thing-at-point 'line)))))
-  
+
   (dumb-jump-mode)
-  (setq dumb-jump-force-searcher 'ag)  
+  (setq dumb-jump-force-searcher 'ag)
   (local-set-key (kbd "M-i") 'dumb-jump-go)
   (local-set-key (kbd "C-M-i") 'dumb-jump-back)
-  
+
   (local-set-key (kbd "M-o") 'ff-find-other-file)
-  
+
   (local-set-key (kbd "C-c m") 'cmake-ide-compile)
 
   (local-set-key (kbd "C-c k") 'c-doc-comment)
@@ -64,5 +64,8 @@
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+
+(use-package cmake-ide
+  :ensure t)
 
 (provide 'c-c++-init)
