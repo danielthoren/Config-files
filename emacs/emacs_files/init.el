@@ -105,6 +105,8 @@
   :ensure t)
 (use-package aggressive-indent
   :ensure t)
+(use-package company
+:ensure t)
 
 ;; Init major modes.
 (require 'elisp-init)
@@ -121,7 +123,7 @@
 (linum-mode)
 
 
-(use-package tern
+(use-package tern-auto-complete
   :ensure t)
 
 ;; Disable completion keybindings, as we use xref-js2 instead
