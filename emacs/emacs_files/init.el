@@ -55,7 +55,7 @@
   (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (setq neo-theme 'icons)
-  (doom-themes-neotree-config)
+;;  (doom-themes-neotree-config)
   )
 
 (use-package solaire-mode
@@ -106,6 +106,8 @@
 (use-package aggressive-indent
   :ensure t)
 (use-package company
+:ensure t)
+(use-package git
 :ensure t)
 
 ;; Init major modes.

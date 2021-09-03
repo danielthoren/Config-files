@@ -17,7 +17,7 @@ alias sfdiss="~/.config/fish/functions/server_diss.sh"
 alias swconn="~/.config/fish/functions/server_connect.sh"
 
 bash -c '$source ~/.config/fish/functions/wsl_config.sh'
-source ~/.config/fish/functions/wsl_config.fish
+#source ~/.config/fish/functions/wsl_config.fish
 
 
 # alias
