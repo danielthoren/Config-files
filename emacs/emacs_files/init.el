@@ -108,7 +108,10 @@
 (use-package company
 :ensure t)
 (use-package git
-:ensure t)
+  :ensure t)
+(use-package cmake-ide
+  :ensure t)
+
 
 ;; Init major modes.
 (require 'elisp-init)
@@ -163,14 +166,12 @@
  '(cmake-ide-cmake-opts "-DCMAKE_BUILD_TYPE=Debug")
  '(cmake-ide-make-command "make --no-print-directory -j4")
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+   '("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default))
  '(diff-hl-flydiff-mode t)
  '(irony-additional-clang-options nil)
  '(package-selected-packages
-   (quote
-    (## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock)))
- '(safe-local-variable-values (quote ((TeX-master . t)))))
+   '(## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock))
+ '(safe-local-variable-values '((TeX-master . t))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
