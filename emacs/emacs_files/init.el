@@ -128,6 +128,7 @@
 (require 'java-init)
 (require 'company-init)
 (require 'key-bindings)
+(require 'csharp-init)
 
 ;; Highlight line numbers.
 (linum-mode)
@@ -175,7 +176,7 @@
  '(diff-hl-flydiff-mode t)
  '(irony-additional-clang-options nil)
  '(package-selected-packages
-   '(python flymake-python-pyflakes python-mode ## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock))
+   '(tree-sitter-indent csharp-mode python flymake-python-pyflakes python-mode ## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock))
  '(safe-local-variable-values '((TeX-master . t))))
 
 (custom-set-faces
