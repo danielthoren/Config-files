@@ -70,14 +70,31 @@
 (use-package dumb-jump
   :bind (("M-S-i" . dumb-jump-go-other-window)
          ("M-i"   . dumb-jump-go)
-	 ("C-M-i" . dumb-jump-back))
+	 ("C-M-i" . xref-pop-marker-stack))
   ;;("M-" . dumb-jump-go-prompt))
-  :config (setq dumb-jump-selector 'ivy dumb-jump-force-searcher 'ag dumb-jump-aggressive nil dumb-jump-debug nil dumb-jump-use-visible-window nil) ;; (setq dumb-jump-selector 'helm)
   :ensure t)
 
-;; (use-package key-bindings
-;;   :load-path "settings/key-bindings"
-;;   )
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+
+;;windows only stuff
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;; (when (string-equal system-type "windows-nt")
+;;   (progn
+;;     (setq exec-path (append exec-path '("c:\cygwin64\bin" "C:\apps\GnuWin32\gnuwin32\bin")))
+
+    ;; (setq cygwin-bin "c:\cygwin64\bin")
+    ;; (setq gnu-bin "C:\apps\GnuWin32\gnuwin32\bin")
+    ;; (setenv "PATH"
+    ;; 	    (concat cygwin-bin ";" gnu-bin ";"))
+    ;; (setq exec-path
+    ;; 	  '(cygwin-bin gnu-bin)
+    ;; 	  )
+  ;;   )
+  ;; )
 
 ;; General functions.
 (require 'general-funs)
@@ -99,8 +116,8 @@
   :ensure t)
 (use-package dashboard
   :ensure t)
-(use-package magit
-  :ensure t)
+;; (use-package magit
+;;   :ensure t)
 (use-package diff-hl
   :ensure t)
 (use-package aggressive-indent
@@ -144,10 +161,10 @@
 (define-key tern-mode-keymap (kbd "M-,") nil)
 
 ;; Flydiff
-(defun my-diff-hook ()
-  (magit-auto-revert-mode -1)
-  (diff-hl-mode)
-  (diff-hl-flydiff-mode))
+;; (defun my-diff-hook ()
+;;   (magit-auto-revert-mode -1)
+;;   (diff-hl-mode)
+;;   (diff-hl-flydiff-mode))
 
 (add-hook 'prog-mode-hook 'my-diff-hook)
 
@@ -178,7 +195,7 @@
  '(diff-hl-flydiff-mode t)
  '(irony-additional-clang-options nil)
  '(package-selected-packages
-   '(grep-a-lot tree-sitter-indent csharp-mode python flymake-python-pyflakes python-mode ## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock))
+   '(exec-path-from-shell xref-js2 git-grep grep-a-lot tree-sitter-indent csharp-mode python flymake-python-pyflakes python-mode ## lsp-ui flycheck-pyflakes major-mode-icons modern-cpp-font-lock all-the-icons-ibuffer all-the-icons-ivy all-the-icons-ivy-rich spaceline-all-the-icons all-the-icons-dired treemacs-all-the-icons all-the-icons-gnus all-the-icons ace-flyspell latex-preview-pane digitalocean-helm org-ref json-mode counsel-projectile use-package-ensure-system-package nlinum use-package-hydra virtualenv company-jedi jedi use-package rg rtags ag company-ctags org-edit-latex flycheck-clang-analyzer helm-lsp dap-mode company-lsp auto-yasnippet java-snippets org-bullets ctags-update counsel-etags spinner lsp-java jdee neotree neon-mode ac-clang flycheck-bashate company-irony-c-headers dumb-jump ace-jump-zap aggressive-indent flycheck-irony flycheck diff-hl magit company solaire-mode projectile ivy irony doom-themes dash cmake-ide cmake-font-lock))
  '(safe-local-variable-values '((TeX-master . t))))
 
 (custom-set-faces
