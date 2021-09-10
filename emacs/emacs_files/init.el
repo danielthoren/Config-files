@@ -102,14 +102,24 @@
   :ensure t)
 (use-package dashboard
   :ensure t)
-;; (use-package magit
-;;   :ensure t)
+(use-package magit
+  :ensure t)
 (use-package diff-hl
   :ensure t)
 (use-package aggressive-indent
   :ensure t)
+
+;; Installing company mode
 (use-package company
-:ensure t)
+  :ensure t
+  :config
+  (define-key company-mode-map (kbd "<C-return>") 'company-complete)
+  )
+
+;; Installing company quick help
+(use-package company-quickhelp
+  :ensure t)
+
 (use-package git
   :ensure t)
 (use-package cmake-ide
