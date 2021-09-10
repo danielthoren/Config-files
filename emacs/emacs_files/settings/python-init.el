@@ -3,8 +3,8 @@
   (company-quickhelp-mode)
   (jedi-mode)
   (add-to-list 'company-backends 'company-jedi)
-  (setq company-idle-delay nil)
   (setq jedi:complete-on-dot t)
+  (setq company-idle-delay nil)
   )
 
 (use-package company-jedi
