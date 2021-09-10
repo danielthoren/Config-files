@@ -82,20 +82,6 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; (when (string-equal system-type "windows-nt")
-;;   (progn
-;;     (setq exec-path (append exec-path '("c:\cygwin64\bin" "C:\apps\GnuWin32\gnuwin32\bin")))
-
-    ;; (setq cygwin-bin "c:\cygwin64\bin")
-    ;; (setq gnu-bin "C:\apps\GnuWin32\gnuwin32\bin")
-    ;; (setenv "PATH"
-    ;; 	    (concat cygwin-bin ";" gnu-bin ";"))
-    ;; (setq exec-path
-    ;; 	  '(cygwin-bin gnu-bin)
-    ;; 	  )
-  ;;   )
-  ;; )
-
 ;; General functions.
 (require 'general-funs)
 
@@ -160,11 +146,11 @@
 (define-key tern-mode-keymap (kbd "M-.") nil)
 (define-key tern-mode-keymap (kbd "M-,") nil)
 
-;; Flydiff
-;; (defun my-diff-hook ()
-;;   (magit-auto-revert-mode -1)
-;;   (diff-hl-mode)
-;;   (diff-hl-flydiff-mode))
+;;Flydiff
+(defun my-diff-hook ()
+  (magit-auto-revert-mode -1)
+  (diff-hl-mode)
+  (diff-hl-flydiff-mode))
 
 (add-hook 'prog-mode-hook 'my-diff-hook)
 
