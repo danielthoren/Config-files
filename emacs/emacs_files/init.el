@@ -19,6 +19,21 @@
 (require 'font-settings)
 (require 'base-settings)
 
+(setq
+ scroll-conservatively 1000                     ;; only 'jump' when moving this far
+ scroll-margin 4                                ;; scroll N lines to screen edge
+ scroll-step 1                                  ;; keyboard scroll one line at a time
+ mouse-wheel-scroll-amount '(6 ((shift) . 1))   ;; mouse scroll N lines
+ mouse-wheel-progressive-speed nil              ;; don't accelerate scrolling
+
+ redisplay-dont-pause t                         ;; don't pause display on input
+
+ ;; Always redraw immediately when scrolling,
+ ;; more responsive and doesn't hang!
+ fast-but-imprecise-scrolling nil
+ jit-lock-defer-time 0
+ )
+
 (load-library "url-handlers")
 
 ;; Init package manager.
@@ -55,7 +70,7 @@
   (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (setq neo-theme 'icons)
-;;  (doom-themes-neotree-config)
+  ;;  (doom-themes-neotree-config)
   )
 
 (use-package solaire-mode
@@ -108,30 +123,27 @@
   :ensure t)
 (use-package aggressive-indent
   :ensure t)
-
-;; Installing company mode
 (use-package company
   :ensure t
   :config
   (define-key company-mode-map (kbd "<C-return>") 'company-complete)
+  (setq company-idle-delay nil)
   )
-
-;; Installing company quick help
 (use-package company-quickhelp
   :ensure t)
-
 (use-package git
   :ensure t)
 (use-package cmake-ide
   :ensure t)
 (use-package jedi
   :ensure t)
-(use-package flycheck
-  :ensure t
-  :init (flycheck-mode))
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (flycheck-mode))
 (use-package grep
   :ensure t)
-
+(use-package smooth-scrolling
+  :ensure t)
 
 ;; Init major modes.
 (require 'elisp-init)
