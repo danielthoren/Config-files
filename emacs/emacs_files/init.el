@@ -83,7 +83,7 @@
   )
 
 (use-package dumb-jump
-  :bind (("C-i" . dumb-jump-go-other-window)
+  :bind (("C-S-i" . dumb-jump-go-other-window)
          ("M-i"   . dumb-jump-go)
 	 ("C-M-i" . xref-pop-marker-stack))
   ;;("M-" . dumb-jump-go-prompt))
