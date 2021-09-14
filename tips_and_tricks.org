@@ -1,0 +1,18 @@
+
+
+* Windows
+
+** git
+
+*** git reset, stash etc does not unstage files
+   If you use Git for Windows, this is likely your issue:
+
+   I've had the same problem and stash, hard reset, clean or even all
+   of them was still leaving changes behind. What turned out to be the
+   problem was the x file mode that was not set properly by git. This
+   is a "known issue" with git for windows. The local changes show in
+   gitk and git status as old mode 100755 new mode 100644, without any
+   actual file differences.
+
+   The fix is to ignore the file mode:
+   *git config core.filemode false*
