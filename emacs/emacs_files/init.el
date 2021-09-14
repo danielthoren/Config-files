@@ -146,16 +146,16 @@
   :ensure t)
 
 ;; Init major modes.
-(require 'elisp-init)
-(require 'c-c++-init)
+;; (require 'elisp-init)
+;; (require 'c-c++-init)
 (require 'python-init)
-(require 'latex-init)
-(require 'markdown-init)
-(require 'org-init)
-(require 'java-init)
-(require 'company-init)
+;; (require 'latex-init)
+;; (require 'markdown-init)
+;; (require 'org-init)
+;; (require 'java-init)
+;; (require 'company-init)
 (require 'key-bindings)
-(require 'csharp-init)
+;; (require 'csharp-init)
 
 ;; Highlight line numbers.
 (linum-mode)
@@ -169,12 +169,12 @@
 (define-key tern-mode-keymap (kbd "M-,") nil)
 
 ;;Flydiff
-(defun my-diff-hook ()
-  (magit-auto-revert-mode -1)
-  (diff-hl-mode)
-  (diff-hl-flydiff-mode))
+;; (defun my-diff-hook ()
+;;   (magit-auto-revert-mode -1)
+;;   (diff-hl-mode)
+;;   (diff-hl-flydiff-mode))
 
-(add-hook 'prog-mode-hook 'my-diff-hook)
+;; (add-hook 'prog-mode-hook 'my-diff-hook)
 
 ;; Dashboard
 (when (>= emacs-major-version 26)
