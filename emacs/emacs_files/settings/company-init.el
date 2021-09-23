@@ -4,7 +4,7 @@
   :ensure t
   :config
   ;; General settings
-  (setq company-idle-delay              0.1
+  (setq company-idle-delay              nil
 	company-minimum-prefix-length   0
 	company-show-numbers            nil
 	company-tooltip-limit           10
