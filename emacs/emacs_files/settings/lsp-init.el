@@ -18,7 +18,8 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.500)
   :config
-  (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map))
+  (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
+  )
 
 (use-package lsp-ui
   :ensure t
@@ -26,9 +27,13 @@
   :bind (:map lsp-ui-mode-map
               ("C-c R" . lsp-ui-peek-find-references))
   :config
-  (lsp-ui-sideline-enable nil)
+  (setq lsp-ui-doc-enable nil)       ;; Disable on hover dialogs to speed up emacs
+  (lsp-ui-sideline-enable nil)       ;; Disable sideline code actions
   (setq lsp-prefer-flymake nil)
-  (setq lsp-ui-flycheck-enable t))
+  (setq lsp-signature-render-documentation nil) ;; Remove signature help
+  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-completion-provider :company)
+  )
 
 ;; (use-package ccls
 ;;   :ensure t
