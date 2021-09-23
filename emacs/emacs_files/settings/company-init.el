@@ -1,4 +1,5 @@
 
+
 (use-package company
   :ensure t
   :config
@@ -11,7 +12,7 @@
 
   (defun my-company-mode-hook ()
     (setq company-backends (delete 'company-semantic company-backends))
-    (local-set-key (kbd "C-;") 'company-complete-common))
+    (local-set-key (kbd "<C-return>") 'company-complete-common))
 
   (add-hook 'company-mode-hook 'my-company-mode-hook)
   )
