@@ -89,6 +89,10 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+
+(global-set-key (kbd "<C-backspace>") 'backward-kill-word)
+
+
 ;; General functions.
 (require 'general-funs)
 
@@ -133,7 +137,7 @@
 
 
 ;; Init major modes.
-;; (require 'elisp-init)
+(require 'elisp-init)
 (require 'c-c++-init)
 (require 'python-init)
 (require 'lsp-init)
