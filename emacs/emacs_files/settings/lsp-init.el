@@ -35,11 +35,11 @@
   (setq lsp-completion-provider :company)
   )
 
-;; (use-package ccls
-;;   :ensure t
-;;   :after lsp-ui company
-;;   :init
-;;   (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools"))
+(use-package ccls
+  :ensure t
+  :after lsp-ui company
+  :init
+  (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools"))
 
 
 (use-package dap-mode
