@@ -21,21 +21,6 @@
 (require 'font-settings)
 (require 'base-settings)
 
-(setq
- scroll-conservatively 1000                     ;; only 'jump' when moving this far
- scroll-margin 4                                ;; scroll N lines to screen edge
- scroll-step 1                                  ;; keyboard scroll one line at a time
- mouse-wheel-scroll-amount '(6 ((shift) . 1))   ;; mouse scroll N lines
- mouse-wheel-progressive-speed nil              ;; don't accelerate scrolling
-
- redisplay-dont-pause t                         ;; don't pause display on input
-
- ;; Always redraw immediately when scrolling,
- ;; more responsive and doesn't hang!
- fast-but-imprecise-scrolling nil
- jit-lock-defer-time 0
- )
-
 (load-library "url-handlers")
 
 ;; Init package manager.
@@ -63,26 +48,9 @@
 
 (require 'use-package)
 
-(use-package all-the-icons
-  :ensure t)
+;; Init theme
+(require 'theme-init)
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (load-theme 'doom-one t)
-  (doom-themes-visual-bell-config)
-  (setq neo-theme 'icons)
-  ;;  (doom-themes-neotree-config)
-  )
-
-(use-package solaire-mode
-  :ensure t
-  :config
-  (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
-  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
-  (add-hook 'minibuffer-setup-hook #'turn-on-solaire-mode)
-  (solaire-global-mode +1)
-  )
 
 ;;windows only stuff
 
@@ -90,13 +58,11 @@
   (exec-path-from-shell-initialize))
 
 
-(global-set-key (kbd "<C-backspace>") 'backward-kill-word)
-
-
 ;; General functions.
 (require 'general-funs)
 
 ;; Init minor modes.
+
 
 (use-package which-key
   :ensure t)

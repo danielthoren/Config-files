@@ -1,14 +1,14 @@
 ;; Remove GUI bloat
-(tool-bar-mode -1) 
-(menu-bar-mode -1) 
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-splash-screen t)
 
 ;; Line numbering
 (if (version< emacs-version "26")
     (global-linum-mode)
-    (global-display-line-numbers-mode))
-  
+  (global-display-line-numbers-mode))
+
 ;; Column numbering
 (setq column-number-mode t)
 
@@ -28,7 +28,9 @@
 (put 'evil-ex-history 'history-length 50)
 (put 'kill-ring 'history-length 25)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set opacity
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
 ;;(set-frame-parameter (selected-frame) 'alpha <both>)
@@ -46,10 +48,33 @@
 		    ;; Also handle undocumented (<active> <inactive>) form.
 		    ((numberp (cadr alpha)) (cadr alpha)))
 	      100)
-	 '(85 . 50) '(100 . 100)))))
+	 '(98 . 93) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+(toggle-transparency)
+(toggle-transparency)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Scroll settings to make scrolling more smooth
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq
+ scroll-conservatively 1000                     ;; only 'jump' when moving this far
+ scroll-margin 4                                ;; scroll N lines to screen edge
+ scroll-step 1                                  ;; keyboard scroll one line at a time
+ mouse-wheel-scroll-amount '(6 ((shift) . 1))   ;; mouse scroll N lines
+ mouse-wheel-progressive-speed nil              ;; don't accelerate scrolling
+
+ redisplay-dont-pause t                         ;; don't pause display on input
+
+ ;; Always redraw immediately when scrolling,
+ ;; more responsive and doesn't hang!
+ fast-but-imprecise-scrolling nil
+ jit-lock-defer-time 0
+ )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-hl-line-mode 0)
 
 (provide 'base-settings)
