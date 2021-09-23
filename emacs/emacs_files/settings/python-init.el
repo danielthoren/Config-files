@@ -4,6 +4,9 @@
 (use-package lsp-pyright
   :ensure t)
 
+(use-package company-jedi
+  :ensure t)
+
 
 (defun my-python-mode-hook ()
   (require 'lsp-pyright)
@@ -17,13 +20,15 @@
   (electric-indent-mode -1)
   )
 
-;; (use-package company-jedi
-;;   :ensure t)
-
 
 (add-hook 'python-mode-hook 'highlight-indent-guides-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
+
+;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
+(add-hook 'python-mode-hook
+          (lambda ()
+            (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)))
 
 
 ;; Disable auto-complete-mode since it interferes with company
