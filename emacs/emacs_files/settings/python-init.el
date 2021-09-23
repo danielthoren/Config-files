@@ -17,10 +17,13 @@
 	 (stars (make-string (- 78 indent) ?#)))
     (insert stars "\n")
     (indent-to indent)
-    (insert "# \n")
+    (insert "\"\"\"   \"\"\" \n")
     (indent-to indent)
     (insert stars)
-    (end-of-line 0)))
+    (end-of-line 0)
+    (backward-char 6)
+    )
+  )
 
 
 ;;Insert function doc comment.
@@ -33,7 +36,7 @@
     (indent-to indentation)
     (insert "\n")
     (indent-to indentation)
-    (insert "\"\"\"\n")
+    (insert "\"\"\"")
     (end-of-line 0))
   )
 

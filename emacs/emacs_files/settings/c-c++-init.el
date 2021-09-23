@@ -26,8 +26,27 @@ multiline comment prefix."
   (company-mode)
   (lsp-mode)
 
-  ;;Insert function doc comment.
   (defun c-block-comment ()
+    (interactive)
+    (beginning-of-line)
+    (open-line 1)
+    (let* ((indent (current-column))
+	   (stars (make-string (- 78 indent) ?/)))
+      (insert stars "\n")
+      (indent-to indent)
+      (insert "/**\n")
+      (indent-to indent)
+      (insert " * \n")
+      (indent-to indent)
+      (insert " */ \n")
+      (indent-to indent)
+      (insert stars)
+      (end-of-line -1)
+      )
+    )
+
+  ;;Insert function doc comment.
+  (defun c-doc-comment ()
     (interactive)
     (beginning-of-line)
     (indent-according-to-mode)
@@ -40,6 +59,7 @@ multiline comment prefix."
       (end-of-line 0))
     )
 
+
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
@@ -50,8 +70,8 @@ multiline comment prefix."
 
   (local-set-key (kbd "C-c m") 'cmake-ide-compile)
   (local-set-key (kbd "C-c i") 'indent-buffer)
-  (local-set-key (kbd "C-M-k") 'c-doc-comment)
-  (local-set-key (kbd "C-M-j") 'c-block-comment)
+  (local-set-key (kbd "C-M-k") 'c-block-comment)
+  (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
   )
 
