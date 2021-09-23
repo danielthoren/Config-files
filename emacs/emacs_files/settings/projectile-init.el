@@ -1,4 +1,7 @@
 
+(use-package projectile
+  :ensure t)
+
 (projectile-global-mode)
 (counsel-projectile-mode)
 

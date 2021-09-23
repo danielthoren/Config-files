@@ -66,8 +66,6 @@
 
 (use-package which-key
   :ensure t)
-(use-package projectile
-  :ensure t)
 (use-package ivy
   :ensure t)
 (use-package irony
@@ -99,6 +97,8 @@
   :ensure t)
 (use-package smooth-scrolling
   :ensure t)
+(use-package tern-auto-complete
+  :ensure t)
 
 
 
@@ -107,7 +107,7 @@
 (require 'c-c++-init)
 (require 'python-init)
 (require 'lsp-init)
-;; (require 'latex-init)
+(require 'latex-init)
 ;; (require 'markdown-init)
 (require 'org-init)
 ;; (require 'java-init)
@@ -118,21 +118,9 @@
 ;; Highlight line numbers.
 (linum-mode)
 
-
-(use-package tern-auto-complete
-  :ensure t)
-
 ;; Disable completion keybindings, as we use xref-js2 instead
 (define-key tern-mode-keymap (kbd "M-.") nil)
 (define-key tern-mode-keymap (kbd "M-,") nil)
-
-;;Flydiff
-;; (defun my-diff-hook ()
-;;   (magit-auto-revert-mode -1)
-;;   (diff-hl-mode)
-;;   (diff-hl-flydiff-mode))
-
-;; (add-hook 'prog-mode-hook 'my-diff-hook)
 
 ;; Dashboard
 (when (>= emacs-major-version 26)
