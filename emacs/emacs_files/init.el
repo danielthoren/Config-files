@@ -3,6 +3,8 @@
 ;; (setq package-check-signature 'nil)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; Prefer to recompile config files rather than using old binary files
+(setq load-prefer-newer t)
 
 ;; Settings path
 (setq settings-dir
@@ -82,16 +84,6 @@
   (solaire-global-mode +1)
   )
 
-(use-package dumb-jump
-  :bind (("C-S-i" . dumb-jump-go-other-window)
-         ("M-i"   . dumb-jump-go)
-	 ("C-M-i" . xref-pop-marker-stack))
-  ;;("M-" . dumb-jump-go-prompt))
-  :ensure t)
-
-(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
-
 ;;windows only stuff
 
 (when (memq window-system '(mac ns))
@@ -101,6 +93,9 @@
 (require 'general-funs)
 
 ;; Init minor modes.
+
+(use-package which-key
+  :ensure t)
 (use-package projectile
   :ensure t)
 (use-package ivy
@@ -110,8 +105,6 @@
 (use-package compile
   :ensure t)
 (use-package neotree
-  :ensure t)
-(use-package dap-mode
   :ensure t)
 (use-package counsel
   :ensure t)
@@ -123,37 +116,32 @@
   :ensure t)
 (use-package aggressive-indent
   :ensure t)
-(use-package company
-  :ensure t
-  :config
-  (define-key company-mode-map (kbd "<C-return>") 'company-complete)
-  (setq company-idle-delay nil)
-  )
-(use-package company-quickhelp
-  :ensure t)
 (use-package git
   :ensure t)
 (use-package cmake-ide
   :ensure t)
 (use-package jedi
   :ensure t)
-;; (use-package flycheck
-;;   :ensure t
-;;   :init (flycheck-mode))
+(use-package flycheck
+  :ensure t
+  :init (flycheck-mode))
 (use-package grep
   :ensure t)
 (use-package smooth-scrolling
   :ensure t)
 
+
+
 ;; Init major modes.
 ;; (require 'elisp-init)
-;; (require 'c-c++-init)
+(require 'c-c++-init)
 (require 'python-init)
+(require 'lsp-init)
 ;; (require 'latex-init)
 ;; (require 'markdown-init)
-;; (require 'org-init)
+(require 'org-init)
 ;; (require 'java-init)
-;; (require 'company-init)
+(require 'company-init)
 (require 'key-bindings)
 ;; (require 'csharp-init)
 

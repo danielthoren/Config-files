@@ -1,16 +1,25 @@
+(use-package highlight-indent-guides
+  :ensure t)
+
+(use-package lsp-pyright
+  :ensure t)
+
+
 (defun my-python-mode-hook ()
+  (require 'lsp-pyright)
+  (lsp)
   (company-mode)
   (company-quickhelp-mode)
   (jedi-mode)
   (add-to-list 'company-backends 'company-jedi)
   (setq jedi:complete-on-dot t)
   (setq company-idle-delay nil)
+  (electric-indent-mode -1)
   )
 
-(use-package company-jedi
-  :ensure t)
-(use-package highlight-indent-guides
-  :ensure t)
+;; (use-package company-jedi
+;;   :ensure t)
+
 
 (add-hook 'python-mode-hook 'highlight-indent-guides-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
