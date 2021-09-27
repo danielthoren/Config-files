@@ -25,12 +25,11 @@
     )
   )
 
-
 ;;Insert function doc comment.
 (defun my/python-doc-comment ()
   (interactive)
-  (beginning-of-line)
-  (indent-according-to-mode)
+  ;; (beginning-of-line)
+  ;; (indent-according-to-mode)
   (let* ((indentation (current-column)))
     (insert "\"\"\"\n")
     (indent-to indentation)
