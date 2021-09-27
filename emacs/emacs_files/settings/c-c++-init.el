@@ -25,6 +25,7 @@ multiline comment prefix."
 (defun my-c-c++-mode-hook ()
   (company-mode)
   (lsp-mode)
+  (lsp)
 
   (defun c-block-comment ()
     (interactive)
@@ -63,6 +64,10 @@ multiline comment prefix."
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+
+  (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
   ;; C
   (setq c-basic-offset 4

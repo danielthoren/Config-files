@@ -73,7 +73,9 @@
 (use-package compile
   :ensure t)
 (use-package neotree
-  :ensure t)
+  :ensure t
+  :config (setq neo-window-fixed-size nil)
+  )
 (use-package counsel
   :ensure t)
 (use-package dashboard
