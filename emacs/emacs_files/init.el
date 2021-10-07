@@ -102,7 +102,10 @@
 (use-package tern-auto-complete
   :ensure t)
 
-
+(use-package projectile
+  :ensure t
+  :config (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  )
 
 ;; Init major modes.
 (require 'elisp-init)
