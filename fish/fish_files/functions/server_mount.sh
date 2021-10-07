@@ -11,7 +11,7 @@ install htop
 
 export HISTIGNORE='*sudo -S*'
 
-home_mac="e0:b9:e5:e1:1b:7e"
+home_mac="38:d5:47:7f:39:60"
 
 if arp 192.168.1.1 | grep $home_mac; then
     echo "Using local ip..."
@@ -40,7 +40,7 @@ if ! [ -d ~/server/storage ]; then
 fi
 
 echo "Connecting using ip ${ip}..."
-    
+
 sshfs -o password_stdin -p ${ssh_port} ${user}@${ip}:/storage ~/server/storage <<< $passw
 
 sshfs -o password_stdin -p ${ssh_port} ${user}@${ip}:/srv/dev-disk-by-label-download ~/server/download <<< $passw
