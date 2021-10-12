@@ -27,13 +27,14 @@ multiline comment prefix."
   (lsp-mode)
   (lsp)
   (projectile-mode)
+  (yas-minor-mode)
 
   (defun c-block-comment ()
     (interactive)
     (beginning-of-line)
     (open-line 1)
     (let* ((indent (current-column))
-	       (stars (make-string (- 78 indent) ?/)))
+	   (stars (make-string (- 78 indent) ?/)))
       (insert stars "\n")
       (indent-to indent)
       (insert "/**\n")
@@ -71,7 +72,7 @@ multiline comment prefix."
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; C-mode stuff
+  ;; C-mode stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; my customizations for all of c-mode, c++-mode, objc-mode, java-mode
