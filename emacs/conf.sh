@@ -17,9 +17,9 @@ if ! command_exists emacs ; then
     fi
 
     add_source ppa:kelleyk/emacs
-    
+
     echo "emacs not installed, installing..."
-    
+
     # echo "Adding repository to sources list..."
     # sudo add-apt-repository ppa:kelleyk/emacs
 
@@ -36,6 +36,14 @@ else
     install libclang1-10
 fi
 
+#installing ccls (c/c++ language server)
+if flag_exists no-sudo ; then
+    echo "cant install ccls without sudo..."
+else
+    echo "installing ccls..."
+    install ccls
+fi
+
 if flag_exists no-sudo ; then
     echo "cant install irony-server without sudo..."
 else
@@ -44,7 +52,7 @@ else
 fi
 
 #Regex program used for dumb-jump-mode
-if ! command_exists ag ; then    
+if ! command_exists ag ; then
     if flag_exists no-sudo ; then
 	echo "ag not installed, cant install without sudo..."
     else
@@ -65,7 +73,7 @@ fi
 #used by jedi (python autocomplete)
 if ! command_exists virtualenv ; then
     if command_exists no-sudo ; then
-	echo "virtualenv not installed, cant install without sudo..."	
+	echo "virtualenv not installed, cant install without sudo..."
     else
 	echo "virtualenv not installed, installing..."
 	install virtualenv
