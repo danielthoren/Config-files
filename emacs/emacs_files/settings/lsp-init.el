@@ -38,9 +38,17 @@
 (use-package ccls
   :ensure t
   :after lsp-ui company
-  :init
-  (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools"))
+  ;; :init
+  ;; (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
+  )
 
+;; If in windows, set exec path to chocolatey install
+(when (string-equal system-type "windows-nt")
+  (progn
+    (message "Windows ccls settings")
+    )
+  (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
+  )
 
 (use-package dap-mode
   :ensure t
