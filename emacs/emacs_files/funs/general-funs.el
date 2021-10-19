@@ -50,7 +50,7 @@
     (hack-dir-local-variables-non-file-buffer)))
 
 (defun reload-dir-locals ()
-  "For every buffer with the same `default-directory` as the 
+  "For every buffer with the same `default-directory` as the
 current buffer's, reload dir-locals."
   (interactive)
   (let ((dir default-directory))
