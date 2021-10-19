@@ -26,16 +26,6 @@ if ! command_exists emacs ; then
     install emacs
 fi
 
-#installing libclang
-if flag_exists no-sudo ; then
-    echo "cant install libclang without sudo..."
-else
-    echo "installing libclang 10..."
-    install libclang-10-dev
-    install libclang-cpp10-dev
-    install libclang1-10
-fi
-
 #installing ccls (c/c++ language server)
 if flag_exists no-sudo ; then
     echo "cant install ccls without sudo..."
@@ -66,9 +56,20 @@ if ! command_exists ditaa ; then
 	echo "ditaa not installed, cant install without sudo..."
     else
 	echo "ditaa not installed, installing..."
-	sudo apt-get install -y ditaa
+        install -y ditaa
     fi
 fi
+
+#Python language server
+if ! command_exists pyright ; then
+    if command_exists no-sudo ; then
+	echo "pyright not installed, cant install without sudo..."
+    else
+	echo "pyright not installed, installing..."
+	sudo snap install pyright --classic
+    fi
+fi
+
 
 #used by jedi (python autocomplete)
 if ! command_exists virtualenv ; then
