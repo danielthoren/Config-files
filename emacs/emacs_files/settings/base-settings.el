@@ -28,6 +28,12 @@
 (put 'evil-ex-history 'history-length 50)
 (put 'kill-ring 'history-length 25)
 
+
+;; Set indent mode to use spaces instead of tabs
+(setq-default tab-width 4)
+(setq-default tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
+(setq-default indent-tabs-mode nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Scroll settings to make scrolling more smooth
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
