@@ -28,6 +28,8 @@
 (put 'evil-ex-history 'history-length 50)
 (put 'kill-ring 'history-length 25)
 
+;; Auto update when files change on disk
+(global-auto-revert-mode 1)
 
 ;; Set indent mode to use spaces instead of tabs
 (setq-default tab-width 4)

@@ -55,8 +55,14 @@
 ;; General functions.
 (require 'general-funs)
 
-;; Init minor modes.
+;; TODO: Test gendoxy in other languages than c/c++
+;; If it does not work, move to c-c++-init
+(require 'gendoxy)
+(global-set-key (kbd "C-c d h") 'gendoxy-header)
+(global-set-key (kbd "C-c d g") 'gendoxy-group)
+(global-set-key (kbd "C-c d t") 'gendoxy-tag)
 
+;; Init minor modes.
 
 (use-package which-key
   :ensure t)
