@@ -123,9 +123,6 @@
 ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 (require 'powerShell-init)
 
-;; Highlight line numbers.
-(linum-mode)
-
 ;; Disable completion keybindings, as we use xref-js2 instead
 (define-key tern-mode-keymap (kbd "M-.") nil)
 (define-key tern-mode-keymap (kbd "M-,") nil)
