@@ -4,9 +4,12 @@
 (use-package lsp-pyright
   :ensure t)
 
+;; jedi: python language server
 (use-package company-jedi
   :ensure t)
 
+(use-package jedi
+  :ensure t)
 
 
 (defun my/python-block-comment ()
@@ -14,7 +17,7 @@
   (beginning-of-line)
   (open-line 1)
   (let* ((indent (current-column))
-	 (stars (make-string (- 78 indent) ?#)))
+         (stars (make-string (- 78 indent) ?#)))
     (insert stars "\n")
     (indent-to indent)
     (insert "\"\"\"   \"\"\" \n")

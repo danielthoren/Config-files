@@ -63,10 +63,10 @@ fi
 #Python language server
 if ! command_exists pyright ; then
     if command_exists no-sudo ; then
-	echo "pyright not installed, cant install without sudo..."
+	    echo "pyright not installed, cant install without sudo..."
     else
-	echo "pyright not installed, installing..."
-	sudo snap install pyright --classic
+	    echo "pyright not installed, installing..."
+	    sudo pip3 install pyright
     fi
 fi
 
