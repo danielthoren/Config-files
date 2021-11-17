@@ -74,7 +74,9 @@
   :ensure t)
 (use-package neotree
   :ensure t
-  :config (setq neo-window-fixed-size nil)
+  :config
+  (setq neo-window-fixed-size nil)
+  (setq neo-window-width 40)
   )
 (use-package counsel
   :ensure t)
