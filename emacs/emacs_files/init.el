@@ -63,8 +63,14 @@
 (global-set-key (kbd "C-c d t") 'gendoxy-tag)
 
 ;; Init minor modes.
-
-(use-package which-key
+(use-package dtrt-indent ;; Auto detect indentation strategy in file
+  :ensure t
+  :config
+  (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
+  :init
+  (add-hook 'prog-mode-hook 'dtrt-indent-mode)
+  )
+(use-package which-key ;; Helps with key bindings
   :ensure t)
 (use-package ivy
   :ensure t)
@@ -87,7 +93,10 @@
 (use-package diff-hl
   :ensure t)
 (use-package aggressive-indent
-  :ensure t)
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook 'aggressive-indent-mode)
+  )
 (use-package git
   :ensure t)
 (use-package cmake-ide
@@ -101,7 +110,6 @@
   :ensure t)
 (use-package tern-auto-complete
   :ensure t)
-
 (use-package projectile
   :ensure t
   :config (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
@@ -149,8 +157,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent))))
+   '(dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

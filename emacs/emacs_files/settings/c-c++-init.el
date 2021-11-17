@@ -1,9 +1,9 @@
-(use-package cmake-ide
-  :ensure t
-  :init
-  (setq cmake-ide-make-command "make --no-print-directory -j8")
-  :config
-  (cmake-ide-setup))
+;; (use-package cmake-ide
+;;   :ensure t
+;;   :init
+;;   (setq cmake-ide-make-command "make --no-print-directory -j8")
+;;   :config
+;;   (cmake-ide-setup))
 
 (use-package flycheck
   :ensure t
