@@ -80,8 +80,8 @@ multiline comment prefix."
   ;; other customizations can go here
 
   (setq c++-tab-always-indent t)
-  (setq c-basic-offset 4)                  ;; Default is 2
-  (setq c-indent-level 4)                  ;; Default is 2
+  ;; (setq c-basic-offset 4)                  ;; Default is 2
+  ;; (setq c-indent-level 4)                  ;; Default is 2
 
   ;; (local-set-key (kbd "C-c m") 'cmake-ide-compile)
   (local-set-key (kbd "C-c i") 'indent-buffer)
