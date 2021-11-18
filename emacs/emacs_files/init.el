@@ -88,8 +88,6 @@
   :ensure t)
 (use-package git
   :ensure t)
-(use-package cmake-ide
-  :ensure t)
 (use-package flycheck
   :ensure t
   :init (flycheck-mode))
@@ -114,7 +112,7 @@
 (require 'c-c++-init)
 (require 'python-init)
 (require 'lsp-init)
-(require 'latex-init)
+;; (require 'latex-init)
 ;; (require 'markdown-init)
 (require 'org-init)
 ;; (require 'java-init)
