@@ -1,9 +1,9 @@
-(use-package cmake-ide
-  :ensure t
-  :init
-  (setq cmake-ide-make-command "make --no-print-directory -j8")
-  :config
-  (cmake-ide-setup))
+;; (use-package cmake-ide
+;;   :ensure t
+;;   :init
+;;   (setq cmake-ide-make-command "make --no-print-directory -j8")
+;;   :config
+;;   (cmake-ide-setup))
 
 (use-package flycheck
   :ensure t
@@ -34,7 +34,7 @@ multiline comment prefix."
     (beginning-of-line)
     (open-line 1)
     (let* ((indent (current-column))
-	   (stars (make-string (- 78 indent) ?/)))
+	       (stars (make-string (- 78 indent) ?/)))
       (insert stars "\n")
       (indent-to indent)
       (insert "/**\n")
@@ -83,7 +83,7 @@ multiline comment prefix."
   (setq c-basic-offset 4)                  ;; Default is 2
   (setq c-indent-level 4)                  ;; Default is 2
 
-  (local-set-key (kbd "C-c m") 'cmake-ide-compile)
+  ;; (local-set-key (kbd "C-c m") 'cmake-ide-compile)
   (local-set-key (kbd "C-c i") 'indent-buffer)
   (local-set-key (kbd "C-M-k") 'c-block-comment)
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
