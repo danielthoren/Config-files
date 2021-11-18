@@ -92,11 +92,6 @@
   :ensure t)
 (use-package diff-hl
   :ensure t)
-(use-package aggressive-indent
-  :ensure t
-  :init
-  (add-hook 'prog-mode-hook 'aggressive-indent-mode)
-  )
 (use-package git
   :ensure t)
 (use-package flycheck
