@@ -60,6 +60,15 @@ if ! command_exists ditaa ; then
     fi
 fi
 
+if ! command_exists pip3 ; then
+  if command_exists no-sudo ; then
+	  echo "pip3 not installed, cant install without sudo..."
+  else
+	  echo "pip3 not installed, installing..."
+	  install python3-pip
+  fi
+fi
+
 #Python language server
 if ! command_exists pyright ; then
     if command_exists no-sudo ; then
