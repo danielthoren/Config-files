@@ -160,8 +160,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (multiple-cursors dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent))))
+   '(multiple-cursors dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
