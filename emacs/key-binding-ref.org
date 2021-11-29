@@ -19,10 +19,13 @@
   Open new connected emacs instance: : [C-x 5 2]
 
 ** Text operations
-   Search and replace      : [M-%] or [M-S-5]
-   Search forward in file  : [C-s]
-   Search backward in file : [C-r]
-   Undo                    : [C-x u]
+   Search and replace               : [M-%] or [M-S-5]
+   Search forward in file           : [C-s]
+   Search backward in file          : [C-r]
+   Undo                             : [C-x u]
+
+   Make word at point lowr case     : [M-l]
+   Make word at point upper case    : [M-u]
 
 ** Basic movement
    Move one char left       : [C-b] (back)
