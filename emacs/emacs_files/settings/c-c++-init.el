@@ -89,7 +89,6 @@ multiline comment prefix."
 
   )
 
-
 ;; Hooks
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
