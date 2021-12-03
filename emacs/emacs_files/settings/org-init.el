@@ -12,6 +12,9 @@
 ;; #+ATTR_ORG: :width 100
 (setq org-image-actual-width nil)
 
+;; Do not export Table of contents
+(setq org-export-with-toc nil)
+
 ;;; display Info mode buffers in proportional font
 (add-hook 'Info-mode-hook 'variable-pitch-mode)
 
