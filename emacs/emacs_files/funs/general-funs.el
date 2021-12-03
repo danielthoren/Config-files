@@ -59,5 +59,11 @@ current buffer's, reload dir-locals."
         (when (equal default-directory dir))
         (reload-dir-locals-current-buffer)))))
 
+;; (defun set-indent (level)
+;;   "Change indent level in current buffer"
+;;   (interactive "nIndent level: ")
+;;   (message "Hello, %s" level)
+;;   (setq-default tab-width level)
+;;   )
 
 (provide 'general-funs)
