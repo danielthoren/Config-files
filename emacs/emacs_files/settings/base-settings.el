@@ -32,8 +32,12 @@
 (global-auto-revert-mode 1)
 
 ;; Set indent mode to use spaces instead of tabs
-(setq-default tab-width 2)
-(setq-default tab-stop-list '(2 4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
+;; (setq-default tab-width 2)
+;; (setq-default tab-stop-list (number-sequence 2 200 2))
+
+(setq-default tab-width 4)
+(setq-default tab-stop-list (number-sequence 4 200 4))
+
 (setq-default indent-tabs-mode nil)
 
 ;;disable the version control
