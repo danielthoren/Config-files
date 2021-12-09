@@ -113,13 +113,15 @@ BEG and END default to the buffer boundaries."
                 (unless (alist-get lang langs)
                   (indent-to 4))))))
 
-(setq org-latex-pdf-process
-      '("xelatex -interaction nonstopmode -output-directory %o %f"
-        "bibtex %b"
-        "xelatex -interaction nonstopmode -output-directory %o %f"
-        "xelatex -interaction nonstopmode -output-directory %o %f"))
+;; (setq org-latex-pdf-process
+;;       '("xelatex -interaction nonstopmode -output-directory %o %f"
+;;         "bibtex %b"
+;;         "xelatex -interaction nonstopmode -output-directory %o %f"
+;;         "xelatex -interaction nonstopmode -output-directory %o %
 
-(setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
+(setq latex-run-command "pdflatex")
+
+;; (setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------
 ;; Latex export filters
