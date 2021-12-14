@@ -34,7 +34,7 @@ multiline comment prefix."
     (beginning-of-line)
     (open-line 1)
     (let* ((indent (current-column))
-	         (stars (make-string (- 78 indent) ?/)))
+	       (stars (make-string (- 78 indent) ?/)))
       (insert stars "\n")
       (indent-to indent)
       (insert "/**\n")

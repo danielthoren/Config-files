@@ -1,7 +1,14 @@
 
-- [ ] Move emacs config files to the "use-package" system
-- [ ] Fix global dumb jump mode emacs (only in c++ mode now)
-- [ ] Fix emacs config so that it works with major version 24, 25, 26
 
-- [ ] Install japanese lang
+* High priority
 
+  - [ ] Find out what makes emacs so slow in windows
+
+* Medium priority
+
+  - [ ] Fix so that lsp use ccls backend instead of clangd
+  - [ ] Figure out how to use compie commands.json to fix lsp in large projects
+
+* Low priority
+
+  - [ ] Change so that the "gendoxy" package is installed using git-submodule instead of just copying it in

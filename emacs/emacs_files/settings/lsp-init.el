@@ -35,12 +35,6 @@
   (setq lsp-completion-provider :company)
   )
 
-(use-package ccls
-  :ensure t
-  :after lsp-ui company
-  ;; :init
-  ;; (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
-  )
 
 ;; If in windows, set exec path to chocolatey install
 (when (string-equal system-type "windows-nt")
@@ -49,6 +43,22 @@
     )
   (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
   )
+
+
+;; TODO: Fix so that lsp use ccls
+(use-package ccls
+  :ensure t
+  :after lsp-ui company
+  :init (setq ccls-sem-highlight-method 'font-lock)
+  :hook ((c-mode c++-mode objc-mode) . (lambda () (require 'ccls) (lsp-deferred)))
+  )
+
+;; (use-package ccls
+;;   :ensure t
+;;   :after lsp-ui company
+;;   ;; :init
+;;   ;; (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
+;;   )
 
 (use-package dap-mode
   :ensure t
