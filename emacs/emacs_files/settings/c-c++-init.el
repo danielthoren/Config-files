@@ -24,7 +24,6 @@ multiline comment prefix."
 ;; Common c and c++ mode hook.
 (defun my-c-c++-mode-hook ()
   (company-mode)
-  (lsp-mode)
   (lsp)
   (projectile-mode)
   (yas-minor-mode)
