@@ -12,10 +12,14 @@
 ;; Functions dir
 (setq funs-dir
       (expand-file-name "funs" user-emacs-directory))
+;; Gendoxy dir
+(setq gendoxy-dir
+      (expand-file-name "gendoxy" user-emacs-directory))
 
 ;; Add to load path
 (add-to-list 'load-path funs-dir)
 (add-to-list 'load-path settings-dir)
+(add-to-list 'load-path gendoxy-dir)
 
 (load-library "url-handlers")
 
@@ -47,13 +51,9 @@
 ;; Init theme
 (require 'theme-init)
 
-
 ;;windows only stuff
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-;; General functions.
-(require 'general-funs)
 
 ;; TODO: Test gendoxy in other languages than c/c++
 ;; If it does not work, move to c-c++-init
@@ -61,6 +61,10 @@
 (global-set-key (kbd "C-c d h") 'gendoxy-header)
 (global-set-key (kbd "C-c d g") 'gendoxy-group)
 (global-set-key (kbd "C-c d t") 'gendoxy-tag)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Initialize packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Init minor modes.
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
@@ -70,6 +74,7 @@
   :init
   (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   )
+
 (use-package multiple-cursors
   :ensure t
   :config
@@ -84,10 +89,10 @@
 (use-package which-key ;; Helps with key bindings
   :ensure t)
 (use-package ivy
-  :ensure t)
+  :ensure t
+  :init
+  (global-set-key (kbd "M-x") 'counsel-M-x))
 (use-package irony
-  :ensure t)
-(use-package compile
   :ensure t)
 (use-package neotree
   :ensure t
@@ -101,26 +106,61 @@
   :ensure t)
 (use-package magit
   :ensure t)
-(use-package diff-hl
-  :ensure t)
-(use-package git
-  :ensure t)
+;; (use-package diff-hl
+;;   :ensure t)
 (use-package flycheck
-  :ensure t
-  :init (flycheck-mode))
+  :ensure t)
 (use-package grep
   :ensure t)
 (use-package smooth-scrolling
   :ensure t)
 (use-package tern-auto-complete
-  :ensure t)
-(use-package projectile
   :ensure t
-  :config (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  :config
+  ;; Disable completion keybindings, as we use xref-js2 instead
+  (define-key tern-mode-keymap (kbd "M-.") nil)
+  (define-key tern-mode-keymap (kbd "M-,") nil)
+  )
+(use-package company
+  :ensure t
+  :bind ("C-<return>" . company-complete-common)
+  :config
+  ;; General settings
+  (setq company-idle-delay             nil
+        company-minimum-prefix-length   0
+        company-show-numbers            nil
+        company-tooltip-limit           10
+        company-dabbrev-downcase        nil
+        company-backends (delete 'company-semantic company-backends))
+  ;; :init
+  ;; (local-set-key (kbd "<C-return>") 'company-complete-common)
   )
 
+(use-package projectile
+  :ensure t
+  ;; :hook prog-mode ;; TODO: Fix projectile
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+
+(use-package hl-todo
+  :ensure t
+  :hook (prog-mode . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+          ("FIXME"      error bold)
+          ("HACK"       font-lock-constant-face bold)
+          ("REVIEW"     font-lock-keyword-face bold)
+          ("NOTE"       success bold)
+          ("DEPRECATED" font-lock-doc-face bold))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Add external modes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Require base packages
-(require 'font-settings)
 (require 'base-settings)
 
 ;; Init major modes.
@@ -128,18 +168,10 @@
 (require 'c-c++-init)
 (require 'python-init)
 (require 'lsp-init)
-;; (require 'latex-init)
-;; (require 'markdown-init)
 (require 'org-init)
-;; (require 'java-init)
-(require 'company-init)
 (require 'key-bindings)
 ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 (require 'powerShell-init)
-
-;; Disable completion keybindings, as we use xref-js2 instead
-(define-key tern-mode-keymap (kbd "M-.") nil)
-(define-key tern-mode-keymap (kbd "M-,") nil)
 
 ;; Dashboard
 (when (>= emacs-major-version 26)
