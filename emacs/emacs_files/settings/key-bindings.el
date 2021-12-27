@@ -2,6 +2,11 @@
 (global-set-key (kbd "C-M-.") 'next-buffer)
 (global-set-key (kbd "C-M-,") 'previous-buffer)
 
+;; Previous window
+(defun prev-window ()
+  (interactive)
+  (other-window -1))
+
 ;; Window switching.
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-,") 'prev-window)

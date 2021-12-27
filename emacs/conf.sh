@@ -102,8 +102,9 @@ else
     rm -r "${dir}/settings"
 fi
 
+git submodule update --init --recursive
+
 ln -s "${PWD}/emacs_files/settings" "${dir}"
-ln -s "${PWD}/emacs_files/funs" "${dir}"
 ln -s "${PWD}/emacs_files/gendoxy" "${dir}"
 ln -s "${PWD}/emacs_files/init.el" "${dir}"
 
