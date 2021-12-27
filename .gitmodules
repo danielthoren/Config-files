@@ -1,3 +1,6 @@
 [submodule "regolith/regolith_files/scripts/i3blocks-contrib"]
 	path = regolith/regolith_files/scripts/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib.git
+[submodule "emacs/emacs_files/gendoxy"]
+	path = emacs/emacs_files/gendoxy
+	url = https://github.com/mp81ss/gendoxy.git

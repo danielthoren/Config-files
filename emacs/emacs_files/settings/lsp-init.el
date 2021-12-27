@@ -1,6 +1,7 @@
 (setq lsp-keymap-prefix "C-c l")
+
 (use-package lsp-mode
-  :after yasnippet which-key
+  :after yasnippet
   :ensure t
   :bind (:map lsp-mode-map
               ("M-i" . xref-find-definitions)
@@ -44,21 +45,12 @@
   (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
   )
 
-
-;; TODO: Fix so that lsp use ccls
 (use-package ccls
   :ensure t
   :after lsp-ui company
   :init (setq ccls-sem-highlight-method 'font-lock)
   :hook ((c-mode c++-mode objc-mode) . (lambda () (require 'ccls) (lsp-deferred)))
   )
-
-;; (use-package ccls
-;;   :ensure t
-;;   :after lsp-ui company
-;;   ;; :init
-;;   ;; (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
-;;   )
 
 (use-package dap-mode
   :ensure t
@@ -67,8 +59,5 @@
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (require 'dap-gdb-lldb)
   (dap-gdb-lldb-setup))
-
-(with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 (provide 'lsp-init)
