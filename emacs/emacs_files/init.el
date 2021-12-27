@@ -21,24 +21,17 @@
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
 
-(load-library "url-handlers")
+(require 'package) ;; Emacs builtin
 
-;; Init package manager.
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "https://melpa.org/packages/")
-   t)
-  (add-to-list
-   'package-archives
-   '("gnu" . "https://elpa.gnu.org/packages/")
-   t)
-  (package-initialize))
+;; set package.el repositories
+(setq package-archives
+'(
+   ("gnu" . "https://elpa.gnu.org/packages/")
+   ("melpa" . "https://melpa.org/packages/")
+))
 
-;; Automatically update packages
-(when (not package-archive-contents)
-  (package-refresh-contents))
+;; initialize built-in package management
+(package-initialize)
 
 ;;Package management
 (if (not (package-installed-p 'use-package))

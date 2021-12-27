@@ -7,8 +7,8 @@
 * Medium priority
 
   - [ ] Fix so that lsp use ccls backend instead of clangd
-  - [ ] Figure out how to use compie commands.json to fix lsp in large projects
+  - [X] Figure out how to use compie commands.json to fix lsp in large projects
 
 * Low priority
 
-  - [ ] Change so that the "gendoxy" package is installed using git-submodule instead of just copying it in
+  - [X] Change so that the "gendoxy" package is installed using git-submodule instead of just copying it in
