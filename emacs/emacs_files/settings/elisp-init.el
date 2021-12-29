@@ -1,6 +1,5 @@
 (defun my-elisp-hook ()
-  (company-mode)
-  (aggressive-indent-mode))
+  (company-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'my-elisp-hook)
 

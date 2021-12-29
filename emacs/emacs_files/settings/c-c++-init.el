@@ -58,7 +58,6 @@ multiline comment prefix."
   (yas-minor-mode)
   (flycheck-mode)
 
-
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))

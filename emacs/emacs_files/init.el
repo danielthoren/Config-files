@@ -82,9 +82,7 @@
 (use-package which-key ;; Helps with key bindings
   :ensure t)
 (use-package ivy
-  :ensure t
-  :init
-  (global-set-key (kbd "M-x") 'counsel-M-x))
+  :ensure t)
 (use-package irony
   :ensure t)
 (use-package neotree
@@ -94,7 +92,9 @@
   (setq neo-window-width 40)
   )
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :init
+  (global-set-key (kbd "M-x") 'counsel-M-x))
 (use-package dashboard
   :ensure t)
 (use-package magit
@@ -125,8 +125,9 @@
         company-tooltip-limit           10
         company-dabbrev-downcase        nil
         company-backends (delete 'company-semantic company-backends))
-  ;; :init
-  ;; (local-set-key (kbd "<C-return>") 'company-complete-common)
+  (use-package company-quickhelp
+    :ensure t
+    :hook company)
   )
 
 (use-package projectile
@@ -186,7 +187,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(multiple-cursors dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent)))
+   (quote
+    (multiple-cursors dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
