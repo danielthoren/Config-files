@@ -9,15 +9,11 @@
 ;; Settings path
 (setq settings-dir
       (expand-file-name "settings" user-emacs-directory))
-;; Functions dir
-(setq funs-dir
-      (expand-file-name "funs" user-emacs-directory))
 ;; Gendoxy dir
 (setq gendoxy-dir
       (expand-file-name "gendoxy" user-emacs-directory))
 
 ;; Add to load path
-(add-to-list 'load-path funs-dir)
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
 
