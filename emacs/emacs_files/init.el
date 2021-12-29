@@ -63,7 +63,6 @@
   :init
   (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   )
-
 (use-package multiple-cursors
   :ensure t
   :config
@@ -72,14 +71,9 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
   (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-  :init
-  (add-hook 'prog-mode-hook 'multiple-cursors-mode)
+  :hook prog-mode-hook
   )
-(use-package which-key ;; Helps with key bindings
-  :ensure t)
 (use-package ivy
-  :ensure t)
-(use-package irony
   :ensure t)
 (use-package neotree
   :ensure t
@@ -97,8 +91,6 @@
   :ensure t)
 ;; (use-package diff-hl
 ;;   :ensure t)
-(use-package flycheck
-  :ensure t)
 (use-package grep
   :ensure t)
 (use-package smooth-scrolling
@@ -177,17 +169,3 @@
 
 ;; tramp
 (setq tramp-default-method "ssh")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (multiple-cursors dtrt-indent jedi-direx irony-eldoc yasnippet powershell csharp-mode tree-sitter-indent tree-sitter-langs tree-sitter org-bullets dap-mode ccls lsp-ui company-jedi lsp-pyright which-key use-package tern-auto-complete spinner solaire-mode smooth-scrolling projectile neotree markdown-mode magit lv jedi irony ht hl-todo highlight-indent-guides git flycheck doom-themes diff-hl dashboard counsel company cmake-ide all-the-icons aggressive-indent))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
