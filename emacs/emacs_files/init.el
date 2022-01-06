@@ -13,7 +13,7 @@
 (setq gendoxy-dir
       (expand-file-name "gendoxy" user-emacs-directory))
 
-;; Add to load path
+;; ;; Add to load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
 
@@ -87,21 +87,14 @@
   (global-set-key (kbd "M-x") 'counsel-M-x))
 (use-package dashboard
   :ensure t)
-(use-package magit
-  :ensure t)
-;; (use-package diff-hl
+;; (use-package magit ;;NOTE Significantly slows down start up of emacs
 ;;   :ensure t)
+(use-package diff-hl
+  :ensure t)
 (use-package grep
   :ensure t)
 (use-package smooth-scrolling
   :ensure t)
-(use-package tern-auto-complete
-  :ensure t
-  :config
-  ;; Disable completion keybindings, as we use xref-js2 instead
-  (define-key tern-mode-keymap (kbd "M-.") nil)
-  (define-key tern-mode-keymap (kbd "M-,") nil)
-  )
 (use-package company
   :ensure t
   :bind ("C-<return>" . company-complete-common)
@@ -112,7 +105,8 @@
         company-show-numbers            nil
         company-tooltip-limit           10
         company-dabbrev-downcase        nil
-        company-backends (delete 'company-semantic company-backends))
+        company-backends (delete 'company-semantic company-backends)
+        )
   (use-package company-quickhelp
     :ensure t
     :hook company)
@@ -120,10 +114,11 @@
 
 (use-package projectile
   :ensure t
-  ;; :hook prog-mode ;; TODO: Fix projectile
+  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode +1)
+  )
 
 (use-package hl-todo
   :ensure t
@@ -144,6 +139,7 @@
 
 ;; Require base packages
 (require 'base-settings)
+(require 'key-bindings)
 
 ;; Init major modes.
 (require 'elisp-init)
@@ -151,8 +147,7 @@
 (require 'python-init)
 (require 'lsp-init)
 (require 'org-init)
-(require 'key-bindings)
-;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
+;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 (require 'powerShell-init)
 
 ;; Dashboard
@@ -161,11 +156,11 @@
 
 (setq dashboard-startup-banner 'logo)
 
-;; YAML
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+;; ;; YAML
+;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-;; GMPL
-(add-to-list 'auto-mode-alist '("\\.mod\\'" . gmpl-mode))
+;; ;; GMPL
+;; (add-to-list 'auto-mode-alist '("\\.mod\\'" . gmpl-mode))
 
-;; tramp
-(setq tramp-default-method "ssh")
+;; ;; tramp
+;; (setq tramp-default-method "ssh")
