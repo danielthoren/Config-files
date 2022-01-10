@@ -52,10 +52,7 @@ multiline comment prefix."
 
 ;; Common c and c++ mode hook.
 (defun my-c-c++-mode-hook ()
-  (company-mode)
-  (lsp)
-  (projectile-mode)
-  (yas-minor-mode)
+
 
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
