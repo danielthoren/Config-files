@@ -46,10 +46,11 @@
 
 ;; TODO: Test gendoxy in other languages than c/c++
 ;; If it does not work, move to c-c++-init
-(require 'gendoxy)
-(global-set-key (kbd "C-c d h") 'gendoxy-header)
-(global-set-key (kbd "C-c d g") 'gendoxy-group)
-(global-set-key (kbd "C-c d t") 'gendoxy-tag)
+;; FIXME: Gendoxy failes to load in linux, cannot find file
+;;(require 'gendoxy)
+;;(global-set-key (kbd "C-c d h") 'gendoxy-header)
+;;(global-set-key (kbd "C-c d g") 'gendoxy-group)
+;;(global-set-key (kbd "C-c d t") 'gendoxy-tag)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
@@ -58,23 +59,20 @@
 ;; Init minor modes.
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
+  :hook (prog-mode . dtrt-indent-mode)
   :config
   (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
-  :init
-  (add-hook 'prog-mode-hook 'dtrt-indent-mode)
   )
 (use-package multiple-cursors
   :ensure t
+  :hook (prog-mode . multiple-cursors-mode)
   :config
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
   (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
-  :hook prog-mode-hook
   )
-(use-package ivy
-  :ensure t)
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)
@@ -97,7 +95,8 @@
   :defer t)
 (use-package diff-hl
   :ensure t
-  :hook prog-mode-hook)
+  :hook (prog-mode . diff-hl-mode)
+  )
 (use-package grep
   :ensure t
   :defer t)
@@ -132,10 +131,9 @@
               ("M-I" . xref-find-definitions-other-window)
               ("C-M-i" . xref-pop-marker-stack)
               ("C-c r" . lsp-rename))
-  :hook (c-mode
-         c++-mode
-         python-mode
-         )
+  :hook ((c-mode . lsp)
+        (c++-mode . lsp)
+        (python-mode . lsp))
   :init
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-enable-file-watchers nil)
