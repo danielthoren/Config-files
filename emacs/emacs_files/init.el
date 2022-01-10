@@ -87,7 +87,7 @@
   (global-set-key (kbd "M-x") 'counsel-M-x))
 (use-package dashboard
   :ensure t)
-;; (use-package magit ;;NOTE Significantly slows down start up of emacs
+;; (use-package magit ;;NOTE Significantly slows down start up of emacs (8 -> 12 sek)
 ;;   :ensure t)
 (use-package diff-hl
   :ensure t)
@@ -95,11 +95,15 @@
   :ensure t)
 (use-package smooth-scrolling
   :ensure t)
-(use-package company
-  :ensure t
+
+(use-package company-mode
+  :ensure company
+  :init (company-mode)
   :bind ("C-<return>" . company-complete-common)
+  :hook (c-mode
+         c++-mode
+         )
   :config
-  ;; General settings
   (setq company-idle-delay             nil
         company-minimum-prefix-length   0
         company-show-numbers            nil
@@ -109,8 +113,85 @@
         )
   (use-package company-quickhelp
     :ensure t
-    :hook company)
+    :hook company-mode)
   )
+
+(use-package lsp-mode
+  :ensure t
+  :bind (:map lsp-mode-map
+              ("M-i" . xref-find-definitions)
+              ("M-I" . xref-find-definitions-other-window)
+              ("C-M-i" . xref-pop-marker-stack)
+              ("C-c r" . lsp-rename))
+  :hook (c-mode
+         c++-mode
+         python-mode
+         )
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-completion-provider :capf)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-enable-indentation nil)
+  ;; Set memory thresholds higher to increase performance
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq lsp-idle-delay 0.500)
+  :config
+  (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
+  )
+
+(use-package lsp-ui
+  :ensure t
+  :after lsp-mode company-mode
+  :bind (:map lsp-ui-mode-map
+              ("C-c R" . lsp-ui-peek-find-references))
+  :config
+  (setq lsp-ui-doc-enable nil)       ;; Disable on hover dialogs to speed up emacs
+  (lsp-ui-sideline-enable nil)       ;; Disable sideline code actions
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-signature-render-documentation nil) ;; Remove signature help
+  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-completion-provider :company)
+  )
+
+(use-package c++-mode
+  :ensure nil
+  :mode ("\\.h\\'"
+         "\\.tcc\\'"
+         "\\.hpp\\'"
+         "\\.cpp\\'"
+         "\\.cc\\'"
+         )
+  )
+
+(use-package ccls
+  :ensure t
+  :after lsp-ui company-mode
+  :hook (c-mode
+         c++-mode
+         objc-mode)
+  :init
+  (lsp-deferred)
+  :config
+  (setq ccls-sem-highlight-method 'font-lock)
+  (when (string-equal system-type "windows-nt")
+  (progn
+    (message "Windows ccls settings")
+    )
+  (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
+  )
+  )
+
+(use-package dap-mode
+  :ensure t
+  :after lsp-mode lsp-ui
+  :hook python-mode
+  :config
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (require 'dap-gdb-lldb)
+  (dap-gdb-lldb-setup))
+
 
 (use-package projectile
   :ensure t
@@ -143,9 +224,7 @@
 
 ;; Init major modes.
 (require 'elisp-init)
-(require 'c-c++-init)
 (require 'python-init)
-(require 'lsp-init)
 (require 'org-init)
 ;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 (require 'powerShell-init)
@@ -164,3 +243,16 @@
 
 ;; ;; tramp
 ;; (setq tramp-default-method "ssh")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
