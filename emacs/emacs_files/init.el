@@ -75,27 +75,36 @@
   )
 (use-package ivy
   :ensure t)
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("C-s" . swiper))
+  )
 (use-package neotree
   :ensure t
   :config
   (setq neo-window-fixed-size nil)
   (setq neo-window-width 40)
   )
-(use-package counsel
-  :ensure t
-  :init
-  (global-set-key (kbd "M-x") 'counsel-M-x))
 (use-package dashboard
-  :ensure t)
-;; (use-package magit ;;NOTE Significantly slows down start up of emacs (8 -> 12 sek)
-;;   :ensure t)
+  :ensure t
+  :config (dashboard-setup-startup-hook)
+  :init (setq dashboard-startup-banner 'logo)
+  )
+(use-package magit
+  :ensure t
+  :defer t)
 (use-package diff-hl
-  :ensure t)
+  :ensure t
+  :hook prog-mode-hook)
 (use-package grep
-  :ensure t)
+  :ensure t
+  :defer t)
 (use-package smooth-scrolling
-  :ensure t)
-
+  :ensure t
+  :config (smooth-scrolling-mode)
+  )
 (use-package company-mode
   :ensure company
   :init (company-mode)
@@ -228,18 +237,6 @@
 (require 'org-init)
 ;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 (require 'powerShell-init)
-
-;; Dashboard
-(when (>= emacs-major-version 26)
-  (dashboard-setup-startup-hook))
-
-(setq dashboard-startup-banner 'logo)
-
-;; ;; YAML
-;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-
-;; ;; GMPL
-;; (add-to-list 'auto-mode-alist '("\\.mod\\'" . gmpl-mode))
 
 ;; ;; tramp
 ;; (setq tramp-default-method "ssh")
