@@ -46,11 +46,10 @@
 
 ;; TODO: Test gendoxy in other languages than c/c++
 ;; If it does not work, move to c-c++-init
-;; FIXME: Gendoxy failes to load in linux, cannot find file
-;;(require 'gendoxy)
-;;(global-set-key (kbd "C-c d h") 'gendoxy-header)
-;;(global-set-key (kbd "C-c d g") 'gendoxy-group)
-;;(global-set-key (kbd "C-c d t") 'gendoxy-tag)
+(require 'gendoxy)
+(global-set-key (kbd "C-c d h") 'gendoxy-header)
+(global-set-key (kbd "C-c d g") 'gendoxy-group)
+(global-set-key (kbd "C-c d t") 'gendoxy-tag)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
@@ -76,7 +75,6 @@
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
          ("C-s" . swiper))
   )
 (use-package neotree
@@ -106,19 +104,21 @@
   )
 (use-package company-mode
   :ensure company
-  :init (company-mode)
   :bind ("C-<return>" . company-complete-common)
   :hook (c-mode
          c++-mode
+         python-mode
          )
+
+  :init(company-mode)
+    (setq company-idle-delay              nil)
+    (setq company-minimum-prefix-length   0)
+    (setq company-show-numbers            nil)
+    (setq company-tooltip-limit           10)
+    (setq company-dabbrev-downcase        nil)
+    (setq company-backends (delete 'company-semantic company-backends)
+          )
   :config
-  (setq company-idle-delay             nil
-        company-minimum-prefix-length   0
-        company-show-numbers            nil
-        company-tooltip-limit           10
-        company-dabbrev-downcase        nil
-        company-backends (delete 'company-semantic company-backends)
-        )
   (use-package company-quickhelp
     :ensure t
     :hook company-mode)
@@ -144,6 +144,7 @@
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.500)
+  (setq lsp-enable-snippet nil)
   :config
   (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
   )
