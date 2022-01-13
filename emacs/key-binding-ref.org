@@ -59,6 +59,29 @@
   Cycle buffer to the left in current window : [C-M-,]
 
 
+* Dired (file tree in emacs)
+
+  All operations in dired are applied to the file the marker stands on
+
+  Enter dired             : [C-x C-x <Return>] (Open new file command, then enter)
+  Refresh contents        : [g]
+
+  Rename or move          : [R]
+  Copy file               : [C]
+  Delete marked file      : [D]
+
+  Open sub directory in buffer      : [i]
+
+**  Rename multiple files inline
+  - Enter editing mode      : [C-x C-q]
+  - Apply changes           : [C-c C-c]
+
+**  Delete multiple files
+  - Put deletion marker    : [d]
+  - Remove deletion marker : [u]
+  - Apply deletion         : [x]
+
+
 * lsp mode
   Go to declaration       : [M-i]
   Go back                 : [C-M-i]
