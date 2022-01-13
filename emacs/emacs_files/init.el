@@ -64,7 +64,7 @@
   )
 (use-package multiple-cursors
   :ensure t
-  :hook prog-mode
+  :hook (prog-mode . multiple-cursors-mode)
   :config
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -131,9 +131,11 @@
               ("M-I" . xref-find-definitions-other-window)
               ("C-M-i" . xref-pop-marker-stack)
               ("C-c r" . lsp-rename))
-  :hook ((c-mode . lsp)
-        (c++-mode . lsp)
-        (python-mode . lsp))
+  :hook
+  (c-mode . lsp)
+  (c++-mode . lsp)
+  (python-mode . lsp)
+
   :init
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-enable-file-watchers nil)
