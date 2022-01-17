@@ -5,6 +5,19 @@
   [a-b c]  : Press a and b, then c to trigger
   [a-b c-d]: Press a and b, then c and d to trigger
 
+** Key map
+  A key map is a prefix command to enter a mode, after which commands
+  can be entered. For example, the key map for rectangle mode is:
+
+  Rectangle mode key map: [C-x r]
+
+  After pressing this key map, a command can be entered, for example
+  the command to cut the currently marked rectangle:
+
+  Cut the currently marked rectangle: [k]
+
+  In this case, the whole sequence would be: [C-x r k]
+
 ** Special keys
    C  : Control
    M  : Meta (usually alt)
@@ -59,11 +72,26 @@
   Cycle buffer to the left in current window : [C-M-,]
 
 
+* Rectangle mode
+  Allows the user to remove, copy, cut and paste rectangles of text
+
+  Toggle rectangle mark mode                                                                     : [C-x SPC]
+
+  Rectangle mode key map: [C-x r]
+
+  Key map commands:
+  - Kill text of region-rectangle and save it to copy buffer                                       : [k]
+  - Save the test of region-rectangle to copy buffer                                               : [M-w]
+  - Delete the text of region-rectangle                                                            : [d]
+  - Paste the most recently saved region-rectangle at point                                        : [y]
+  - Insert blank spaces to fill region-rectangle, the previous contents are pushed to the right    : [o]
+  - Clear the region-rectangle by replacing its contents with spaces                               : [c]
+
 * Dired (file tree in emacs)
 
   All operations in dired are applied to the file the marker stands on
 
-  Enter dired             : [C-x C-x <Return>] (Open new file command, then enter)
+  Enter dired             : [C-x C-f <Return>] (Open new file command, then enter)
   Refresh contents        : [g]
 
   Rename or move          : [R]
