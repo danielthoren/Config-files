@@ -67,8 +67,6 @@
 ;; Initialize packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; FIXME: Bindings for comment functions apply globally, fix
-
 ;
 ;; General packages
 ;
@@ -255,36 +253,38 @@
 ;; Language specific packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package c++-mode
-  :ensure nil
-  :mode ("\\.h\\'"
-         "\\.tcc\\'"
-         "\\.hpp\\'"
-         "\\.cpp\\'"
-         "\\.cc\\'"
-         )
-  :bind (("C-M-k" . 'c-block-comment)
-         ("C-M-j" . 'c-doc-comment))
-  )
+(add-hook 'c++-mode-hook 'c-mode
+          (lambda ()
+            (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+            (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
+            (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+            (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+            (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+            (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
-(use-package python
-  :ensure nil
-  :bind (("C-M-k" . 'my/python-block-comment)
-         ("C-M-j" . 'my/python-doc-comment)
-         ("<C-backspace>" . 'backward-kill-word))
-  :init (auto-complete-mode nil)
-  )
+            (local-set-key (kbd "C-M-k") 'c-block-comment)
+            (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-;; Disable auto-complete-mode since it interferes with company
-;; (defadvice auto-complete-mode (around disable-auto-complete-for-python)
-;;   (unless (eq major-mode 'python-mode) ad-do-it))
+            (setq c-default-style "linux")
+            )
+          )
 
-(use-package prog-mode
-  :ensure nil
-  :bind (("C-c i" . 'indent-buffer))
-  )
+(add-hook 'python-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-M-k") 'my/python-block-comment)
+            (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
+            ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
+            (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
+            ;; Disable auto-complete-mode since it interferes with company
+            (auto-complete-mode nil)
+            )
+          )
 
-(setq c-default-style "linux")
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c i") 'indent-buffer)
+            )
+          )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add external modes
