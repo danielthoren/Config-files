@@ -12,10 +12,14 @@
 ;; Gendoxy dir
 (setq gendoxy-dir
       (expand-file-name "gendoxy" user-emacs-directory))
+;; functions dir
+(setq functions-dir
+      (expand-file-name "functions" user-emacs-directory))
 
 ;; ;; Add to load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
+(add-to-list 'load-path functions-dir)
 
 (require 'package) ;; Emacs builtin
 
@@ -44,6 +48,14 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Initialize local files
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'base-settings)
+(require 'key-bindings)
+(require 'commentFunctions)
+
 ;; TODO: Test gendoxy in other languages than c/c++
 ;; If it does not work, move to c-c++-init
 (require 'gendoxy)
@@ -55,7 +67,12 @@
 ;; Initialize packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Init minor modes.
+;; FIXME: Bindings for comment functions apply globally, fix
+
+;
+;; General packages
+;
+
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
   :hook (prog-mode . dtrt-indent-mode)
@@ -98,10 +115,37 @@
 (use-package grep
   :ensure t
   :defer t)
+
+(use-package hl-todo
+  :ensure t
+  :hook (prog-mode . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+          ("FIXME"      error bold)
+          ("HACK"       font-lock-constant-face bold)
+          ("REVIEW"     font-lock-keyword-face bold)
+          ("NOTE"       success bold)
+          ("DEPRECATED" font-lock-doc-face bold))))
+
 (use-package smooth-scrolling
   :ensure t
   :config (smooth-scrolling-mode)
   )
+
+;
+;; Prog mode packages
+;
+
+(use-package projectile
+  :ensure t
+  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1)
+  )
+
 (use-package company-mode
   :ensure company
   :bind ("C-<return>" . company-complete-common)
@@ -109,7 +153,6 @@
          c++-mode
          python-mode
          )
-
   :init(company-mode)
     (setq company-idle-delay              nil)
     (setq company-minimum-prefix-length   0)
@@ -165,16 +208,6 @@
   (setq lsp-completion-provider :company)
   )
 
-(use-package c++-mode
-  :ensure nil
-  :mode ("\\.h\\'"
-         "\\.tcc\\'"
-         "\\.hpp\\'"
-         "\\.cpp\\'"
-         "\\.cc\\'"
-         )
-  )
-
 (use-package ccls
   :ensure t
   :after lsp-ui company-mode
@@ -196,48 +229,73 @@
 (use-package dap-mode
   :ensure t
   :after lsp-mode lsp-ui
-  :hook python-mode
+  :hook python
   :config
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (require 'dap-gdb-lldb)
-  (dap-gdb-lldb-setup))
-
-
-(use-package projectile
-  :ensure t
-  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
+  (dap-gdb-lldb-setup)
   )
 
-(use-package hl-todo
+;; Python language server used with lsp
+(use-package lsp-pyright
   :ensure t
-  :hook (prog-mode . hl-todo-mode)
-  :config
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-keyword-faces
-        `(("TODO"       warning bold)
-          ("FIXME"      error bold)
-          ("HACK"       font-lock-constant-face bold)
-          ("REVIEW"     font-lock-keyword-face bold)
-          ("NOTE"       success bold)
-          ("DEPRECATED" font-lock-doc-face bold))))
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
+
+(use-package highlight-indent-guides
+  :ensure t
+  :hook python)
+
+(use-package powershell
+  :ensure t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Language specific packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package c++-mode
+  :ensure nil
+  :mode ("\\.h\\'"
+         "\\.tcc\\'"
+         "\\.hpp\\'"
+         "\\.cpp\\'"
+         "\\.cc\\'"
+         )
+  :bind (("C-M-k" . 'c-block-comment)
+         ("C-M-j" . 'c-doc-comment))
+  )
+
+(use-package python
+  :ensure nil
+  :bind (("C-M-k" . 'my/python-block-comment)
+         ("C-M-j" . 'my/python-doc-comment)
+         ("<C-backspace>" . 'backward-kill-word))
+  :init (auto-complete-mode nil)
+  )
+
+;; Disable auto-complete-mode since it interferes with company
+;; (defadvice auto-complete-mode (around disable-auto-complete-for-python)
+;;   (unless (eq major-mode 'python-mode) ad-do-it))
+
+(use-package prog-mode
+  :ensure nil
+  :bind (("C-c i" . 'indent-buffer))
+  )
+
+(setq c-default-style "linux")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add external modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Require base packages
-(require 'base-settings)
-(require 'key-bindings)
+
 
 ;; Init major modes.
 (require 'elisp-init)
-(require 'python-init)
 (require 'org-init)
 ;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
-(require 'powerShell-init)
 
 ;; ;; tramp
 ;; (setq tramp-default-method "ssh")

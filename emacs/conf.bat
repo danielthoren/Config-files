@@ -5,3 +5,4 @@ mklink %userprofile%\AppData\Roaming\.emacs.d\settings %~dp0emacs_files\settings
 
 mklink %userprofile%\AppData\Roaming\.emacs.d\gendoxy %~dp0emacs_files\gendoxy
 
+mklink %userprofile%\AppData\Roaming\.emacs.d\functions %~dp0emacs_files\functions

@@ -79,8 +79,6 @@ if ! command_exists pyright ; then
     fi
 fi
 
-
-#used by jedi (python autocomplete)
 if ! command_exists virtualenv ; then
     if command_exists no-sudo ; then
 	echo "virtualenv not installed, cant install without sudo..."
@@ -105,6 +103,7 @@ fi
 git submodule update --init --recursive
 
 ln -s "${PWD}/emacs_files/settings" "${dir}"
+ln -s "${PWD}/emacs_files/functions" "${dir}"
 ln -s "${PWD}/emacs_files/gendoxy" "${dir}"
 ln -s "${PWD}/emacs_files/init.el" "${dir}"
 
