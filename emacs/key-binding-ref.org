@@ -87,6 +87,7 @@
   - Insert blank spaces to fill region-rectangle, the previous contents are pushed to the right    : [o]
   - Clear the region-rectangle by replacing its contents with spaces                               : [c]
 
+
 * Dired (file tree in emacs)
 
   All operations in dired are applied to the file the marker stands on
