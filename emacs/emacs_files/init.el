@@ -56,13 +56,6 @@
 (require 'key-bindings)
 (require 'commentFunctions)
 
-;; TODO: Test gendoxy in other languages than c/c++
-;; If it does not work, move to c-c++-init
-(require 'gendoxy)
-(global-set-key (kbd "C-c d h") 'gendoxy-header)
-(global-set-key (kbd "C-c d g") 'gendoxy-group)
-(global-set-key (kbd "C-c d t") 'gendoxy-tag)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -253,21 +246,28 @@
 ;; Language specific packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'c++-mode-hook 'c-mode
-          (lambda ()
-            (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-            (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
-            (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
-            (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
-            (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
-            (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
+(require 'gendoxy)
+(defun my-c-mode-hook ()
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
-            (local-set-key (kbd "C-M-k") 'c-block-comment)
-            (local-set-key (kbd "C-M-j") 'c-doc-comment)
+  (local-set-key (kbd "C-M-k") 'c-block-comment)
+  (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-            (setq c-default-style "linux")
-            )
-          )
+  (local-set-key (kbd "C-c d h") 'gendoxy-header)
+  (local-set-key (kbd "C-c d g") 'gendoxy-group)
+  (local-set-key (kbd "C-c d t") 'gendoxy-tag)
+
+  (setq c-default-style "linux")
+  )
+
+(add-hook 'c++-mode-hook 'my-c-mode-hook)
+(add-hook 'c-mode 'my-c-mode-hook)
+
 
 (add-hook 'python-mode-hook
           (lambda ()
