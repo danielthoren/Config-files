@@ -41,9 +41,6 @@
 
 (require 'use-package)
 
-;; Init theme
-(require 'theme-init)
-
 ;;windows only stuff
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -52,9 +49,20 @@
 ;; Initialize local files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Init theme
+(require 'theme-init)
+
+;; Init settings without dependencies
 (require 'base-settings)
+
+;; Init key bindings without dependencies
 (require 'key-bindings)
+
+;; Init comment functions
 (require 'commentFunctions)
+
+;; Init org mode
+(require 'org-init)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
@@ -143,6 +151,7 @@
   :hook (c-mode
          c++-mode
          python-mode
+         lsp-mode
          )
   :init(company-mode)
     (setq company-idle-delay              nil)
@@ -243,7 +252,7 @@
   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Language specific packages
+;; Language specific settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'gendoxy)
@@ -287,15 +296,9 @@
           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Add external modes
+;; End of user configurable section
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-
-;; Init major modes.
-(require 'elisp-init)
-(require 'org-init)
-;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
 
 ;; ;; tramp
 ;; (setq tramp-default-method "ssh")
