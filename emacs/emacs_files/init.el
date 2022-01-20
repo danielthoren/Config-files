@@ -64,7 +64,7 @@
 ;; Init org mode
 (require 'org-init)
 
-(require 'centering-mode)
+;; (require 'centering-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
