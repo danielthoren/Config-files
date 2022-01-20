@@ -64,6 +64,8 @@
 ;; Init org mode
 (require 'org-init)
 
+(require 'centering-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -151,6 +153,7 @@
   :hook (c-mode
          c++-mode
          python-mode
+         lisp-mode
          lsp-mode
          )
   :init(company-mode)
