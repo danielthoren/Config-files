@@ -88,6 +88,16 @@ if ! command_exists virtualenv ; then
     fi
 fi
 
+# Markdown parser
+if ! command_exists virtualenv ; then
+    if command_exists no-sudo ; then
+	    echo "markdown not installed, cant install without sudo..."
+    else
+	    echo "markdown not installed, installing..."
+        install markdown
+    fi
+fi
+
 echo "Configuring emacs in folder $dir"
 
 if [ ! -d $dir ]; then
