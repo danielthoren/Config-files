@@ -106,11 +106,13 @@ if [ ! -d $dir ]; then
 else
     echo "Folder exists, purging data"
     rm "${dir}/init.el"
-    rm -r "${dir}/funs"
+    rm -r "${dir}/functions"
     rm -r "${dir}/settings"
+    rm -r "${dir}/gendoxy"
 fi
 
-git submodule update --init --recursive
+git submodule init
+git submodule update
 
 ln -s "${PWD}/emacs_files/settings" "${dir}"
 ln -s "${PWD}/emacs_files/functions" "${dir}"
