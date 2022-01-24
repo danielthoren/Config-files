@@ -314,15 +314,6 @@
 
 (use-package csharp-mode
   :ensure t
-  :config (
-           (use-package tree-sitter-langs
-             :ensure t)
-           (use-package tree-sitter-indent
-             :ensure t)
-           (use-package tree-sitter
-             :ensure t
-             :hook csharp)
-           )
   )
 
 
