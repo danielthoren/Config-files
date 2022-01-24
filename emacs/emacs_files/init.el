@@ -64,7 +64,7 @@
 ;; Init org mode
 (require 'org-init)
 
-(require 'centering-mode)
+(require 'block-comment-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
@@ -268,8 +268,11 @@
   (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
-  (local-set-key (kbd "C-M-k") 'c-block-comment)
-  (local-set-key (kbd "C-M-j") 'c-doc-comment)
+  ;; (local-set-key (kbd "C-M-k") 'c-block-comment)
+  ;; (local-set-key (kbd "C-M-j") 'c-doc-comment)
+
+  (block-comment-init-local-variables "/*" "*" "*/" 80)
+  (block-comment-mode)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
