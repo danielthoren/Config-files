@@ -74,12 +74,20 @@
 ;; General packages
 ;
 
+(use-package dired-ranger
+  :ensure t
+  :bind (:map dired-mode-map
+              ("W" . dired-ranger-copy)
+              ("X" . dired-ranger-move)
+              ("Y" . dired-ranger-paste)))
+
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
   :hook (prog-mode . dtrt-indent-mode)
   :config
   (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
   )
+
 (use-package multiple-cursors
   :ensure t
   :hook (prog-mode . multiple-cursors-mode)
