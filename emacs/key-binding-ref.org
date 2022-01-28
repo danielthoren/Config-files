@@ -1,4 +1,4 @@
-
+d
 * Keys explained
   [a-b]    : Press a and b to trigger
   [a b]    : Press a then b to trigger
@@ -92,9 +92,7 @@
 
   All operations in dired are applied to the file the marker stands on
 
-  Enter dired             : [C-x C-f <Return>] (Open new file command, then enter)
   Refresh contents        : [g]
-
   Rename or move          : [R]
   Copy file               : [C]
   Delete marked file      : [D]
@@ -102,13 +100,23 @@
   Open sub directory in buffer      : [i]
 
 **  Rename multiple files inline
+   -Enter dired edit mode   : [C-x C-f <Return>] (Open new file command, then enter)
+
   - Enter editing mode      : [C-x C-q]
   - Apply changes           : [C-c C-c]
+
 
 **  Delete multiple files
   - Put deletion marker    : [d]
   - Remove deletion marker : [u]
   - Apply deletion         : [x]
+
+
+** Move/copy multiple files to buffer
+  - Put marker             : [m]
+  - Copy to buffer         : [W]
+  - Move to buffer         : [X]
+  - Paste to current dir   : [Y]
 
 
 * lsp mode
