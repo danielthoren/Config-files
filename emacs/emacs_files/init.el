@@ -160,7 +160,6 @@
   :bind ("C-<return>" . company-complete-common)
   :hook (c-mode
          c++-mode
-         python-mode
          lisp-mode
          lsp-mode
          )
@@ -176,6 +175,13 @@
   (use-package company-quickhelp
     :ensure t
     :hook company-mode)
+  )
+
+;; Use company-jedi instead of company for python mode
+;; Using company causes issues
+(use-package company-jedi
+  :ensure t
+  :hook python-mode
   )
 
 (use-package lsp-mode
@@ -277,11 +283,11 @@
   (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
-  ;; (local-set-key (kbd "C-M-k") 'c-block-comment)
+  (local-set-key (kbd "C-M-k") 'c-block-comment)
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  (block-comment-init-local-variables "/*" "*" "*/" 80)
-  (block-comment-mode)
+  ;; (block-comment-init-local-variables "/*" "*" "*/" 80)
+  ;; (block-comment-mode)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
@@ -296,11 +302,11 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            ;; (local-set-key (kbd "C-M-k") 'my/python-block-comment)
+            (local-set-key (kbd "C-M-k") 'my/python-block-comment)
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            (block-comment-init-local-variables "#" "#" "#" 40)
-            (block-comment-mode)
+            ;; (block-comment-init-local-variables "#" "#" "#" 40)
+            ;; (block-comment-mode)
 
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
