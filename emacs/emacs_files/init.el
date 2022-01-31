@@ -241,7 +241,7 @@
 (use-package dap-mode
   :ensure t
   :after lsp-mode lsp-ui
-  :hook python
+  :hook python-mode
   :config
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (require 'dap-gdb-lldb)
@@ -256,9 +256,10 @@
                           (lsp))))  ; or lsp-deferred
 
 
-(use-package highlight-indent-guides
-  :ensure t
-  :hook python)
+(use-package highlight-indent-guides-mode
+  :ensure highlight-indent-guides
+  :hook python-mode
+  )
 
 (use-package powershell
   :ensure t)
@@ -277,7 +278,7 @@
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
   ;; (local-set-key (kbd "C-M-k") 'c-block-comment)
-  ;; (local-set-key (kbd "C-M-j") 'c-doc-comment)
+  (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
   (block-comment-init-local-variables "/*" "*" "*/" 80)
   (block-comment-mode)
@@ -295,8 +296,13 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-M-k") 'my/python-block-comment)
+            ;; (local-set-key (kbd "C-M-k") 'my/python-block-comment)
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
+
+            (block-comment-init-local-variables "#" "#" "#" 40)
+            (block-comment-mode)
+
+
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
             ;; Disable auto-complete-mode since it interferes with company
