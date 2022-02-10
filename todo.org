@@ -1,14 +1,7 @@
-
+#+STARTUP: showeverything
 
 * High priority
 
-  - [ ] Find out what makes emacs so slow in windows
-
 * Medium priority
 
-  - [ ] Fix so that lsp use ccls backend instead of clangd
-  - [X] Figure out how to use compie commands.json to fix lsp in large projects
-
 * Low priority
-
-  - [X] Change so that the "gendoxy" package is installed using git-submodule instead of just copying it in

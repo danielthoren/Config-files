@@ -85,6 +85,7 @@
   To stop recording a macro, press : [C-x )]
   Use macro                        : [C-x e]
 
+
 * Rectangle mode
   Allows the user to remove, copy, cut and paste rectangles of text
 
@@ -171,6 +172,7 @@
   Auto generate doxygen function header: [C-c d t]
   Auto generate doxygen file header    : [C-c d h]
 
+
 * Auto indent mode (dtrt)
 
   When opening a file, dtrt will automatically detect the indentation
@@ -185,6 +187,7 @@
   2. Enter the following command (company will auto-complete) : dtrt-indent-adapt
 
   The indentation strategy should now be adjusted
+
 
 * Org mode
   Org mode is a good way to take notes.
