@@ -283,6 +283,11 @@
   (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
+  ;; Set indentation for new { statement to 0 (ex after if statement)
+  (c-set-offset 'substatement-open 0)
+  (setq c-basic-offset 2)
+  (setq c-indent-level 2)
+
   (local-set-key (kbd "C-M-k") 'c-block-comment)
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
