@@ -21,7 +21,7 @@ multiline comment prefix."
   (beginning-of-line)
   (open-line 1)
   (let* ((indent (current-column))
-         (numStars 78)
+         (numStars 75)
          (stars  (make-string (- numStars indent) ?*))
          (spaces  (make-string (- numStars indent) ? ))
          )
