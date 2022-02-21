@@ -162,6 +162,7 @@
          c++-mode
          lisp-mode
          lsp-mode
+         emacs-lisp-mode
          )
   :init(company-mode)
     (setq company-idle-delay              nil)
@@ -301,6 +302,12 @@
   (setq c-default-style "linux")
   )
 
+(defun my-c++-mode-hook ()
+  ;; Disable namespace indent
+  (c-set-offset 'innamespace 0)
+  )
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
 (add-hook 'c-mode 'my-c-mode-hook)
 
