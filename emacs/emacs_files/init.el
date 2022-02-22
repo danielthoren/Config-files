@@ -289,11 +289,10 @@
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
 
-  (local-set-key (kbd "C-M-k") 'c-block-comment)
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  ;; (block-comment-init-local-variables "/*" "*" "*/" 80)
-  ;; (block-comment-mode)
+  (block-comment--init "/*" " " "*" "*/" 80)
+  (local-set-key (kbd "C-M-k") 'block-comment-insert)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
@@ -314,12 +313,10 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-M-k") 'my/python-block-comment)
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            ;; (block-comment-init-local-variables "#" "#" "#" 40)
-            ;; (block-comment-mode)
-
+            (block-comment--init "#" " " "#" "#" 80)
+            (local-set-key (kbd "C-M-k") 'block-comment-insert)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
