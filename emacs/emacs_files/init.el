@@ -12,10 +12,14 @@
 ;; Gendoxy dir
 (setq gendoxy-dir
       (expand-file-name "gendoxy" user-emacs-directory))
+;; functions dir
+(setq functions-dir
+      (expand-file-name "functions" user-emacs-directory))
 
 ;; ;; Add to load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
+(add-to-list 'load-path functions-dir)
 
 (require 'package) ;; Emacs builtin
 
@@ -37,40 +41,62 @@
 
 (require 'use-package)
 
-;; Init theme
-(require 'theme-init)
-
 ;;windows only stuff
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; TODO: Test gendoxy in other languages than c/c++
-;; If it does not work, move to c-c++-init
-(require 'gendoxy)
-(global-set-key (kbd "C-c d h") 'gendoxy-header)
-(global-set-key (kbd "C-c d g") 'gendoxy-group)
-(global-set-key (kbd "C-c d t") 'gendoxy-tag)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Initialize local files
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Init theme
+(require 'theme-init)
+
+;; Init settings without dependencies
+(require 'base-settings)
+
+;; Init key bindings without dependencies
+(require 'key-bindings)
+
+;; Init comment functions
+(require 'commentFunctions)
+
+;; Init org mode
+(require 'org-init)
+
+(require 'block-comment-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Init minor modes.
+;
+;; General packages
+;
+
+(use-package dired-ranger
+  :ensure t
+  :bind (:map dired-mode-map
+              ("W" . dired-ranger-copy)
+              ("X" . dired-ranger-move)
+              ("Y" . dired-ranger-paste)))
+
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
   :hook (prog-mode . dtrt-indent-mode)
   :config
   (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
   )
+
 (use-package multiple-cursors
   :ensure t
   :hook (prog-mode . multiple-cursors-mode)
-  :config
-  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-  (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+  :bind (("C-S-c C-S-c" . 'mc/edit-lines)
+         ("C->" . 'mc/mark-next-like-this)
+         ("C-<" . 'mc/mark-previous-like-this)
+         ("C-c C-<" . 'mc/mark-all-like-this)
+         ("C-S-<mouse-1>" . 'mc/add-cursor-on-click)
+         )
   )
 (use-package counsel
   :ensure t
@@ -98,18 +124,46 @@
 (use-package grep
   :ensure t
   :defer t)
+
+(use-package hl-todo
+  :ensure t
+  :hook (prog-mode . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        `(("TODO"       warning bold)
+          ("FIXME"      error bold)
+          ("HACK"       font-lock-constant-face bold)
+          ("REVIEW"     font-lock-keyword-face bold)
+          ("NOTE"       success bold)
+          ("DEPRECATED" font-lock-doc-face bold))))
+
 (use-package smooth-scrolling
   :ensure t
   :config (smooth-scrolling-mode)
   )
+
+;
+;; Prog mode packages
+;
+
+(use-package projectile
+  :ensure t
+  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1)
+  )
+
 (use-package company-mode
   :ensure company
   :bind ("C-<return>" . company-complete-common)
   :hook (c-mode
          c++-mode
-         python-mode
+         lisp-mode
+         lsp-mode
+         emacs-lisp-mode
          )
-
   :init(company-mode)
     (setq company-idle-delay              nil)
     (setq company-minimum-prefix-length   0)
@@ -124,6 +178,13 @@
     :hook company-mode)
   )
 
+;; Use company-jedi instead of company for python mode
+;; Using company causes issues
+(use-package company-jedi
+  :ensure t
+  :hook python-mode
+  )
+
 (use-package lsp-mode
   :ensure t
   :bind (:map lsp-mode-map
@@ -135,6 +196,7 @@
   (c-mode . lsp)
   (c++-mode . lsp)
   (python-mode . lsp)
+  (java-mode . lsp)
 
   :init
   (setq lsp-keymap-prefix "C-c l")
@@ -165,16 +227,6 @@
   (setq lsp-completion-provider :company)
   )
 
-(use-package c++-mode
-  :ensure nil
-  :mode ("\\.h\\'"
-         "\\.tcc\\'"
-         "\\.hpp\\'"
-         "\\.cpp\\'"
-         "\\.cc\\'"
-         )
-  )
-
 (use-package ccls
   :ensure t
   :after lsp-ui company-mode
@@ -200,44 +252,110 @@
   :config
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (require 'dap-gdb-lldb)
-  (dap-gdb-lldb-setup))
-
-
-(use-package projectile
-  :ensure t
-  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
+  (dap-gdb-lldb-setup)
   )
 
-(use-package hl-todo
+;; Python language server used with lsp
+(use-package lsp-pyright
   :ensure t
-  :hook (prog-mode . hl-todo-mode)
-  :config
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-keyword-faces
-        `(("TODO"       warning bold)
-          ("FIXME"      error bold)
-          ("HACK"       font-lock-constant-face bold)
-          ("REVIEW"     font-lock-keyword-face bold)
-          ("NOTE"       success bold)
-          ("DEPRECATED" font-lock-doc-face bold))))
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
+
+(use-package highlight-indent-guides-mode
+  :ensure highlight-indent-guides
+  :hook python-mode
+  )
+
+(use-package powershell
+  :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Add external modes
+;; Language specific settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Require base packages
-(require 'base-settings)
-(require 'key-bindings)
+(require 'gendoxy)
+(defun my-c-mode-hook ()
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
-;; Init major modes.
-(require 'elisp-init)
-(require 'python-init)
-(require 'org-init)
-;; ;; (require 'csharp-init) //TODO: Fix csharp-init, not working atm
-(require 'powerShell-init)
+  ;; Set indentation for new { statement to 0 (ex after if statement)
+  (c-set-offset 'substatement-open 0)
+  (setq c-basic-offset 2)
+  (setq c-indent-level 2)
+
+  (local-set-key (kbd "C-M-k") 'c-block-comment)
+  (local-set-key (kbd "C-M-j") 'c-doc-comment)
+
+  ;; (block-comment-init-local-variables "/*" "*" "*/" 80)
+  ;; (block-comment-mode)
+
+  (local-set-key (kbd "C-c d h") 'gendoxy-header)
+  (local-set-key (kbd "C-c d g") 'gendoxy-group)
+  (local-set-key (kbd "C-c d t") 'gendoxy-tag)
+
+  (setq c-default-style "linux")
+  )
+
+(defun my-c++-mode-hook ()
+  ;; Disable namespace indent
+  (c-set-offset 'innamespace 0)
+  )
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c++-mode-hook 'my-c-mode-hook)
+(add-hook 'c-mode 'my-c-mode-hook)
+
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-M-k") 'my/python-block-comment)
+            (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
+
+            ;; (block-comment-init-local-variables "#" "#" "#" 40)
+            ;; (block-comment-mode)
+
+
+            ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
+            (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
+            ;; Disable auto-complete-mode since it interferes with company
+            (auto-complete-mode nil)
+            )
+          )
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c i") 'indent-buffer)
+            )
+          )
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "markdown")
+         (use-package markdown-preview-mode
+           :ensure t
+           :hook markdown
+           )
+         )
+
+(use-package csharp-mode
+  :ensure t
+  )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; End of user configurable section
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; ;; tramp
 ;; (setq tramp-default-method "ssh")
@@ -247,7 +365,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
+   (quote
+    (markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

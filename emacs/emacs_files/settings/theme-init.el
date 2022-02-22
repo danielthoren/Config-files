@@ -1,7 +1,8 @@
 
 
 (use-package all-the-icons
-  :ensure t)
+  :ensure t
+  :hook doom)
 
 (use-package doom-themes
   :ensure t
@@ -9,7 +10,7 @@
   (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (setq neo-theme 'icons)
-  ;;  (doom-themes-neotree-config)
+   (doom-themes-neotree-config)
   )
 
 (use-package solaire-mode

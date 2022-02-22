@@ -5,6 +5,19 @@
   [a-b c]  : Press a and b, then c to trigger
   [a-b c-d]: Press a and b, then c and d to trigger
 
+** Key map
+  A key map is a prefix command to enter a mode, after which commands
+  can be entered. For example, the key map for rectangle mode is:
+
+  Rectangle mode key map: [C-x r]
+
+  After pressing this key map, a command can be entered, for example
+  the command to cut the currently marked rectangle:
+
+  Cut the currently marked rectangle: [k]
+
+  In this case, the whole sequence would be: [C-x r k]
+
 ** Special keys
    C  : Control
    M  : Meta (usually alt)
@@ -24,6 +37,9 @@
    Search forward in file           : [C-s]
    Search backward in file          : [C-r]
    Undo                             : [C-x u]
+
+   Set mark point                   : [C-Space] (Everything between point and cursor will be highlighted)
+   Mark whole buffer                : [C-x h]
 
    Make word at point lowr case     : [M-l]
    Make word at point upper case    : [M-u]
@@ -57,6 +73,64 @@
   Move cursor to window on left              : [C-,]
   Cycle buffer to the right in current window: [C-M-.]
   Cycle buffer to the left in current window : [C-M-,]
+
+
+* KBD macro
+  A macro can be used to repeat a action multiple times.
+  Start recording a macro with the binding below, then enter
+  a key sequence (can be anything). Once done,
+  end the macro recording. The macro can now be repeated.
+
+  To start recording a macro, press: [C-x (]
+  To stop recording a macro, press : [C-x )]
+  Use macro                        : [C-x e]
+
+
+* Rectangle mode
+  Allows the user to remove, copy, cut and paste rectangles of text
+
+  Toggle rectangle mark mode                                                                     : [C-x SPC]
+
+  Rectangle mode key map: [C-x r]
+
+  Key map commands:
+  - Kill text of region-rectangle and save it to copy buffer                                       : [k]
+  - Save the test of region-rectangle to copy buffer                                               : [M-w]
+  - Delete the text of region-rectangle                                                            : [d]
+  - Paste the most recently saved region-rectangle at point                                        : [y]
+  - Insert blank spaces to fill region-rectangle, the previous contents are pushed to the right    : [o]
+  - Clear the region-rectangle by replacing its contents with spaces                               : [c]
+
+
+* Dired (file tree in emacs)
+
+  All operations in dired are applied to the file the marker stands on
+
+  Refresh contents        : [g]
+  Rename or move          : [R]
+  Copy file               : [C]
+  Delete marked file      : [D]
+
+  Open sub directory in buffer      : [i]
+
+**  Rename multiple files inline
+   -Enter dired edit mode   : [C-x C-f <Return>] (Open new file command, then enter)
+
+  - Enter editing mode      : [C-x C-q]
+  - Apply changes           : [C-c C-c]
+
+
+**  Delete multiple files
+  - Put deletion marker    : [d]
+  - Remove deletion marker : [u]
+  - Apply deletion         : [x]
+
+
+** Move/copy multiple files to buffer
+  - Put marker             : [m]
+  - Copy to buffer         : [W]
+  - Move to buffer         : [X]
+  - Paste to current dir   : [Y]
 
 
 * lsp mode
@@ -97,3 +171,65 @@
 
   Auto generate doxygen function header: [C-c d t]
   Auto generate doxygen file header    : [C-c d h]
+
+
+* Auto indent mode (dtrt)
+
+  When opening a file, dtrt will automatically detect the indentation
+  strategy of the file and adjust.
+
+  When opening a new file, the default indentation might be off. In
+  order to set the indentation strategy manually, write some code
+  ,one line is enough, then do the following to re-evaluate current
+  indentation:
+
+  1. Open command prompt                                      : [M-x]
+  2. Enter the following command (company will auto-complete) : dtrt-indent-adapt
+
+  The indentation strategy should now be adjusted
+
+
+* Org mode
+  Org mode is a good way to take notes.
+  Make a file on the format *.org and enter it using emacs.
+
+** Headings
+   To create a heading, start at the leftmost column,
+   then add a number of stars. For each star, a new heading level is used.
+   for example:
+   * Top level heading
+   ** Next level
+   *** Next level
+
+   When point is on a header, use Tab to expand/collapse the heading
+
+** Lists
+   A list is started by entering one of the possible bullets. Some examples are:
+   - *
+   - +
+   - 1.
+   - 1)
+   - -
+
+   The following bindings can be used when point is at a list item:
+   + Create the next bullet                                       : [M-Ret]
+   + Toggle the whole list between the different types of bullets : [C-c -]
+
+** Todo list
+
+   Todo bullets work like a regular list, but can be set to done. It looks like:
+
+   - [X] This task is done
+   - [ ] This task is not done
+
+   The following bindings work when on a todo bullet:
+   + Make next todo item    : [M-S-Ret]
+   + Mark todo item as done : [C-c C-c]
+
+** Good settings
+
+   Start with all headings expanded:
+   - #+STARTUP: showeverything
+
+   Disable default underscore behaviour:
+   - #+OPTIONS: ^:{}
