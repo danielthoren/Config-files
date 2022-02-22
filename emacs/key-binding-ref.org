@@ -161,9 +161,11 @@
 * Normal Comments
   Works in c/c++ and python mode
 
-  Insert comment         : [C-M-j]
-  Add new line to comment: [M-j]
-  Insert block comment   : [C-M-k]
+  Insert comment                        : [C-M-j]
+  Add new line to comment               : [M-j]
+
+  Insert self centering block comment   : [C-M-k]
+  Add new self centering line           : [M-j]
 
 
 * Doxygen comment generation (generates doc comments)
