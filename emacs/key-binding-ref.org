@@ -1,3 +1,4 @@
+#+OPTIONS: ^:{}
 
 * Keys explained
   [a-b]    : Press a and b to trigger
@@ -54,10 +55,20 @@
 ** Basic movement
 
    Vertical Movement:
-     * Move one char up         : [C-p] (p =previous)
-     * Move one char down       : [C-n] (n = next)
-     * Move page up             : [M-v]
-     * Move page down           : [C-v]
+     * Move one char up                         : [C-p] (p =previous)
+     * Move one char down                       : [C-n] (n = next)
+     * Move 5 rows down                         : [M-n] (*not default*)
+     * Move 5 rows up                           : [M-p] (*not default*)
+     * Move page up                             : [M-v]
+     * Move page down                           : [C-v]
+
+     *Less useful*
+     * Move forward over parenthetical group    : [C-M-n]
+     * Move backward over a parenthetical group : [C-M-p]
+     * Move up in parenthesis structure         : [C-M-u] (u = up)
+     * Move down in parenthesis structure       : [C-M-d] (d = down)
+     * Forward-sentence                         : [M-e] (Move down by sentence)
+     * Backward-sentence                        : [M-a] (Move up by sentence)
 
    Horizontal movement:
      * Move one char left       : [C-b] (b = back)
@@ -178,6 +189,7 @@
 
   Insert self centering block comment   : [C-M-k]
   Add new self centering line           : [M-j]
+
 
 * Doxygen comment generation (generates doc comments)
   Works in c/c++ mode

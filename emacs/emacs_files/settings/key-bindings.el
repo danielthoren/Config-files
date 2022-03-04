@@ -20,7 +20,20 @@
 
 (global-set-key (kbd "C-c k") 'comment-or-uncomment-region)
 
-;;Neotree
-(global-set-key (kbd "C-x t") 'neotree-toggle)
+
+;; Move x lines up at a time
+(global-set-key (kbd "M-p")
+  (lambda ()
+    (interactive)
+    (setq this-command 'previous-line)
+    (previous-line 5)))
+
+;; Move x lines down at a time
+(global-set-key (kbd "M-n")
+  (lambda ()
+    (interactive)
+    (setq this-command 'next-line)
+    (next-line 5)))
+
 
 (provide 'key-bindings)

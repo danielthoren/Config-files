@@ -106,6 +106,7 @@
 (use-package neotree
   :ensure t
   :config
+  (global-set-key (kbd "C-x t") 'neotree-toggle)
   (setq neo-window-fixed-size nil)
   (setq neo-window-width 40)
   )
