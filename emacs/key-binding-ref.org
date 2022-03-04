@@ -33,11 +33,18 @@
   Open new connected emacs instance: : [C-x 5 2]
 
 ** Text operations
-   Search and replace               : [M-%] or [M-S-5]
-   Search forward in file           : [C-s]
-   Search backward in file          : [C-r]
-   Undo                             : [C-x u]
+   Copy/paste:
+     * Copy selection                   : [M-w]
+     * Cut selection                    : [C-w]
+     * Paste to point                   : [C-y]
 
+   Search:
+     * Search and replace               : [M-%] or [M-S-5]
+     * Search forward in file           : [C-s]
+     * Search backward in file          : [C-r]
+
+   Save                             : [C-x C-s]
+   Undo                             : [C-x u]
    Set mark point                   : [C-Space] (Everything between point and cursor will be highlighted)
    Mark whole buffer                : [C-x h]
 
@@ -45,23 +52,28 @@
    Make word at point upper case    : [M-u]
 
 ** Basic movement
-   Move one char left       : [C-b] (back)
-   Move one char right      : [C-f] (forward)
-   Move one char up         : [C-p] (previous)
-   Move one char down       : [C-n] (next)
 
-   Move one word left       : [M-b] (back)
-   Move one word right      : [M-f] (forward)
+   Vertical Movement:
+     * Move one char up         : [C-p] (p =previous)
+     * Move one char down       : [C-n] (n = next)
+     * Move page up             : [M-v]
+     * Move page down           : [C-v]
 
-   Move to end of line      : [C-e] (end)
-   Move to beginning of line: [C-a]
+   Horizontal movement:
+     * Move one char left       : [C-b] (b = back)
+     * Move one char right      : [C-f] (f = forward)
+     * Move one word left       : [M-b] (b = back)
+     * Move one word right      : [M-f] (f = forward)
+
+     * Move to end of line      : [C-e] (e = end)
+     * Move to beginning of line: [C-a]
 
    Go to line number        : [M-g M-g]
 
 ** Buffer manipulation
-  Open new file                   : [C-x C-f]
-  Save current buffer             : [C-x C-s]
-  Close current buffer            : [C-x C-k]
+  Open new file                   : [C-x C-f] (f = file)
+  Save current buffer             : [C-x C-s] (s = save)
+  Close current buffer            : [C-x C-k] (k = kill)
   Split window vertical           : [C-x 2]
   Split window horizontal         : [C-x 3]
   Close current window            : [C-x 0]
@@ -163,7 +175,7 @@
 
   Insert comment         : [C-M-j]
   Add new line to comment: [M-j]
-  Insert block comment   : [C-M-k]
+  Insert block comment   : [C-M-k] (self centering)
 
 
 * Doxygen comment generation (generates doc comments)
