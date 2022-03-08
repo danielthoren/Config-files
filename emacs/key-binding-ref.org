@@ -31,6 +31,7 @@
   Abort current command              : [C-g]
   Open command prompt                : [M-x]
   Close emacs                        : [C-x C-c]
+  Minimize emacs                     : [C-z]
   Open new connected emacs instance: : [C-x 5 2]
 
 ** Text operations
@@ -45,7 +46,7 @@
      * Search backward in file          : [C-r]
 
    Save                             : [C-x C-s]
-   Undo                             : [C-x u]
+   Undo                             : [C-x u] [C-_]
    Set mark point                   : [C-Space] (Everything between point and cursor will be highlighted)
    Mark whole buffer                : [C-x h]
 
@@ -108,6 +109,13 @@
   To stop recording a macro, press : [C-x )]
   Use macro                        : [C-x e]
 
+  *lasts for the duration of the session*
+  Give most recent macro a name              : [C-x C-k n]
+  Bind the most recent macro to key sequence : [C-x C-k b] (b = bind)
+
+  Save named macro to current file (lisp code) : [M-x insert-kbd-macro RET (macro name) RET]
+  load macro from file                         : [M-x load-file RET (file name) RET]
+
 
 * Rectangle mode
   Allows the user to remove, copy, cut and paste rectangles of text
@@ -124,6 +132,54 @@
   - Insert blank spaces to fill region-rectangle, the previous contents are pushed to the right    : [o]
   - Clear the region-rectangle by replacing its contents with spaces                               : [c]
 
+
+* Registers
+  Registeras are a way of mapping text, rectangles or positions to
+  specifik keys. The mappings will stay persistant throughout the
+  session.
+
+  Hence forth, a key on the keyboard mapping to a register will be
+  refered to as "(key)"
+
+  View content of a register: [M-x view-register RET (key)]
+
+** Position/state operations
+  Record position of point to register         : [C-x r SPC (key)]
+
+  Save the state of all frames to register     : [C-x r f (key)] (f = frames) (saves window configuration)
+  Save the state of the selected buffer        : [C-x r w (key)] (w = window)
+
+  Jump to position/configuration in register   : [C-x r j (key)]   (j = jump)
+
+** Text operations
+  Copy region into register            : [C-x r s (key)] (s = store)
+  Copy rectangle into register         : [C-x r (key)] (r = rectangle)
+
+  Save number to register              : [C-u (num) C-x r n (key)]
+  Save number 0 to register            : [C-x r n (key)]
+  Increment number by (num)            : [C-u (num) C-x r + (key)]
+  Increment number by 1                : [C-x r + (key)]
+
+  Insert text/rectangle from register  : [C-x r i (key)] (i = insert)
+
+** Macros
+   Store the most recent macro in register : [C-x C-k x (key)
+   Execute macro stored in register        : [C-x r j (key)]
+
+
+* Bookmarks
+  Bookmarks has a lot in common with registers, the main difference
+  being that they are persistant from one session to another. Emacs
+  saves bookmarks when it is shut down automatically.
+
+  A bookmark is a mapping between a position in a buffer and a
+  keyword, hence forth reffered to as (name)
+
+  Set bookmark for the visited file at point          : [C-x r m RET]
+  Set named bookmark at point                         : [C-x r m (name)]
+  Jump to bookmark                                    : [C-x r b (name)]
+  List all bookmarks                                  : [C-x r l]        (l = list)
+  Save all current bookmarks in default bookmark file : [M-x bookmark-save]
 
 * Dired (file tree in emacs)
 
