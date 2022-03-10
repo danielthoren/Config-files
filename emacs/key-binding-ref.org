@@ -97,6 +97,8 @@
   Move cursor to window on left              : [C-,]
   Cycle buffer to the right in current window: [C-M-.]
   Cycle buffer to the left in current window : [C-M-,]
+  Move horizontal border between buffers     : [C-Left] [C-Right]
+  Move vertical border between buffers       : [C-Up] [C-Down]
 
 
 * KBD macro
