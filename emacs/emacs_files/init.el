@@ -295,7 +295,7 @@
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
   (block-comment--init "/*" " " "*" "*/" 80)
-  (local-set-key (kbd "C-M-k") 'block-comment-insert)
+  (local-set-key (kbd "C-M-k") 'block-comment-insert-or-resume)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
@@ -319,7 +319,7 @@
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
             (block-comment--init "#" " " "#" "#" 80)
-            (local-set-key (kbd "C-M-k") 'block-comment-insert)
+            (local-set-key (kbd "C-M-k") 'block-comment-insert-or-resume)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)

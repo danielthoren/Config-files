@@ -80,7 +80,10 @@
      * Move to end of line      : [C-e] (e = end)
      * Move to beginning of line: [C-a]
 
-   Go to line number        : [M-g M-g]
+   Other:
+     * Go to line number           : [M-g M-g]
+     * Jump to beginning of buffer : [M-<]
+     * Jump to end of buffer       : [M->]
 
 ** Buffer manipulation
   Open new file                   : [C-x C-f] (f = file)
@@ -182,6 +185,7 @@
   Jump to bookmark                                    : [C-x r b (name)]
   List all bookmarks                                  : [C-x r l]        (l = list)
   Save all current bookmarks in default bookmark file : [M-x bookmark-save]
+
 
 * Dired (file tree in emacs)
 
