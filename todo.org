@@ -1,5 +1,14 @@
 #+STARTUP: showeverything
 
+* Emacs block-comment-mode
+  - [ ] Fix so that centering mode can be toggled by [C-c C-c]
+  - [ ] Fix so that an existing user comment can be centered by [C-c C-c]
+
+  - [ ] Fix so that block comment mode sets target width dynamically
+        from surrounding bodies
+  - [ ] Fix so that the mode adapts surrounding bodies to current body width
+        maybe bind to tab
+
 * High priority
 
 * Medium priority
