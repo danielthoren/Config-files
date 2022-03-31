@@ -43,10 +43,12 @@
 
 ;;windows only stuff
 (when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Initialize local files
+"""                          Initialize local files                          """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Init theme
@@ -67,7 +69,7 @@
 (require 'block-comment-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Initialize packages
+"""                           Initialize packages                            """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;
@@ -275,7 +277,7 @@
   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Language specific settings
+"""                        Language specific settings                        """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'gendoxy)
@@ -294,7 +296,7 @@
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  (block-comment--init "/*" " " "*" "*/" 80)
+  (block-comment--init 80   "/*" " " "*/"    "/*" "*" "*/" )
   (local-set-key (kbd "C-M-k") 'block-comment-insert-or-resume)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
@@ -313,12 +315,11 @@
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
 (add-hook 'c-mode 'my-c-mode-hook)
 
-
 (add-hook 'python-mode-hook
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            (block-comment--init "#" " " "#" "#" 80)
+            (block-comment--init 80   "\"\"\"" " " "\"\"\""   "#" "#" "#" )
             (local-set-key (kbd "C-M-k") 'block-comment-insert-or-resume)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
@@ -327,6 +328,14 @@
             (auto-complete-mode nil)
             )
           )
+
+(add-hook 'emacs-lisp-mode-hook
+     (lambda ()
+            (block-comment--init 80 "\"\"\"" " " "\"\"\""    ";;" ";" ";;")
+            (local-set-key (kbd "C-M-k") 'block-comment-insert-or-resume)
+
+       )
+     )
 
 (add-hook 'prog-mode-hook
           (lambda ()
@@ -351,9 +360,8 @@
   :ensure t
   )
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; End of user configurable section
+"""                     End of user configurable section                     """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
