@@ -313,10 +313,81 @@
    + Make next todo item    : [M-S-Ret]
    + Mark todo item as done : [C-c C-c]
 
-** Good settings
+
+** Latex document settings
+
+*** Inserting latex code
+    The following block can be used to insert latex directly:
+
+    - #+BEGIN_export latex
+
+      Add latex code here
+
+    - #+END_export
+
+    The following can be used to insert latex dependencies:
+
+    - #+LATEX_HEADER: \usepackage{xyz}
+
+*** Document top information
+   The following settings can be used at the top of the document:
+   - #+TITLE: Your Title
+   - #+AUTHOR: Your Name
+   - #+EMAIL: Your email
+
+*** Centering
+   The following attribute can be used to create a centering region in latex:
+   - #+BEGIN_center
+
+     Put something that shall be centered here
+
+   - #+END_center
+
+
+** Images
+
+   A image can be inserted by simply adding the following syntax without the \:
+   [[ ./path/to/image.jpg ]\]
+
+*** Image attributes
+   A number of attributes can be used to modify the image, the
+   following is a selection of useful attributes:
+
+   #+CAPTION: This capiton is added to the image
+   #+NAME: this_name_can_be_used_to_add_references_to_the_image
+   #+ATTR_ORG: :width 100
+   #+ATTR_LATEX: :width 10cm :center t :options angle=90
+   #+ATTR_HTML: :width 200
+
+*** Images side-by-side
+   To put images side by side, manual latex is needed
+
+   - #+LATEX_HEADER: \usepackage{subcaption}
+   - #+BEGIN_export latex
+   -
+   - \begin{figure}[t]
+   - \centering
+   -    \begin{subfigure}{0.49\textwidth} \centering
+   -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_radar_45.png}
+   -      \caption{Låg nivå}
+   -    \end{subfigure}
+   -    \begin{subfigure}{0.49\textwidth} \centering
+   -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_loadcell_45.png}
+   -      \caption{Hög nivå}
+   -    \end{subfigure}
+   - \caption{\label{fig:skakrigg_v2_45} En typisk session från den nya skakriggen}
+   - \end{figure}
+   -
+   - #+END_export
+
+
+** Good global settings
 
    Start with all headings expanded:
    - #+STARTUP: showeverything
 
    Disable default underscore behaviour:
    - #+OPTIONS: ^:{}
+
+   Show all images inline:
+   - #+STARTUP: inlineimages
