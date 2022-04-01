@@ -290,6 +290,7 @@
 
    When point is on a header, use Tab to expand/collapse the heading
 
+
 ** Lists
    A list is started by entering one of the possible bullets. Some examples are:
    - *
@@ -302,6 +303,7 @@
    + Create the next bullet                                       : [M-Ret]
    + Toggle the whole list between the different types of bullets : [C-c -]
 
+
 ** Todo list
 
    Todo bullets work like a regular list, but can be set to done. It looks like:
@@ -312,36 +314,6 @@
    The following bindings work when on a todo bullet:
    + Make next todo item    : [M-S-Ret]
    + Mark todo item as done : [C-c C-c]
-
-
-** Latex document settings
-
-*** Inserting latex code
-    The following block can be used to insert latex directly:
-
-    - #+BEGIN_export latex
-
-      Add latex code here
-
-    - #+END_export
-
-    The following can be used to insert latex dependencies:
-
-    - #+LATEX_HEADER: \usepackage{xyz}
-
-*** Document top information
-   The following settings can be used at the top of the document:
-   - #+TITLE: Your Title
-   - #+AUTHOR: Your Name
-   - #+EMAIL: Your email
-
-*** Centering
-   The following attribute can be used to create a centering region in latex:
-   - #+BEGIN_center
-
-     Put something that shall be centered here
-
-   - #+END_center
 
 
 ** Images
@@ -356,29 +328,6 @@
    #+CAPTION: This capiton is added to the image
    #+NAME: this_name_can_be_used_to_add_references_to_the_image
    #+ATTR_ORG: :width 100
-   #+ATTR_LATEX: :width 10cm :center t :options angle=90
-   #+ATTR_HTML: :width 200
-
-*** Images side-by-side
-   To put images side by side, manual latex is needed
-
-   - #+LATEX_HEADER: \usepackage{subcaption}
-   - #+BEGIN_export latex
-   -
-   - \begin{figure}[t]
-   - \centering
-   -    \begin{subfigure}{0.49\textwidth} \centering
-   -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_radar_45.png}
-   -      \caption{Låg nivå}
-   -    \end{subfigure}
-   -    \begin{subfigure}{0.49\textwidth} \centering
-   -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_loadcell_45.png}
-   -      \caption{Hög nivå}
-   -    \end{subfigure}
-   - \caption{\label{fig:skakrigg_v2_45} En typisk session från den nya skakriggen}
-   - \end{figure}
-   -
-   - #+END_export
 
 
 ** Good global settings
@@ -391,3 +340,115 @@
 
    Show all images inline:
    - #+STARTUP: inlineimages
+
+
+** Latex export
+
+   Org files can be exported to other documents. The key binding to do
+   so is as follows:
+
+   Enter export mode:   [C-c C-e] (e = export)
+
+   After that a number of options are available, shown in a new
+   buffer. The most common export target is .pdf, which has to be done
+   through latex. The sequence to press for .pdf export is as follows:
+
+   Export to pdf: [C-c C-e l p]
+
+   In the rest of this guide, all code/org stuff will be prefixed by a
+   '-'. Thus if you copy from here, you need to remove the '-'.
+
+*** Document top information
+   The following settings can be used at the top of the document:
+   - #+TITLE: Your Title
+   - #+AUTHOR: Your Name
+   - #+EMAIL: Your email
+
+
+*** Insert inline latex in org mode
+    Sometimes it is necessary to manually insert latex code into the
+    org buffer in order to get the export to look nice. This can be
+    done as follows:
+
+    - #+LATEX_HEADER: \usepackage{subcaption}
+
+      Add latex code here
+
+    - #+END_export
+
+    The following can be used to insert latex dependencies:
+
+    - #+LATEX_HEADER: \usepackage{xyz}
+
+
+*** Captions and labels
+
+    Before a figure/table or other, the following attributes can be
+    added:
+
+    -  #+CAPTION: A caption
+    -  #+NAME:   this-will-become-a-label
+
+
+*** Images
+
+    Additional latex attributes can be added to a image:
+    - #+ATTR_LATEX: :width 10cm :center t :options angle=90
+
+**** Side by side images
+     In order to have images show up side by side, it is necessary to
+     write latex directly:
+
+     - #+LATEX_HEADER: \usepackage{subcaption}
+     - #+BEGIN_export latex
+     -
+     - \begin{figure}[t]
+     - \centering
+     -    \begin{subfigure}{0.49\textwidth} \centering
+     -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_radar_45.png}
+     -      \caption{Låg nivå}
+     -    \end{subfigure}
+     -    \begin{subfigure}{0.49\textwidth} \centering
+     -      \includegraphics[width=10cm, angle=-90]{./bilder/1000_loadcell_45.png}
+     -      \caption{Hög nivå}
+     -    \end{subfigure}
+     - \caption{\label{fig:skakrigg_v2_45} En typisk session från den nya skakriggen}
+     - \end{figure}
+     -
+     - #+END_export
+
+
+*** Centering
+   The following attribute can be used to create a centering region in latex:
+   - #+BEGIN_center
+
+     Put something that shall be centered here
+
+   - #+END_center
+
+*** Tables
+    Tables export nicely to latex, however some modification might be
+    required depending on what you want.
+
+**** Vertical lines
+     By default, the vertical lines of the table will not follow to
+     latex. For example, the following table will not have the
+     leftmost and rightmost vertical lines in latex:
+
+     |------+-------|
+     | This | is    |
+     |------+-------|
+     | the  | table |
+     |------+-------|
+
+     This can be remedied by adding a extra column and row. The extra
+     row is used to specify which vertical lines to use, this is done
+     with the < > as can be seen below. These must follow on a row
+     where there is a / in the extra column
+
+     |---+------+-------|
+     | / | <    | <>    | This row is necessary
+     |   | This | is    |
+     |---+------+-------|
+     |   | the  | table |
+     |---+------+-------|
