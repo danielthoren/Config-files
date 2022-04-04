@@ -102,8 +102,11 @@
   )
 (use-package counsel
   :ensure t
-  :bind (("M-x" . counsel-M-x)
-         ("C-s" . swiper))
+  :bind (
+         ("M-x" . counsel-M-x)
+         ("C-s" . swiper)
+         ("C-c C-y" . counsel-yank-pop)
+         )
   )
 (use-package neotree
   :ensure t
