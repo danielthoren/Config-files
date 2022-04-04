@@ -10,6 +10,8 @@
         maybe bind to tab
 
 * High priority
+  - [ ] Emacs: Change behaviour of yanking from the kill-ring. Make a yank
+               not move the yank pointer
 
 * Medium priority
 
