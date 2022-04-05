@@ -34,15 +34,47 @@
   Minimize emacs                     : [C-z]
   Open new connected emacs instance: : [C-x 5 2]
 
-** Text operations
-   Copy/paste:
-     * Copy selection                   : [M-w]
-     * Cut selection                    : [C-w]
-     * Paste to point                   : [C-y]
+** Copy/paste
+   In emacs you can copy paste just like in any other editor, however
+   emacs utilizes a circular buffer, called the kill ring, where
+   things that has been killed (cut) are stored. This can be
+   visualized as follows:
 
+   # kill-ring                  ---- kill-ring-yank-pointer
+   #   |                       |
+   #   |                       v
+   #   |     --- ---          --- ---      --- ---
+   #    --> |   |   |------> |   |   |--> |   |   |--> nil
+   #         --- ---          --- ---      --- ---
+   #          |                |            |
+   #          |                |            |
+   #          |                |             -->"yet older text"
+   #          |                |
+   #          |                 --> "a different piece of text"
+   #          |
+   #           --> "some text"
+
+   When you yank (paste) in emacs, the contents that the
+   kill-ring-yank-pointer points to will be inserted. After yanking,
+   the pointer can be moved along the ring buffer, thus changing what
+   will be pasted. This will permanently move the pointer, thus
+   changing what will be yanked next time.
+
+   Copy/paste:
+     * Copy selection                     : [M-w]
+
+     * Cut (kill) selection               : [C-w]
+     * Cut (kill) rest of line            : [C-k] (k = kill)
+     * Cut (kill) next word               : [C-d] (d = delete)
+
+     * Paste to point                     : [C-y] (y = yank)
+     * Rotate kill-ring                   : [M-y] (must be done after paste)
+     * Choose from contents of kill ring  : [C-c C-y] (counsel-yank-pop)
+
+** Text operations
    Search:
      * Search and replace               : [M-%] or [M-S-5]
-     * Search forward in file           : [C-s]
+     * Search in file                   : [C-s] (swiper, non-default)
      * Search backward in file          : [C-r]
 
    Save                             : [C-x C-s]
