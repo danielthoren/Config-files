@@ -14,5 +14,6 @@
                not move the yank pointer
 
 * Medium priority
+  - [ ] Emacs: Explore hl-todo-mode, has jump to features
 
 * Low priority
