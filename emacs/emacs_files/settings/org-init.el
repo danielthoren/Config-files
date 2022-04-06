@@ -28,15 +28,17 @@
 (setq org-todo-keywords
       '((sequence "TODO" "STARTED" "VERIFY" "DONE")
         (sequence "REPORT" "BUG" "KNOWNCAUSE" "FIXED")
-        ))
+        )
+      )
 
 (setq org-todo-keyword-faces
       '(("TODO" . "red")
         ("STARTED" . "yellow")
         ("VERIFY". "grey")
         ("DONE" . "green")
-         ))
-)
+        )
+      )
+
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------
 ;; Original source code wich one modified row. Makes the background of images
