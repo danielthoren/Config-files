@@ -114,6 +114,9 @@
 
    Other:
      * Go to line number           : [M-g M-g]
+     * Center buffer around point  : [C-L] [C-S-L]
+
+     *Less useful*
      * Jump to beginning of buffer : [M-<]
      * Jump to end of buffer       : [M->]
 
