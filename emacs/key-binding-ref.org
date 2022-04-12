@@ -34,6 +34,9 @@
   Minimize emacs                     : [C-z]
   Open new connected emacs instance: : [C-x 5 2]
 
+  Search all files in current dir
+  recursively with find/grep         : [C-c g] (g = grep, Not default)
+
 ** Copy/paste
    In emacs you can copy paste just like in any other editor, however
    emacs utilizes a circular buffer, called the kill ring, where
