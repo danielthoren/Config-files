@@ -129,7 +129,14 @@
   )
 (use-package grep
   :ensure t
-  :defer t)
+  :defer t
+  :bind (
+         ("C-c g" . grep-find)
+         )
+  :init
+  (grep-apply-setting 'grep-find-template
+        '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +"))
+  )
 
 (use-package hl-todo
   :ensure t
