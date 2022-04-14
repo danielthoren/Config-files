@@ -230,6 +230,8 @@
   Rename or move          : [R]
   Copy file               : [C]
   Delete marked file      : [D]
+  Create directory        : [+]
+  sort                    : [s]
 
   Open sub directory in buffer      : [i]
 
