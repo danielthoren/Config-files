@@ -74,14 +74,20 @@
 
 ;
 ;; General packages
-;
+                                        ;
+
+(use-package all-the-icons
+  :ensure t
+  )
 
 (use-package dired-ranger
   :ensure t
-  :bind (:map dired-mode-map
-              ("W" . dired-ranger-copy)
-              ("X" . dired-ranger-move)
-              ("Y" . dired-ranger-paste)))
+  :after all-the-icons
+  :config
+  (
+   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+   )
+  )
 
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
@@ -133,9 +139,10 @@
   :bind (
          ("C-c g" . grep-find)
          )
-  :init
-  (grep-apply-setting 'grep-find-template
-        '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +"))
+  ;; :init //TODO: Change default grep-find string, adding -i flag to grep
+  ;; (grep-apply-setting 'grep-find-template
+  ;;       '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +")
+        ;; )
   )
 
 (use-package hl-todo
@@ -161,14 +168,6 @@
 ;
 ;; Prog mode packages
 ;
-
-(use-package projectile
-  :ensure t
-  ;; :hook prog-mode ;; TODO: Fix projectile TODO: Investigate if this package is necessary
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
-  )
 
 (use-package company-mode
   :ensure company
@@ -287,6 +286,39 @@
   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                   el-get and packages from emacs-wiki                    """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; Auto install el-get package
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(el-get 'sync)
+
+
+;; List of packages you want to install
+(defvar my-packages '(
+                      dired+
+                      )
+  )
+;; This will install any package from my-packages which is not already installed
+(el-get 'sync my-packages)
+
+
+;; Configure dired+
+(setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
+(setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
+;; TODO: Bind function: diredp-move-named-in-kill-ring to key
+;; TODO: Bind [C-0 w] to better key (copy files)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                        Language specific settings                        """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -384,7 +416,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))))
+    (use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

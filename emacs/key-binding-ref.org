@@ -258,6 +258,18 @@
   - Paste to current dir   : [Y]
 
 
+* Dired+
+
+  mark              : [m]
+  unmark            : [u]
+  mark for deletion : [d]
+
+  delete marked     : [x]
+
+  copy marked files : [C-0 w]
+  paste copied files: [C-y]
+  move copied files : [C-w]
+
 * lsp mode
   Go to declaration       : [M-i]
   Go back                 : [C-M-i]
