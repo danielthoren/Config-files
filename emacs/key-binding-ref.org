@@ -367,6 +367,20 @@
    + Make next todo item    : [M-S-Ret]
    + Mark todo item as done : [C-c C-c]
 
+** Todo Items
+   TODO Items are similar to todo lists, but more complex. A todo item
+   is on the following format:
+
+*** TODO [#A] A todo item
+
+    The [#A] represents the priority, the default levels are A, B and
+    C. A todo item can be in many states, the states can be toggled
+    with [C-c C-t]. the currently configured states are as follows:
+
+*** TODO [#A] A todo item
+*** STARTED [#A] A todo item
+*** VERIFY [#A] A todo item
+*** DONE [#A] A todo item
 
 ** Images
 

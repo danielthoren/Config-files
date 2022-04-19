@@ -77,13 +77,13 @@
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p)
-  :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   )
 
-;; (use-package all-the-icons-dired
-;;   :ensure t
-;;   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-;;   )
+(use-package all-the-icons-dired
+  :ensure t
+  :if (display-graphic-p)
+  :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  )
 
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
