@@ -127,15 +127,18 @@
   :ensure t
   :hook (prog-mode . diff-hl-mode)
   )
+
+;; TODO: Test grep+ and see if you can change default behaviour there
 (use-package grep
   :ensure t
-  :defer t
   :bind (
          ("C-c g" . grep-find)
          )
-  :init
-  (grep-apply-setting 'grep-find-template
-        '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +"))
+  ;; :config
+  ;; (grep-apply-setting
+  ;;  grep-find-template "find <D> <X> -type f ! -name "*~" -exec grep -i -nH -e <R> \\{\\} +")
+  ;; (grep-apply-setting 'grep-find-template
+  ;;       '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +"))
   )
 
 (use-package hl-todo
