@@ -233,6 +233,8 @@
   Rename or move          : [R]
   Copy file               : [C]
   Delete marked file      : [D]
+  Create directory        : [+]
+  sort                    : [s]
 
   Open sub directory in buffer      : [i]
 
@@ -255,6 +257,18 @@
   - Move to buffer         : [X]
   - Paste to current dir   : [Y]
 
+
+* Dired+
+
+  mark              : [m]
+  unmark            : [u]
+  mark for deletion : [d]
+
+  delete marked     : [x]
+
+  copy marked files : [C-0 w]
+  paste copied files: [C-y]
+  move copied files : [C-w]
 
 * lsp mode
   Go to declaration       : [M-i]
