@@ -20,7 +20,6 @@
 
 ;; Disable autosaving
 (setq auto-save-default nil)
-;;(setq backup-directory-alist '(("" . (expand-file-name "backup" user-emacs-directory))))
 
 ;;Limit savehisp-mode length to reduce lag
 (setq history-length 100)

@@ -78,6 +78,7 @@
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p)
+  :hook doom-themes
   )
 
 (use-package all-the-icons-dired
@@ -138,7 +139,7 @@
          )
   :config ;; TODO: Exclude ccls cache
   (grep-apply-setting 'grep-find-command
-                      '("find . -type f \\( ! -iname \"*~\" ! -path \"*/.ccls-cache/*\" \\) -exec grep -inH -e  \\{\\} +" . 81))
+                      '("find . -type f \\( ! -iname \"*~\" ! -path \"*/.ccls-cache/*\" ! -path \"*/x86/*\" \\) -exec grep -inH -e  \\{\\} +" . 99))
   )
 
 (use-package hl-todo

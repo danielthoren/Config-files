@@ -1,9 +1,4 @@
 
-
-(use-package all-the-icons
-  :ensure t
-  :hook doom)
-
 (use-package doom-themes
   :ensure t
   :config
@@ -44,6 +39,6 @@
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (toggle-transparency)
-(toggle-transparency)
+;; (toggle-transparency)
 
 (provide 'theme-init)

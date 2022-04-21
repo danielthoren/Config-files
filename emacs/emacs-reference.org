@@ -1,5 +1,31 @@
 #+OPTIONS: ^:{}
 
+* Installation steps
+  Perform the following steps to install emacs with all config:
+
+  1. run the conf.sh bash script in this folder the following way:
+     ./conf.sh
+     This will install emacs and the dependencies that the packages rely on.
+     It will also create symbolic links from the git repo into ~/.emacs.d/
+
+  2. Open emacs and let it install packages. This might require
+     multiple restarts. Restart until it does not print something in
+     the minibuffer. If there are errors in the minibuffer after
+     restarting emacs multiple times, try entering the following
+     command in the minibuffer and then restart again.
+     The minibuffer is opened by pressing [M-x] (Alt + x):
+
+     package-refresh-contents
+
+  3. Now we need to initialize the packages. Run the following
+     commands in the minibuffer.
+
+     lsp-install-server
+     all-the-icons-install-fonts
+
+  4. The installation should be complete.
+
+
 * Keys explained
   [a-b]    : Press a and b to trigger
   [a b]    : Press a then b to trigger
@@ -26,7 +52,7 @@
    RET: Enter key
 
 
-* General stuff
+* General Keybindings
 
   Abort current command              : [C-g]
   Open command prompt                : [M-x]
@@ -370,6 +396,7 @@
    + Make next todo item    : [M-S-Ret]
    + Mark todo item as done : [C-c C-c]
 
+
 ** Todo Items
    TODO Items are similar to todo lists, but more complex. A todo item
    is on the following format:
@@ -384,6 +411,7 @@
 *** STARTED [#A] A todo item
 *** VERIFY [#A] A todo item
 *** DONE [#A] A todo item
+
 
 ** Images
 
