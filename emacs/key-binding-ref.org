@@ -84,6 +84,8 @@
    Undo                             : [C-x u] [C-_]
    Set mark point                   : [C-Space] (Everything between point and cursor will be highlighted)
    Mark whole buffer                : [C-x h]
+   Auto indent marked region        : [Tab]
+   Auto indent whole buffer         : [C-c i] (Only in prog mode)
 
    Make word at point lowr case     : [M-l]
    Make word at point upper case    : [M-u]

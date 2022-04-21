@@ -137,7 +137,8 @@
          ("C-c g" . grep-find)
          )
   :config ;; TODO: Exclude ccls cache
-  (grep-apply-setting 'grep-find-command '("find . -type f \\( ! -iname \"*~\" \\) -exec grep -inH -e  \\{\\} +" . 55))
+  (grep-apply-setting 'grep-find-command
+                      '("find . -type f \\( ! -iname \"*~\" ! -path \"*/.ccls-cache/*\" \\) -exec grep -inH -e  \\{\\} +" . 81))
   )
 
 (use-package hl-todo
