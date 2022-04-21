@@ -74,16 +74,17 @@
 
 ;; General packages
 
+;;NOTE: Must run M-x 'all-the-icons-install-fonts' for this to work
 (use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p)
+  )
+
+(use-package all-the-icons-dired
   :ensure t
   :if (display-graphic-p)
   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   )
-
-;; (use-package all-the-icons-dired
-;;   :ensure t
-;;   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-;;   )
 
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
@@ -136,10 +137,6 @@
   :bind (
          ("C-c g" . grep-find)
          )
-  ;; :init //TODO: Change default grep-find string, adding -i flag to grep
-  ;; (grep-apply-setting 'grep-find-template
-  ;;       '("find <D> <X> -type f <F> -exec grep <C> -nH -e <R> \\{\\} +")
-        ;; )
   )
 
 (use-package hl-todo
@@ -303,6 +300,7 @@
 ;; List of packages you want to install
 (defvar my-packages '(
                       dired+
+                      grep+
                       )
   )
 ;; This will install any package from my-packages which is not already installed
@@ -312,6 +310,7 @@
 ;; Configure dired+
 (setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
 (setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
+(set-face-foreground 'diredp-dir-name "green" )
 ;; TODO: Bind function: diredp-move-named-in-kill-ring to key
 ;; TODO: Bind [C-0 w] to better key (copy files)
 

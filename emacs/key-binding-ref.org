@@ -258,7 +258,7 @@
   - Paste to current dir   : [Y]
 
 
-* Dired+
+* Dired+ (Extension of Dired)
 
   mark              : [m]
   unmark            : [u]
@@ -269,6 +269,7 @@
   copy marked files : [C-0 w]
   paste copied files: [C-y]
   move copied files : [C-w]
+
 
 * lsp mode
   Go to declaration       : [M-i]
