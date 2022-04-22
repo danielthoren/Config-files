@@ -254,17 +254,19 @@
 
 
 * Dired (file tree in emacs)
+  Dired is the view of files that appear when pressing [C-x C-f RET]
 
   All operations in dired are applied to the file the marker stands on
 
-  Refresh contents        : [g]
-  Rename or move          : [R]
-  Copy file               : [C]
-  Delete marked file      : [D]
-  Create directory        : [+]
-  sort                    : [s]
+  Refresh contents               : [g]
+  Rename or move                 : [R]
+  Copy file                      : [C]
+  Delete marked file             : [D]
+  Create directory               : [+]
+  sort                           : [s]
+  Hide/show uninteresting files  : [C-x M-o]
 
-  Open sub directory in buffer      : [i]
+  Open sub directory in buffer   : [i]
 
 **  Rename multiple files inline
    -Enter dired edit mode   : [C-x C-f <Return>] (Open new file command, then enter)
@@ -287,6 +289,8 @@
 
 
 * Dired+ (Extension of Dired)
+  Dired+ is a extension of Dired. Most of dired:s key-bindings work
+  here to, plus the one listed below (among others not listed here)
 
   mark              : [m]
   unmark            : [u]
