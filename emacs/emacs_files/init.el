@@ -282,6 +282,46 @@
 (use-package powershell
   :ensure t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""     Set up white space mode      """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun bmw/color-dim (steps)
+  (apply 'color-rgb-to-hex
+         (car (color-gradient
+               (color-name-to-rgb (face-attribute 'default :background))
+               (color-name-to-rgb (face-attribute 'default :foreground))
+               steps))))
+
+(defun bmw/theme-whitespace ()
+  "Apply my own face-attribute changes after loading a custom theme"
+  (set-face-attribute 'whitespace-indentation nil
+                      :background (face-attribute 'error :background)
+                      :foreground (face-attribute 'error :foreground))
+  (set-face-attribute 'whitespace-tab nil
+                      :background (face-attribute 'font-lock-comment-face :background)
+                      :foreground (face-attribute 'font-lock-comment-face :foreground))
+  (set-face-attribute 'whitespace-space nil
+                      :background (face-attribute 'font-lock-comment-face :background)
+                      :foreground (bmw/color-dim 3)))
+
+(use-package whitespace
+  :ensure t
+  :preface
+  (defun bmw/whitespace-mode ()
+    (unless (eq major-mode 'org-mode)
+      (progn
+        (whitespace-mode)
+        (bmw/theme-whitespace))))
+  :custom
+  (whitespace-action '(auto-cleanup))
+  (whitespace-line-column 81)
+  (whitespace-style
+   '(face lines trailing empty tabs spaces indentation space-mark tab-mark))
+  :hook
+  ((prog-mode text-mode) . bmw/whitespace-mode))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                   el-get and packages from emacs-wiki                    """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
