@@ -316,6 +316,8 @@
   (defun bmw/whitespace-mode ()
     (unless (or (eq major-mode 'org-mode)
                 (string-match "\\.json\\'" buffer-file-name)
+                (string-match "\\.md\\'" buffer-file-name)
+                (string-match "\\.txt\\'" buffer-file-name)
                 )
       (progn
         (whitespace-mode)
