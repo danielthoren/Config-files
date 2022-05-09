@@ -382,7 +382,8 @@
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
   ;; Set indentation for new { statement to 0 (ex after if statement)
-  (c-set-offset 'substatement-open 0)
+  ;; (c-set-offset 'substatement-open 0)
+  (setq c-default-style "linux")
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
 
