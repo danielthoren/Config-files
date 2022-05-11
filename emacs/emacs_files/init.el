@@ -233,7 +233,7 @@
   (lsp-ui-sideline-enable nil)       ;; Disable sideline code actions
   (setq lsp-prefer-flymake nil)
   (setq lsp-signature-render-documentation nil) ;; Remove signature help
-  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-ui-flycheck-enable t) ;; NOTE: Disabled
   (setq lsp-completion-provider :company)
   )
 
@@ -384,6 +384,8 @@
   ;; Set indentation for new { statement to 0 (ex after if statement)
   ;; (c-set-offset 'substatement-open 0)
   (setq c-default-style "linux")
+  ;; Fixes indentation between ()
+  (c-set-offset 'arglist-intro '+)
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
 
