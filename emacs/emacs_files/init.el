@@ -2,6 +2,8 @@
 ;; (setq package-check-signature 'nil)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+(setq debug-on-error t)
+
 ;; Prefer to recompile config files rather than using old binary files
 (setq load-prefer-newer t)
 
@@ -233,7 +235,7 @@
   (lsp-ui-sideline-enable nil)       ;; Disable sideline code actions
   (setq lsp-prefer-flymake nil)
   (setq lsp-signature-render-documentation nil) ;; Remove signature help
-  (setq lsp-ui-flycheck-enable t) ;; NOTE: Disabled
+  (setq lsp-ui-flycheck-enable t)
   (setq lsp-completion-provider :company)
   )
 
@@ -315,6 +317,7 @@
   :preface
   (defun bmw/whitespace-mode ()
     (unless (or (eq major-mode 'org-mode)
+                (eq buffer-file-name nil)
                 (string-match "\\.json\\'" buffer-file-name)
                 (string-match "\\.md\\'" buffer-file-name)
                 (string-match "\\.txt\\'" buffer-file-name)
@@ -382,8 +385,8 @@
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
 
   ;; Set indentation for new { statement to 0 (ex after if statement)
-  ;; (c-set-offset 'substatement-open 0)
   (setq c-default-style "linux")
+  (c-set-offset 'substatement-open 0)
   ;; Fixes indentation between ()
   (c-set-offset 'arglist-intro '+)
   (setq c-basic-offset 2)
