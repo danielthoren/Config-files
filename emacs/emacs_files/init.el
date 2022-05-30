@@ -417,7 +417,13 @@
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            (block-comment--init-comment-style 80   "\"\"\"" " " "\"\"\""   "#" "#" "#" )
+            (block-comment--init-comment-style 80
+                                               "\"\"\""
+                                               " "
+                                               "\"\"\""
+                                               "#"
+                                               "#"
+                                               "#" )
             (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
@@ -431,9 +437,15 @@
      (lambda ()
             (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""    ";;" ";" ";;")
             (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
-
        )
      )
+
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
+            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            )
+          )
 
 (add-hook 'prog-mode-hook
           (lambda ()
