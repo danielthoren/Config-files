@@ -138,7 +138,7 @@
   :bind (
          ("C-c g" . grep-find)
          )
-  :config ;; TODO: Exclude ccls cache
+  :config
   (grep-apply-setting 'grep-find-command
                       '("find . -type f \\( ! -iname \"*~\" ! -path \"*/.ccls-cache/*\" ! -path \"*/x86/*\" \\) -exec grep -inH -e  \\{\\} +" . 99))
   )
@@ -149,7 +149,9 @@
   :config
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces
-        `(("TODO"       warning bold)
+        `(("todo"       warning bold)
+          ("Todo"       warning bold)
+          ("TODO"       warning bold)
           ("FIXME"      error bold)
           ("HACK"       font-lock-constant-face bold)
           ("REVIEW"     font-lock-keyword-face bold)
@@ -327,9 +329,9 @@
         (bmw/theme-whitespace))))
   :custom
   (whitespace-action '(auto-cleanup))
-  (whitespace-line-column 81)
+  ;; (whitespace-line-column 81)
   (whitespace-style
-   '(face lines trailing empty tabs spaces indentation space-mark tab-mark))
+   '(face trailing empty tabs spaces indentation space-mark tab-mark)) ;; lines
   :hook
   ((prog-mode text-mode) . bmw/whitespace-mode))
 
@@ -447,9 +449,11 @@
             )
           )
 
+(setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c i") 'indent-buffer)
+            (display-fill-column-indicator-mode)
             )
           )
 
