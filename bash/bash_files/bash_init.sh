@@ -21,4 +21,4 @@ fi
 #                               Fix keybindings                                #
 ################################################################################
 
-source remap_keys.sh
+#source remap_keys.sh
