@@ -453,7 +453,10 @@
 (add-hook 'prog-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c i") 'indent-buffer)
-            (display-fill-column-indicator-mode)
+            ;; Only enable if version is 27 or newer
+            (when (version< "27.0" emacs-version)
+              (display-fill-column-indicator-mode)
+              )
             )
           )
 
