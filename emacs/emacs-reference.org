@@ -304,10 +304,11 @@
 
 
 * lsp mode
-  Go to declaration       : [M-i]
-  Go back                 : [C-M-i]
+  Go to declaration              : [M-i]
+  Go back                        : [C-M-i]
+  Show auto complete suggestions : [C-RET]
 
-  Rename variable/function: [C-c r]
+  Rename variable/function       : [C-c r]
 
 
 * Neotree
@@ -315,7 +316,19 @@
 
 
 * Magit (git in emacs)
-  Open magit: [C-x g]
+  Open magit         : [C-x g]
+
+  Stage file on point             : [c]
+  Discard changes in file on point: [k]
+  Commit staged files             : [C-c C-c]
+  Push                            : [S-p, P]
+  Show git log                    : [l]
+
+  Rebase          : [r]
+  - Interactive   : [r -i i] Then select from which commit
+  - During rebase:
+    * Squash : [s]
+    * Reword : [r]
 
   When in mode:
   * Help    : [?]
