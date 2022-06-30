@@ -402,8 +402,6 @@
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
   (local-set-key (kbd "C-c d t") 'gendoxy-tag)
-
-  (setq c-default-style "linux")
   )
 
 (defun my-c++-mode-hook ()
