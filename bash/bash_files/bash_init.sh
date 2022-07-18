@@ -7,14 +7,16 @@
 
 #If in WSL, change display settings to use windows x-server
 #and add alias for windows home
-if grep -q WSL2 /proc/version; then
+if grep -qi microsoft /proc/version; then
     export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
     export LIBGL_ALWAYS_INDIRECT=1
 
-    wslHome=$(wslpath $(wslvar USERPROFILE))
+    #wslHome=$(wslpath $(wslvar USERPROFILE))
+    WIN_HOME_RAW="$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null)"
+    WIN_HOME="$(wslpath "$WIN_HOME_RAW")"
 
-    alias wslh="cd $wslHome"
-    alias wslg="cd $wslHome/git"
+    alias wslh="cd '$WIN_HOME'"
+    alias wslg="cd '$WIN_HOME/git'"
 fi
 
 ################################################################################
