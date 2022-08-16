@@ -1,13 +1,6 @@
 #+STARTUP: showeverything
 
 * Emacs block-comment-mode
-  - [ ] Fix so that centering mode can be toggled by [C-c C-c]
-  - [ ] Fix so that an existing user comment can be centered by [C-c C-c]
-
-  - [ ] Fix so that block comment mode sets target width dynamically
-        from surrounding bodies
-  - [ ] Fix so that the mode adapts surrounding bodies to current body width
-        maybe bind to tab
 
 * High priority
   - [ ] Emacs: Change behaviour of yanking from the kill-ring. Make a yank
@@ -15,5 +8,8 @@
 
 * Medium priority
   - [ ] Emacs: Explore hl-todo-mode, has jump to features
+  - [ ] Emacs: Fix quick position save using registers
+               A quicker command that saves the current position to a register,
+               not requiring the user to enter a register.
 
-* Low priority
+* Low Priority
