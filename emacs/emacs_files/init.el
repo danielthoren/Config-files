@@ -399,6 +399,15 @@
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
+  ;; (block-comment--init-comment-style 80
+  ;;                                    "/*"
+  ;;                                    " "
+  ;;                                    "*/"
+
+  ;;                                    "/*"
+  ;;                                    "*"
+  ;;                                    "*/")
+
   (block-comment--init-comment-style 80
                                      "***"
                                      " "
@@ -412,6 +421,7 @@
                                      "*"
                                      "*"
                                      "*/")
+
   (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
