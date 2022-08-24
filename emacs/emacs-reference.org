@@ -444,6 +444,39 @@
    #+ATTR_ORG: :width 100
 
 
+** Tables
+
+   It is very easy to create and edit tables in org mode. Org mode
+   recognizes text enclosed between two | charactes as a
+   table. Delimiters can also be created using more | as in the
+   example below:
+
+   | This | Is | a | table |
+   |      |    |   |       |
+
+   When standing inside a cell, pressing tab will auto format the
+   table. You can also use tab to move from one cell to the next.
+
+   Adding delimiters is also easy, if you write "|-" on the line above
+   a table and press tab, it will expand into a delemiter as seen below:
+
+   |------+----+---+-------|
+   | This | Is | a | table |
+   |      |    |   |       |
+
+   Adding delmitors works in the middle of tables as well:
+
+   |------+----+---+-------|
+   | This | Is | a | table |
+   |------+----+---+-------|
+   |      |    |   |       |
+
+   There are many keybindings making it easy to modify a table:
+
+   Move the current column/row                     : [M-left/right/up/down]
+   Insert new column/row                           : [S-M-right/left/up/down/]
+
+
 ** Good global settings
 
    Start with all headings expanded:
@@ -540,6 +573,7 @@
 
    - #+END_center
 
+
 *** Tables
     Tables export nicely to latex, however some modification might be
     required depending on what you want.
@@ -566,3 +600,17 @@
      |---+------+-------|
      |   | the  | table |
      |---+------+-------|
+
+
+*** Good settings
+
+**** Set margins
+     In order to set the margins, insert this snippet at the top of
+     the org document and edit the left/top parameters.
+
+     - #+latex_header:\usepackage{geometry}
+     - #+latex_header: \geometry{
+     - #+latex_header: a4paper,
+     - #+latex_header: left=10mm,
+     - #+latex_header: top=10mm,
+     - #+latex_header: }
