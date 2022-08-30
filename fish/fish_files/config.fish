@@ -1,4 +1,3 @@
-
 set PATH ~/.local/bin $PATH
 
 export EDITOR='emacs'
@@ -15,6 +14,9 @@ alias usbl="~/.config/fish/functions/list_usb.sh"
 alias sfconn="~/.config/fish/functions/server_mount.sh"
 alias sfdiss="~/.config/fish/functions/server_diss.sh"
 alias swconn="~/.config/fish/functions/server_connect.sh"
+
+alias us="setxkbmap us -variant intl"
+alias se="setxkbmap se"
 
 source ~/.config/fish/functions/wsl_config.fish
 
