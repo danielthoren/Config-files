@@ -436,7 +436,7 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
-(add-hook 'c-mode 'my-c-mode-hook)
+(add-hook 'c-mode-hook 'my-c-mode-hook)
 
 (add-hook 'python-mode-hook
           (lambda ()
