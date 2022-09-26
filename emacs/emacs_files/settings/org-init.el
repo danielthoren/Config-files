@@ -1,7 +1,6 @@
-
-;;--------------------------------------------------------------------------------------------------------------------------------------
-;; Org mode behaviour
-;;--------------------------------------------------------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""  Org mode behaviour                                                       """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; Enables latex-like equations etc
@@ -39,11 +38,14 @@
         )
       )
 
+;; Automatically insert date stamp when a todo item goes to done state
+(setq org-log-done 'time)
 
-;;--------------------------------------------------------------------------------------------------------------------------------------
-;; Original source code wich one modified row. Makes the background of images
-;; White so that transparent images are visible
-;;--------------------------------------------------------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""  Original source code with one modified row. Makes the background of      """
+"""  images white so that transparent images are visible                      """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun org-display-inline-images-custom (&optional include-linked refresh beg end)
   "Display inline images.
 Normally only links without a description part are inlined, because this
@@ -61,53 +63,52 @@ BEG and END default to the buffer boundaries."
       (if (fboundp 'clear-image-cache) (clear-image-cache)))
     (save-excursion
       (save-restriction
-	(widen)
-	(setq beg (or beg (point-min)) end (or end (point-max)))
-	(goto-char beg)
-	(let ((re (concat "\\[\\[\\(\\(file:\\)\\|\\([./~]\\)\\)\\([^]\n]+?"
-			  (substring (org-image-file-name-regexp) 0 -2)
-			  "\\)\\]" (if include-linked "" "\\]")))
-	      (case-fold-search t)
-	      old file ov img type attrwidth width)
-	  (while (re-search-forward re end t)
-	    (setq old (get-char-property-and-overlay (match-beginning 1)
-						     'org-image-overlay)
-		  file (expand-file-name
-			(concat (or (match-string 3) "") (match-string 4))))
-	    (when (image-type-available-p 'imagemagick)
-	      (setq attrwidth (if (or (listp org-image-actual-width)
-				      (null org-image-actual-width))
-				  (save-excursion
-				    (save-match-data
-				      (when (re-search-backward
-					     "#\\+attr.*:width[ \t]+\\([^ ]+\\)"
-					     (save-excursion
-					       (re-search-backward "^[ \t]*$\\|\\`" nil t)) t)
-					(string-to-number (match-string 1))))))
-		    width (cond ((eq org-image-actual-width t) nil)
-				((null org-image-actual-width) attrwidth)
-				((numberp org-image-actual-width)
-				 org-image-actual-width)
-				((listp org-image-actual-width)
-				 (or attrwidth (car org-image-actual-width))))
-		    type (if width 'imagemagick)))
-	    (when (file-exists-p file)
-	      (if (and (car-safe old) refresh)
-		  (image-refresh (overlay-get (cdr old) 'display))
-		(setq img (save-match-data (create-image file type nil :width width :background "white"))) ;; Customized row, added ":background "white"
-		(when img
-		  (setq ov (make-overlay (match-beginning 0) (match-end 0)))
-		  (overlay-put ov 'display img)
-		  (overlay-put ov 'face 'default)
-		  (overlay-put ov 'org-image-overlay t)
-		  (overlay-put ov 'modification-hooks
-			       (list 'org-display-inline-remove-overlay))
-		  (push ov org-inline-image-overlays))))))))))
+        (widen)
+        (setq beg (or beg (point-min)) end (or end (point-max)))
+        (goto-char beg)
+        (let ((re (concat "\\[\\[\\(\\(file:\\)\\|\\([./~]\\)\\)\\([^]\n]+?"
+                          (substring (org-image-file-name-regexp) 0 -2)
+                          "\\)\\]" (if include-linked "" "\\]")))
+              (case-fold-search t)
+              old file ov img type attrwidth width)
+          (while (re-search-forward re end t)
+            (setq old (get-char-property-and-overlay (match-beginning 1)
+                                                     'org-image-overlay)
+                  file (expand-file-name
+                        (concat (or (match-string 3) "") (match-string 4))))
+            (when (image-type-available-p 'imagemagick)
+              (setq attrwidth (if (or (listp org-image-actual-width)
+                                      (null org-image-actual-width))
+                                  (save-excursion
+                                    (save-match-data
+                                      (when (re-search-backward
+                                             "#\\+attr.*:width[ \t]+\\([^ ]+\\)"
+                                             (save-excursion
+                                               (re-search-backward "^[ \t]*$\\|\\`" nil t)) t)
+                                        (string-to-number (match-string 1))))))
+                    width (cond ((eq org-image-actual-width t) nil)
+                                ((null org-image-actual-width) attrwidth)
+                                ((numberp org-image-actual-width)
+                                 org-image-actual-width)
+                                ((listp org-image-actual-width)
+                                 (or attrwidth (car org-image-actual-width))))
+                    type (if width 'imagemagick)))
+            (when (file-exists-p file)
+              (if (and (car-safe old) refresh)
+                  (image-refresh (overlay-get (cdr old) 'display))
+                (setq img (save-match-data (create-image file type nil :width width :background "white"))) ;; Customized row, added ":background "white"
+                (when img
+                  (setq ov (make-overlay (match-beginning 0) (match-end 0)))
+                  (overlay-put ov 'display img)
+                  (overlay-put ov 'face 'default)
+                  (overlay-put ov 'org-image-overlay t)
+                  (overlay-put ov 'modification-hooks
+                               (list 'org-display-inline-remove-overlay))
+                  (push ov org-inline-image-overlays))))))))))
 
-
-;;--------------------------------------------------------------------------------------------------------------------------------------
-;; Latex export config
-;;--------------------------------------------------------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""  Latex export config                                                      """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Makes captions appear below item
 (setq org-latex-caption-above nil)
@@ -140,11 +141,9 @@ BEG and END default to the buffer boundaries."
 
 (setq latex-run-command "pdflatex")
 
-;; (setq reftex-default-bibliography '("~/git/tddd17/report/references.bib"))
-
-;;--------------------------------------------------------------------------------------------------------------------------------------
-;; Latex export filters
-;;--------------------------------------------------------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""  Latex export filters                                                     """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun ox-mrkup-filter-body
     (text back-end info)
@@ -312,10 +311,9 @@ BEG and END default to the buffer boundaries."
     (text back-end info)
   (format "<vrs>%s</vrs>" text))
 
-
-;;--------------------------------------------------------------------------------------------------------------------------------------
-;; Add latex classes
-;;--------------------------------------------------------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""  Add latex classes                                                        """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Add latex class to global expor tvariable "org-latex-classes" to
 ;; make org mode recognize IEEEtran class
