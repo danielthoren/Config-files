@@ -474,7 +474,23 @@
    There are many keybindings making it easy to modify a table:
 
    Move the current column/row                     : [M-left/right/up/down]
-   Insert new column/row                           : [S-M-right/left/up/down/]
+   Move the current cell (swapping with adjecent)  : [S-left/right/up/down]
+
+   Kill current column                             : [M-S-LEFT]
+   Kill current row                                : [M-S-UP]
+
+   Insert new column at point                      : [M-S-RIGHT]
+   Insert new row above current row                : [M-S-DOWN]
+
+*** table.el
+    Table.el is a more advanced table editor in org mode. You can
+    convert a normal org table to a table.el table. A table.el table
+    can have multi line rows. It automatically inserts lines between
+    all rows.
+
+    Convert regular table to table.el              : [C-c \tilde]
+    Enter/exit edit mode for table                 : [C-c ']
+    Adjust column width                            : [C-c C-c <] [C-c C-c >]
 
 
 ** Good global settings

@@ -18,6 +18,8 @@ alias swconn="~/.config/fish/functions/server_connect.sh"
 alias us="setxkbmap us -variant intl"
 alias se="setxkbmap se"
 
+alias startDocker="sudo /usr/sbin/service docker start"
+
 source ~/.config/fish/functions/wsl_config.fish
 
 
