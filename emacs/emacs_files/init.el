@@ -371,7 +371,7 @@
 (setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
 (setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
 (set-face-foreground 'diredp-dir-name "green" ) ;; Set dirs color to green
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode))) ;; Hide uninteresting files by default
+;;(add-hook 'dired-mode-hook (lambda () (dired-omit-mode))) ;; Hide uninteresting files by default
 
 ;; TODO: Bind function: diredp-move-named-in-kill-ring to key
 ;; TODO: Bind [C-0 w] to better key (copy files)
