@@ -7,7 +7,6 @@ source $FIFUNC/functions.sh
 source $FIFUNC/fish/fish_files/functions/read_server_config.sh
 
 install net-tools
-install htop
 
 export HISTIGNORE='*sudo -S*'
 
@@ -25,18 +24,18 @@ fi
 bash $FIFUNC/fish/fish_files/functions/server_diss.sh
 
 if ! [ -d ~/server ]; then
-	echo "Dir '~/server' does not exist, creating dir..."
-	mkdir ~/server
+    echo "Dir '~/server' does not exist, creating dir..."
+    mkdir ~/server
 fi
 
 if ! [ -d ~/server/download ]; then
-	echo "Dir '~/server/download' does not exist, creating dir..."
-	mkdir ~/server/download
+    echo "Dir '~/server/download' does not exist, creating dir..."
+    mkdir ~/server/download
 fi
 
 if ! [ -d ~/server/storage ]; then
-	echo "Dir '~/server/storage' does not exist, creating dir..."
-	mkdir ~/server/storage
+    echo "Dir '~/server/storage' does not exist, creating dir..."
+    mkdir ~/server/storage
 fi
 
 echo "Connecting using ip ${ip}..."

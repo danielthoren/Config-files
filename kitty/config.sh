@@ -1,17 +1,17 @@
 #!/bin/bash
 
+workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dir=~/.config/kitty
 
 source ../functions.sh
-
 source ../commandParser.sh -scope kitty "$@"
 
 if ! command_exists kitty ; then
     if flags_exists no-sudo ; then
-	echo "kitty not installed, cant install without sudo, exiting..."
-	exit no-sudo
+    echo "kitty not installed, cant install without sudo, exiting..."
+    exit no-sudo
     fi
-    
+
     echo "kitty not installed, installing..."
     sudo apt update
     install kitty
@@ -28,7 +28,7 @@ else
     rm -r "${dir}/kitty-themes"
 fi
 
-ln -s "${PWD}/kitty_files/kitty.conf" "${dir}"
-ln -s "${PWD}/kitty_files/kitty-themes" "${dir}"
+ln -s "$workingDir/kitty_files/kitty.conf" "${dir}"
+ln -s "$workingDir/kitty_files/kitty-themes" "${dir}"
 
 echo "Done configuring kitty"

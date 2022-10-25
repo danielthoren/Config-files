@@ -2,23 +2,25 @@ set PATH ~/.local/bin $PATH
 
 export EDITOR='emacs'
 export FIFUNC='/home/'$USER'/git/Config-files'
+export COMMON_BASH_DIR="~/.config/common_bash"
 
 alias c++17="g++ -Wall -Wextra -Weffc++ -Wold-style-cast -Woverloaded-virtual -std=c++17 -pedantic"
 
-alias arduino="/home/daniel5908/programs/arduino-1.8.10/arduino"
+alias eclean="find . -name '*~' -delete && find . -name '.#*' -delete"
 
 alias logout="gnome-screensaver-command -l"
 
-alias usbl="~/.config/fish/functions/list_usb.sh"
-
-alias sfconn="~/.config/fish/functions/server_mount.sh"
-alias sfdiss="~/.config/fish/functions/server_diss.sh"
-alias swconn="~/.config/fish/functions/server_connect.sh"
+alias usbl="$COMMON_BASH_DIR/list_usb.sh"
 
 alias us="setxkbmap us -variant intl"
 alias se="setxkbmap se"
 
+# Start docker on WSL
 alias startDocker="sudo /usr/sbin/service docker start"
+
+alias sfconn="$COMMON_BASH_DIR/server_mount.sh"
+alias sfdiss="$COMMON_BASH_DIR/server_diss.sh"
+alias swconn="$COMMON_BASH_DIR/server_connect.sh"
 
 source ~/.config/fish/functions/wsl_config.fish
 

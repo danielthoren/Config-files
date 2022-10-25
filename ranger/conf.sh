@@ -1,17 +1,18 @@
 #!/bin/bash
 
 source ../functions.sh
-
 source ../commandParser.sh -scope ranger "$@"
+
+workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 dir=~/.config/ranger
 
 if ! command_exists ranger ; then
     if flags_exists no-sudo ; then
-	echo "ranger not installed, cant install without sudo, exiting..."
-	exit no-sudo
+    echo "ranger not installed, cant install without sudo, exiting..."
+    exit no-sudo
     fi
-    
+
     echo "ranger not installed, installing..."
     install ranger
 fi
@@ -26,6 +27,6 @@ else
     rm "${dir}/rc.conf"
 fi
 
-ln -s "${PWD}/ranger_files/rc.conf" "${dir}"
+ln -s "$workingDir/ranger_files/rc.conf" "${dir}"
 
 echo "Done configuring ranger"

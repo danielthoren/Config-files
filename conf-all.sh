@@ -6,6 +6,8 @@
 
 source functions.sh
 
+workingDir=$(dirname -- "$( readlink -f -- "$0"; )";)
+
 update
 $APT_UPGRADE
 
@@ -15,11 +17,7 @@ install gparted
 install net-tools
 install sshpass
 
-cd emacs
-./conf.sh -all-conf "$@"
-cd ../fish
-./conf.sh -all-conf "$@"
-cd ../kitty
-.conf.sh -all-conf "$@"
-cd ../ranger
-./conf.sh -all-conf "$@"
+$workingDir/emacs/conf.sh -all-conf "$@"
+$workingDir/shell/fish/conf.sh -all-conf "$@"
+$workingDir/kitty/conf.sh -all-conf "$@"
+$workingDir/ranger/conf.sh -all-conf "$@"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
+workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dir=~/.config/regolith
 
 source ../functions.sh
-
 source ../commandParser.sh -scope regolith "$@"
 
 echo "Configuring regolith in folder ${dir}"
@@ -18,26 +18,26 @@ else
     rm -r "${dir}/scripts"
 fi
 
-ln -s "${PWD}/regolith_files/i3" "${dir}"
+ln -s "$workingDir/regolith_files/i3" "${dir}"
 
 if flag_exists laptop ; then
-    ln -s "${PWD}/regolith_files/laptop/i3xrocks" "${dir}"
+    ln -s "$workingDir/regolith_files/laptop/i3xrocks" "${dir}"
 
     if flag_exists no-sudo ; then
-	echo "acpi for battery status not installed, cant install without sudo..."
+    echo "acpi for battery status not installed, cant install without sudo..."
     else
-	echo "Installing acpi for battery status..."	
-	install acpi
+    echo "Installing acpi for battery status..."
+    install acpi
     fi
-    
+
 else
-    ln -s "${PWD}/regolith_files/stationary/i3xrocks" "${dir}"
+    ln -s "$workingDir/regolith_files/stationary/i3xrocks" "${dir}"
 fi
 
 #Setup i3xblocks scripts
 git submodule update --init --recursive
 
-ln -s "${PWD}/regolith_files/scripts" "${dir}"
+ln -s "$workingDir/regolith_files/scripts" "${dir}"
 
 cd "${dir}/scripts/i3blocks-contrib"
 make

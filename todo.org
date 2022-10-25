@@ -13,3 +13,6 @@
                not requiring the user to enter a register.
 
 * Low Priority
+  - [ ] Config: Determine how scoping works for argument parser
+  - [ ] Config: Add colored output from config scripts
+  - [ ] Config: Look over config script structure
