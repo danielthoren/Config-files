@@ -6,11 +6,15 @@ export COMMON_BASH_DIR="~/.config/common_bash"
 
 alias c++17="g++ -Wall -Wextra -Weffc++ -Wold-style-cast -Woverloaded-virtual -std=c++17 -pedantic"
 
+alias pullall="$COMMON_BASH_DIR/pull_all_git_repo.sh"
+
 alias eclean="find . -name '*~' -delete && find . -name '.#*' -delete"
 
 alias logout="gnome-screensaver-command -l"
 
 alias usbl="$COMMON_BASH_DIR/list_usb.sh"
+
+alias lla="ls -la"
 
 alias us="setxkbmap us -variant intl"
 alias se="setxkbmap se"
