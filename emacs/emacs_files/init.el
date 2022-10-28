@@ -90,9 +90,9 @@
 
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
-  :hook (prog-mode . dtrt-indent-mode)
   :config
   (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
+  (dtrt-indent-global-mode)
   )
 
 (use-package multiple-cursors
@@ -140,7 +140,7 @@
          )
   :config
   (grep-apply-setting 'grep-find-command
-                      '("find . -type f \\( ! -iname \"*~\" ! -path \"*/.ccls-cache/*\" ! -path \"*/x86/*\" \\) -exec grep -inH -e  \\{\\} +" . 99))
+                      '("find . -type f \\( ! -iname \"*.so\" ! -iname \"*.bin\" ! -iname \"*.o\" ! -iname \"*~\" ! -iname \"*.#\" ! -path \"*/.ccls-cache/*\" ! -path \"*/x86/*\" ! -path \"*/.git/*\" \\) -exec grep -inH -e  \\{\\} +" . 181))
   )
 
 (use-package hl-todo
@@ -184,8 +184,7 @@
     (setq company-show-numbers            nil)
     (setq company-tooltip-limit           10)
     (setq company-dabbrev-downcase        nil)
-    (setq company-backends (delete 'company-semantic company-backends)
-          )
+    (setq company-backends (delete 'company-semantic company-backends))
   :config
   (use-package company-quickhelp
     :ensure t
@@ -196,8 +195,12 @@
 ;; Using company causes issues
 (use-package company-jedi
   :ensure t
-  :hook python-mode
-  )
+  :config
+  (add-to-list 'company-backends 'company-jedi))
+
+(use-package pyvenv
+  :ensure t
+  :hook ((python-mode . pyvenv-mode)))
 
 (use-package lsp-mode
   :ensure t
