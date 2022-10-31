@@ -11,7 +11,7 @@ bash_configure ()
 
     echo "Configuring bash in $dir"
 
-    if [ -f ${dir}/${fname} ]; then
+    if [ -f "${dir}/${fname}" ]; then
         echo "Bash config link exists, removing..."
         rm "${dir}/${fname}"
     fi
@@ -19,6 +19,7 @@ bash_configure ()
     ln -s "$workingDir/bash_files/bash_init.sh" "${dir}/${fname}"
 
     if ! grep $fname  ~/.bashrc; then
+        echo "Inserting source of .bash_init.sh into .bashrc"
         echo "source $dir/${fname}" >> ~/.bashrc
     fi
 
