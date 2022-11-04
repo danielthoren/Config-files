@@ -1,5 +1,7 @@
 #!/bin/bash -f
 
+export COMMON_BASH_DIR="/$HOME/.config/common_bash"
+
 alias c++17="g++ -Wall -Wextra -Weffc++ -Wold-style-cast -Woverloaded-virtual -std=c++17 -pedantic"
 
 alias pullall="$COMMON_BASH_DIR/pull_all_git_repo.sh"
