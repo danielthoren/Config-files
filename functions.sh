@@ -44,5 +44,5 @@ flag_exists () {
 
 #Checks if in wsl (windows subsystem linux)
 in_wsl () {
-    grep -q Microsoft /proc/version
+    grep -qi microsoft /proc/version
 }
