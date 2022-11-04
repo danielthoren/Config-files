@@ -17,6 +17,7 @@ fi
 ln -s "$workingDir/bash_files/bash_init.sh" "${dir}/${fname}"
 
 if ! grep $fname  ~/.bashrc; then
+    echo "Inserting source of .bash_init.sh into .bashrc"
     echo "source $dir/${fname}" >> ~/.bashrc
 fi
 
