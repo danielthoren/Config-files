@@ -226,6 +226,7 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.500)
   (setq lsp-enable-snippet nil)
+  (setq lsp-lens-enable nil)
   :config
   (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
   )
@@ -289,6 +290,9 @@
   :ensure t)
 
 (use-package fish-mode
+  :ensure t)
+
+(use-package cmake-mode
   :ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -383,6 +387,10 @@
 """                        Language specific settings                        """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              C/C++               """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'gendoxy)
 (defun my-c-mode-hook ()
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -441,6 +449,10 @@
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              Python              """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-hook 'python-mode-hook
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
@@ -461,6 +473,10 @@
             )
           )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              elisp               """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
             (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""    ";;" ";" ";;")
@@ -468,12 +484,20 @@
        )
      )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              bash                """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-hook 'sh-mode-hook
           (lambda ()
             (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
             (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
             )
           )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              prog                """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook
@@ -485,6 +509,10 @@
               )
             )
           )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""              markdown            """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package markdown-mode
   :ensure t
