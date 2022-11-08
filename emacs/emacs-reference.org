@@ -303,6 +303,36 @@
   move copied files : [C-w]
 
 
+* Diff/E-Diff mode
+  Diff/E-Diff are modes that diffs two or more files/buffers in the
+  same manner as git diff does. Diff mode is a relatively simple mode
+  that only highlights the differences between the provided
+  files. EDiff is a more sophisticated solution that allows the user
+  to perform operations on the diffed files/buffers. Examples of such
+  operations are:
+  * copy the diffs between the files/buffers
+  * Merge the diffs into new file/buffer
+
+** Diff mode
+   Diff mode has no keybinding, start it by opening the meta buffer
+   and type diff:
+
+   M-x diff RET
+
+   The mode will ask for two files, file A and file B. The diff will
+   be performed from file A:s point of view.
+
+** E-Diff mode
+   E-Diff mode has no keybinding, start it by opening the meta buffer
+   and type ediff. There are a multitude of modes available, diffing
+   files/buffers etc:
+
+   M-x ediff RET
+
+   variants are (among others):
+   - ediff : Diff files
+   - ediff-buffers : Diff buffers
+
 * lsp mode
   Go to declaration              : [M-i]
   Go back                        : [C-M-i]
