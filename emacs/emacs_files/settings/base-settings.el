@@ -64,9 +64,14 @@
 """                                ediff mode                                 """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; TODO: Fix nice colors
 ;; (custom-set-faces
-;;  '(ediff-current-diff-A ((t (:foreground "White" :background "brownf")))))
+;;  '(ediff-current-diff-B ((t (:foreground "white" :background "DarkRed")))))
+
+(custom-set-faces
+ '(ediff-current-diff-A ((t (:background "black")))))
+
+(custom-set-faces
+ '(ediff-even-diff-A  ((t ( :background "#263854")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                                 diff mode                                 """
