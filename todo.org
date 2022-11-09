@@ -1,11 +1,11 @@
 #+STARTUP: showeverything
 
-* Emacs block-comment-mode
-
 * High priority
+  - [ ] Emacs: Fix release 1 of block comment mode
+  - [ ] Emacs: Change ediff buffer positions. Now the buffers are
+               split horizontally, want vertical split
   - [ ] Emacs: Change behaviour of yanking from the kill-ring. Make a yank
                not move the yank pointer
-
 * Medium priority
   - [ ] Emacs: Explore hl-todo-mode, has jump to features
   - [ ] Emacs: Fix quick position save using registers

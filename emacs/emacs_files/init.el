@@ -226,7 +226,6 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.500)
   (setq lsp-enable-snippet nil)
-  (setq lsp-lens-enable nil)
   :config
   (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
   )
@@ -237,10 +236,14 @@
   :bind (:map lsp-ui-mode-map
               ("C-c R" . lsp-ui-peek-find-references))
   :config
-  (setq lsp-ui-doc-enable nil)       ;; Disable on hover dialogs to speed up emacs
-  (lsp-ui-sideline-enable nil)       ;; Disable sideline code actions
-  (setq lsp-prefer-flymake nil)
+  (setq lsp-enable-symbol-highlighting t)     ;; Enable symbol highlightning
+  (setq lsp-ui-doc-enable nil)                ;; Disable on hover dialogs to speed up emacs
+  (setq lsp-lens-enable nil)                  ;; Disable lsp lenses to speed up emacs
+  (setq lsp-headerline-breadcrumb-enable nil) ;; Disable headerline
+  (setq lsp-ui-sideline-enable nil)           ;; Disable sideline code actions
+  (setq lsp-modeline-code-actions-enable t)   ;; Enable modline actions
   (setq lsp-signature-render-documentation nil) ;; Remove signature help
+  (setq lsp-prefer-flymake nil)
   (setq lsp-ui-flycheck-enable t)
   (setq lsp-completion-provider :company)
   )
