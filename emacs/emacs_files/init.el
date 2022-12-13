@@ -226,6 +226,7 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq lsp-idle-delay 0.500)
   (setq lsp-enable-snippet nil)
+  (setq lsp-lens-enable nil)                  ;; Disable lsp lenses to speed up emacs
   :config
   (define-key lsp-mode-map (kbd lsp-keymap-prefix) lsp-command-map)
   )
@@ -236,16 +237,30 @@
   :bind (:map lsp-ui-mode-map
               ("C-c R" . lsp-ui-peek-find-references))
   :config
-  (setq lsp-enable-symbol-highlighting t)     ;; Enable symbol highlightning
-  (setq lsp-ui-doc-enable nil)                ;; Disable on hover dialogs to speed up emacs
-  (setq lsp-lens-enable nil)                  ;; Disable lsp lenses to speed up emacs
-  (setq lsp-headerline-breadcrumb-enable nil) ;; Disable headerline
-  (setq lsp-ui-sideline-enable nil)           ;; Disable sideline code actions
+  (setq lsp-enable-symbol-highlighting t)     ;; Symbol highlightning
+
+  ;;(setq lsp-ui-doc-enable nil)              ;; Doc on cursor hover
+  (setq lsp-ui-doc-show-with-cursor nil)      ;; Doc on mouse hover
+
+  (setq lsp-headerline-breadcrumb-enable t)   ;; Headerline
+
+  (setq lsp-ui-sideline-enable t)             ;; Sideline
+  (setq lsp-ui-sideline-show-code-actions nil);; sideline code actions
+  (setq lsp-ui-sideline-show-hover nil)       ;; Sideline hover symbols
+  (setq lsp-ui-sideline-show-diagnostics t)   ;; Sideline diagnostics
+
   (setq lsp-modeline-code-actions-enable t)   ;; Enable modline actions
-  (setq lsp-signature-render-documentation nil) ;; Remove signature help
+
+  (setq lsp-signature-auto-activate nil)        ;; Signature help
+  (setq lsp-signature-render-documentation nil) ;; Signature documentation help
+
   (setq lsp-prefer-flymake nil)
   (setq lsp-ui-flycheck-enable t)
+  (setq lsp-diagnostics-provider :auto) ;; Prefer flycheck, fall back to flymake
+
   (setq lsp-completion-provider :company)
+  (setq lsp-completion-show-detail nil)  ;; Show completion detail
+  (setq lsp-completion-show-kind t)
   )
 
 (use-package ccls
@@ -265,6 +280,10 @@
   (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
   )
   )
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 (use-package dap-mode
   :ensure t
@@ -553,4 +572,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(ediff-current-diff-A ((t (:background "black"))))
+ '(ediff-even-diff-A ((t (:background "#263854")))))
