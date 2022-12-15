@@ -283,6 +283,8 @@
 
 (use-package flycheck
   :ensure t
+  :config
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   :init (global-flycheck-mode))
 
 (use-package dap-mode
@@ -501,7 +503,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
-            (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""    ";;" ";" ";;")
+            (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
             (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
        )
      )
