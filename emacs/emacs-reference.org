@@ -333,6 +333,7 @@
    - ediff : Diff files
    - ediff-buffers : Diff buffers
 
+
 * lsp mode
   Go to declaration              : [M-i]
   Go back                        : [C-M-i]
