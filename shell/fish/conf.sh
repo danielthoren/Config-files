@@ -6,8 +6,8 @@ dir="$HOME/.config/fish"
 # Make sure common bash is installed
 bash "$workingDir/../common_bash/conf.sh"
 
-source "$workingDir/../../functions.sh"
-source "$workingDir/../../commandParser.sh" -scope fish "$@"
+source $workingDir/../../functions.sh
+source $workingDir/../../commandParser.sh -scope fish "$@"
 
 if ! command_exists fish ; then
     if flag_exists no-sudo ; then
@@ -16,6 +16,7 @@ if ! command_exists fish ; then
     fi
 
     echo "fish not installed, installing..."
+    update
     install fish
 fi
 

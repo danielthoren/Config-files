@@ -3,17 +3,17 @@
 workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dir=~/.config/kitty
 
-source ../functions.sh
-source ../commandParser.sh -scope kitty "$@"
+source $workingDir/../functions.sh
+source $workingDir/../commandParser.sh -scope kitty "$@"
 
 if ! command_exists kitty ; then
     if flags_exists no-sudo ; then
-    echo "kitty not installed, cant install without sudo, exiting..."
-    exit no-sudo
+        echo "kitty not installed, cant install without sudo, exiting..."
+        exit no-sudo
     fi
 
     echo "kitty not installed, installing..."
-    sudo apt update
+    update
     install kitty
 fi
 

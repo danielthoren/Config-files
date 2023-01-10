@@ -15,6 +15,13 @@ update() {
     fi
 }
 
+upgrade() {
+    if ! $upgraded; then
+    $APT_UPGRADE
+    export upgraded=true
+    fi
+}
+
 install() {
     is_pkg_installed=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
 
@@ -36,7 +43,6 @@ add_source () {
     sudo apt update
     fi
 }
-
 
 flag_exists () {
     [[ -n ${booleans[$1]} || -z ${booleans[$1]-foo} ]]
