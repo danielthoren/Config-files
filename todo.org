@@ -2,8 +2,6 @@
 
 * High priority
   - [ ] Emacs: Fix release 1 of block comment mode
-  - [ ] Emacs: Change ediff buffer positions. Now the buffers are
-               split horizontally, want vertical split
   - [ ] Emacs: Change behaviour of yanking from the kill-ring. Make a yank
                not move the yank pointer
 * Medium priority
@@ -13,6 +11,10 @@
                not requiring the user to enter a register.
 
 * Low Priority
+  - [ ] Emacs: Change ediff buffer positions. Now the buffers are
+               split horizontally, want vertical split
+
   - [ ] Config: Determine how scoping works for argument parser
   - [ ] Config: Add colored output from config scripts
   - [ ] Config: Look over config script structure
+  - [ ] Config: Look over emacs conf script and remove unused packages

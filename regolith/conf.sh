@@ -1,10 +1,11 @@
 #!/bin/bash
 
 workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-dir=~/.config/regolith
 
-source ../functions.sh
-source ../commandParser.sh -scope regolith "$@"
+source $workingDir/../functions.sh
+source $workingDir/../commandParser.sh -scope regolith "$@"
+
+dir=~/.config/regolith
 
 echo "Configuring regolith in folder ${dir}"
 
@@ -24,10 +25,11 @@ if flag_exists laptop ; then
     ln -s "$workingDir/regolith_files/laptop/i3xrocks" "${dir}"
 
     if flag_exists no-sudo ; then
-    echo "acpi for battery status not installed, cant install without sudo..."
+        echo "acpi for battery status not installed, cant install without sudo..."
     else
-    echo "Installing acpi for battery status..."
-    install acpi
+        echo "Installing acpi for battery status..."
+        update
+        install acpi
     fi
 
 else

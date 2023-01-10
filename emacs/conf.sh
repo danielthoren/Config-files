@@ -3,8 +3,8 @@
 workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dir=~/.emacs.d
 
-source ../functions.sh
-source ../commandParser.sh "$@"
+source $workingDir/../functions.sh
+source $workingDir/../commandParser.sh "$@"
 
 if flag_exists no-sudo ; then
     echo exists
@@ -56,7 +56,7 @@ if ! command_exists ditaa ; then
     echo "ditaa not installed, cant install without sudo..."
     else
     echo "ditaa not installed, installing..."
-        install -y ditaa
+        install ditaa
     fi
 fi
 
