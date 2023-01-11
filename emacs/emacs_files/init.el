@@ -376,32 +376,32 @@
 
 
 ;; Auto install el-get package
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+;; (unless (require 'el-get nil 'noerror)
+;;   (with-current-buffer
+;;       (url-retrieve-synchronously
+;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+;;     (goto-char (point-max))
+;;     (eval-print-last-sexp)))
 
-(el-get 'sync)
-
-
-;; List of packages you want to install
-(defvar my-packages '(
-                      dired+
-                      grep+
-                      )
-  )
-;; This will install any package from my-packages which is not already installed
-(el-get 'sync my-packages)
+;; (el-get 'sync)
 
 
-;; Configure dired+
-(setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
-(setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
-(set-face-foreground 'diredp-dir-name "green" ) ;; Set dirs color to green
+;; ;; List of packages you want to install
+;; (defvar my-packages '(
+;;                       dired+
+;;                       grep+
+;;                       )
+;;   )
+;; ;; This will install any package from my-packages which is not already installed
+;; (el-get 'sync my-packages)
+
+
+;; ;; Configure dired+
+;; (setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
+;; (setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
+;; (set-face-foreground 'diredp-dir-name "green" ) ;; Set dirs color to green
 ;;(add-hook 'dired-mode-hook (lambda () (dired-omit-mode))) ;; Hide uninteresting files by default
 
 ;; TODO: Bind function: diredp-move-named-in-kill-ring to key
@@ -434,15 +434,6 @@
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  ;; (block-comment--init-comment-style 80
-  ;;                                    "/*"
-  ;;                                    " "
-  ;;                                    "*/"
-
-  ;;                                    "/*"
-  ;;                                    "*"
-  ;;                                    "*/")
-
   (block-comment--init-comment-style 80
                                      "***"
                                      " "
@@ -462,6 +453,19 @@
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
   (local-set-key (kbd "C-c d t") 'gendoxy-tag)
+
+  (defun toggle-indent ()
+    """  Toggles between 2 and 4 spaces of indentation    """
+    (interactive)
+    (if (equal c-basic-offset 2)
+        (progn
+          (message "Set indent to 4")
+          (setq c-basic-offset 4))
+      (progn
+        (message "Set indent to 2")
+        (setq c-basic-offset 2))
+      )
+    )
   )
 
 (defun my-c++-mode-hook ()
@@ -523,10 +527,17 @@
 """              prog                """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my-indent-buffer()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max))
+    )
+  )
+
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c i") 'indent-buffer)
+            (local-set-key (kbd "C-c i") 'my-indent-buffer)
             ;; Only enable if version is 27 or newer
             (when (version< "27.0" emacs-version)
               (display-fill-column-indicator-mode)
