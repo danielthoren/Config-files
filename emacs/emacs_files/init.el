@@ -429,6 +429,9 @@
   (c-set-offset 'substatement-open 0)
   ;; Fixes indentation between ()
   (c-set-offset 'arglist-intro '+)
+  ;; Fixed indentation of switch statements
+  (c-set-offset 'case-label '+)
+
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
 
