@@ -23,3 +23,5 @@ alias startDocker="sudo /usr/sbin/service docker start"
 alias sfconn="$COMMON_BASH_DIR/server_mount.sh"
 alias sfdiss="$COMMON_BASH_DIR/server_diss.sh"
 alias swconn="$COMMON_BASH_DIR/server_connect.sh"
+
+alias poolconn="$COMMON_BASH_DIR/poolConnect.sh"
