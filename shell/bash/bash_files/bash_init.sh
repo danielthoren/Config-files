@@ -24,6 +24,9 @@ if in_wsl; then
 
     alias wslh="cd '$WIN_HOME'"
     alias wslg="cd '$WIN_HOME/git'"
+
+    # Source fix for slow git in WSL2, will use git.exe if in dos system
+    # source $COMMON_BASH_DIR/wsl_git_wrapper.sh
 fi
 
 ################################################################################

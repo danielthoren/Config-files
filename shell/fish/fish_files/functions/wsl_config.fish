@@ -18,4 +18,8 @@ if grep -qi microsoft /proc/version;
    alias wslh="cd '$WIN_HOME'"
    alias wslg="cd '$WIN_HOME/git'"
 
+    # Source fix for slow git in WSL2, will use git.exe if in dos system
+    # alias git $FISH_FUNC_DIR/wsl_git_wrapper_runner.sh $argv
+    # alias lgit /usr/bin/git $argv
+
 end

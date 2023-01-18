@@ -168,6 +168,7 @@
   Cycle buffer to the left in current window : [C-M-,]
   Move horizontal border between buffers     : [C-Left] [C-Right]
   Move vertical border between buffers       : [C-Up] [C-Down]
+  Indent current buffer                      : [C-c i]
 
 
 * KBD macro
@@ -332,6 +333,7 @@
    variants are (among others):
    - ediff : Diff files
    - ediff-buffers : Diff buffers
+
 
 * lsp mode
   Go to declaration              : [M-i]

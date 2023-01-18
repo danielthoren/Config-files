@@ -20,7 +20,6 @@
 
 (global-set-key (kbd "C-c k") 'comment-or-uncomment-region)
 
-
 ;; Move x lines up at a time
 (global-set-key (kbd "M-p")
   (lambda ()
@@ -39,8 +38,8 @@
 ;; Move borders between windows
 (global-set-key (kbd "<C-up>") 'shrink-window)
 (global-set-key (kbd "<C-down>") 'enlarge-window)
-(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
-(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "<C-left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "<C-right>") 'shrink-window-horizontally)
 
 
 (provide 'key-bindings)
