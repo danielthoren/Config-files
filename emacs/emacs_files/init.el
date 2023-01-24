@@ -81,6 +81,9 @@
 
 ;; General packages
 
+(use-package buttercup
+  :ensure t)
+
 ;;NOTE: Must run M-x 'all-the-icons-install-fonts' for this to work
 (use-package all-the-icons
   :ensure t
