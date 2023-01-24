@@ -7,3 +7,5 @@
 [submodule "emacs/emacs_files/Block-Comment-Mode"]
 	path = emacs/emacs_files/Block-Comment-Mode
 	url = git@github.com:danielthoren/Block-Comment-Mode.git
+	branch = mainDev
+	update = rebase
