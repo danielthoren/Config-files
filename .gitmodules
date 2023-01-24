@@ -4,3 +4,6 @@
 [submodule "emacs/emacs_files/gendoxy"]
 	path = emacs/emacs_files/gendoxy
 	url = https://github.com/mp81ss/gendoxy.git
+[submodule "emacs/emacs_files/Block-Comment-Mode"]
+	path = emacs/emacs_files/Block-Comment-Mode
+	url = git@github.com:danielthoren/Block-Comment-Mode.git

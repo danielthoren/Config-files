@@ -17,10 +17,15 @@
 (setq functions-dir
       (expand-file-name "functions" user-emacs-directory))
 
+;; Block comment mode dir
+(setq block-comment-mode-dir
+      (expand-file-name "Block-Comment-Mode" user-emacs-directory))
+
 ;; ;; Add to load path
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path gendoxy-dir)
 (add-to-list 'load-path functions-dir)
+(add-to-list 'load-path block-comment-mode-dir)
 
 (require 'package) ;; Emacs builtin
 
@@ -67,6 +72,7 @@
 ;; Init org mode
 (require 'org-init)
 
+;; Init block comment mode
 (require 'block-comment-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

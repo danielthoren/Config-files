@@ -109,6 +109,7 @@ else
     rm -r "${dir}/functions"
     rm -r "${dir}/settings"
     rm -r "${dir}/gendoxy"
+    rm -r "${dir}/Block-Comment-Mode"
 fi
 
 git submodule init
@@ -117,6 +118,8 @@ git submodule update
 ln -s "$workingDir/emacs_files/settings" "${dir}"
 ln -s "$workingDir/emacs_files/functions" "${dir}"
 ln -s "$workingDir/emacs_files/gendoxy" "${dir}"
+ln -s "$workingDir/emacs_files/Block-Comment-Mode" "${dir}"
+
 ln -s "$workingDir/emacs_files/init.el" "${dir}"
 
 echo "Done configuring emacs"
