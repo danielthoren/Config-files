@@ -2,6 +2,10 @@
 ;; (setq package-check-signature 'nil)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; NOTE During first setup, after running install script "conf.sh":
+;; * M-x 'package-refresh-contents'
+;; * M-x 'all-the-icons-install-fonts'
+
 (setq debug-on-error t)
 
 ;; Prefer to recompile config files rather than using old binary files
@@ -26,6 +30,7 @@
 (add-to-list 'load-path gendoxy-dir)
 (add-to-list 'load-path functions-dir)
 (add-to-list 'load-path block-comment-mode-dir)
+;; (add-to-list 'load-path "/home/danth@syntec.local/git/Config-files/emacs/emacs_files/Block-Comment-Mode")
 
 (require 'package) ;; Emacs builtin
 

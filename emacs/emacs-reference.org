@@ -190,7 +190,9 @@
 
 
 * Rectangle mode
-  Allows the user to remove, copy, cut and paste rectangles of text
+  Allows the user to remove, copy, cut and paste rectangles of text. Mark a rectangular region
+  by standing on the upper left corner and pressing C-SPC (mark), then moving to the lower right
+  corner. A rectangular region is now marked and the rectangle operations can be performed on it.
 
   Toggle rectangle mark mode                                                                     : [C-x SPC]
 
