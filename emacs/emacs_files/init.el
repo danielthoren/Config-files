@@ -465,7 +465,7 @@
                                      "*"
                                      "*/")
 
-  (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+  (local-set-key (kbd "C-M-k") 'block-comment-start)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
@@ -509,7 +509,7 @@
                                                "#"
                                                "#"
                                                "#" )
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
@@ -525,7 +525,7 @@
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
             (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
        )
      )
 
@@ -536,7 +536,7 @@
 (add-hook 'sh-mode-hook
           (lambda ()
             (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
             )
           )
 
