@@ -377,9 +377,9 @@
         (bmw/theme-whitespace))))
   :custom
   (whitespace-action '(auto-cleanup))
-  ;; (whitespace-line-column 81)
+  (whitespace-line-column 81)
   (whitespace-style
-   '(face trailing empty tabs spaces indentation space-mark tab-mark)) ;; lines
+   '(face trailing empty spaces indentation space-mark tab-mark)) ;; lines
   :hook
   ((prog-mode text-mode) . bmw/whitespace-mode))
 
