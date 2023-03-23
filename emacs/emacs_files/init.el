@@ -2,6 +2,10 @@
 ;; (setq package-check-signature 'nil)
 ;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; NOTE During first setup, after running install script "conf.sh":
+;; * M-x 'package-refresh-contents'
+;; * M-x 'all-the-icons-install-fonts'
+
 (setq debug-on-error t)
 
 ;; Prefer to recompile config files rather than using old binary files
@@ -26,6 +30,7 @@
 (add-to-list 'load-path gendoxy-dir)
 (add-to-list 'load-path functions-dir)
 (add-to-list 'load-path block-comment-mode-dir)
+;; (add-to-list 'load-path "/home/danth@syntec.local/git/Config-files/emacs/emacs_files/Block-Comment-Mode")
 
 (require 'package) ;; Emacs builtin
 
@@ -80,6 +85,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; General packages
+
+(use-package buttercup
+  :ensure t)
 
 ;;NOTE: Must run M-x 'all-the-icons-install-fonts' for this to work
 (use-package all-the-icons
@@ -369,9 +377,9 @@
         (bmw/theme-whitespace))))
   :custom
   (whitespace-action '(auto-cleanup))
-  ;; (whitespace-line-column 81)
+  (whitespace-line-column 81)
   (whitespace-style
-   '(face trailing empty tabs spaces indentation space-mark tab-mark)) ;; lines
+   '(face trailing empty spaces indentation space-mark tab-mark)) ;; lines
   :hook
   ((prog-mode text-mode) . bmw/whitespace-mode))
 
@@ -457,7 +465,7 @@
                                      "*"
                                      "*/")
 
-  (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+  (local-set-key (kbd "C-M-k") 'block-comment-start)
 
   (local-set-key (kbd "C-c d h") 'gendoxy-header)
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
@@ -501,7 +509,7 @@
                                                "#"
                                                "#"
                                                "#" )
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
 
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
@@ -517,7 +525,7 @@
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
             (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
        )
      )
 
@@ -528,7 +536,7 @@
 (add-hook 'sh-mode-hook
           (lambda ()
             (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
-            (local-set-key (kbd "C-M-k") 'block-comment--insert-or-resume)
+            (local-set-key (kbd "C-M-k") 'block-comment-start)
             )
           )
 
