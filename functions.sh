@@ -10,15 +10,15 @@ command_exists () {
 
 update() {
     if ! $updated; then
-    $APT_UPDATE
-    export updated=true
+        $APT_UPDATE
+        export updated=true
     fi
 }
 
 upgrade() {
     if ! $upgraded; then
-    $APT_UPGRADE
-    export upgraded=true
+        $APT_UPGRADE
+        export upgraded=true
     fi
 }
 
@@ -26,10 +26,10 @@ install() {
     is_pkg_installed=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
 
     if ! [[ "${is_pkg_installed}" == "install ok installed" ]]; then
-    echo "$1 not installed, installing..."
+        echo "$1 not installed, installing..."
 
-    update
-    $APT_INSTALL "$1"
+        update
+        $APT_INSTALL "$1"
     fi
     echo "$output"
 }
@@ -51,4 +51,8 @@ flag_exists () {
 #Checks if in wsl (windows subsystem linux)
 in_wsl () {
     grep -qi microsoft /proc/version
+}
+
+init_repo () {
+    bash init_repo.sh
 }

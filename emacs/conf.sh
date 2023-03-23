@@ -12,8 +12,8 @@ fi
 
 if ! command_exists emacs ; then
     if flag_exists no-sudo ; then
-    echo "emacs not installed, cant install without sudo, exiting..."
-    exit no-sudo
+        echo "emacs not installed, cant install without sudo, exiting..."
+        exit no-sudo
     fi
 
     add_source ppa:kelleyk/emacs
@@ -44,29 +44,29 @@ fi
 #Regex program used for dumb-jump-mode
 if ! command_exists ag ; then
     if flag_exists no-sudo ; then
-    echo "ag not installed, cant install without sudo..."
+        echo "ag not installed, cant install without sudo..."
     else
-    echo "ag not installed, installing..."
-    install silversearcher-ag
+        echo "ag not installed, installing..."
+        install silversearcher-ag
     fi
 fi
 
 if ! command_exists ditaa ; then
     if flag_exists no-sudo ; then
-    echo "ditaa not installed, cant install without sudo..."
+        echo "ditaa not installed, cant install without sudo..."
     else
-    echo "ditaa not installed, installing..."
+        echo "ditaa not installed, installing..."
         install ditaa
     fi
 fi
 
 if ! command_exists pip3 ; then
-  if command_exists no-sudo ; then
-      echo "pip3 not installed, cant install without sudo..."
-  else
-      echo "pip3 not installed, installing..."
-      install python3-pip
-  fi
+    if command_exists no-sudo ; then
+        echo "pip3 not installed, cant install without sudo..."
+    else
+        echo "pip3 not installed, installing..."
+        install python3-pip
+    fi
 fi
 
 #Python language server
@@ -81,10 +81,10 @@ fi
 
 if ! command_exists virtualenv ; then
     if command_exists no-sudo ; then
-    echo "virtualenv not installed, cant install without sudo..."
+        echo "virtualenv not installed, cant install without sudo..."
     else
-    echo "virtualenv not installed, installing..."
-    install virtualenv
+        echo "virtualenv not installed, installing..."
+        install virtualenv
     fi
 fi
 
