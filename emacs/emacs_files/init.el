@@ -446,6 +446,21 @@
   ;; Fixed indentation of switch statements
   (c-set-offset 'case-label '+)
 
+
+  (c-set-offset 'substatement-open 0)
+  (c-set-offset 'inline-open 0)
+  (c-set-offset 'comment-intro 0)
+  ;; (c-set-offset 'defun-block-intro 'tab-width)
+  ;; (c-set-offset 'statement-block-intro 'tab-width)
+  ;; (c-set-offset 'substatement 'tab-width)
+  (c-set-offset 'topmost-intro 0)
+  ;; (c-set-offset 'statement-cont 'tab-width)
+  (c-set-offset 'func-decl-cont 0)
+  (c-set-offset 'brace-list-open 0)
+  ;; (c-set-offset 'brace-list-intro 'tab-width)
+  (c-set-offset 'brace-list-entry 0)
+
+
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
 
