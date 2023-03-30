@@ -1,4 +1,21 @@
 #!/bin/bash
 
-git config user.email danne_thoren456@hotmail.com
-git config user.name danielthoren
+userName="danielthoren"
+userEmail="danne_thoren456@hotmail.com"
+
+if ! $(git config user.name | grep -q $userName);
+then
+    echo "Setting git config.name to: " $userName
+    git config user.name $userName
+fi
+
+if ! $(git config user.email | grep -q $userEmail);
+then
+    echo "Setting git config.email to: " $userEmail
+    git config user.email $userEmail
+fi
+
+if git submodule status | grep --quiet '^-'; then
+    echo "Initializing submodules..."
+    git submodule update --init --recursive
+fi
