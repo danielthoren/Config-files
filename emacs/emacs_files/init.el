@@ -619,3 +619,4 @@
  ;; If there is more than one, they won't work right.
  '(ediff-current-diff-A ((t (:background "black"))))
  '(ediff-even-diff-A ((t (:background "#263854")))))
+(put 'erase-buffer 'disabled nil)
