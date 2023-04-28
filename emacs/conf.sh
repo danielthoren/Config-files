@@ -23,7 +23,7 @@ if ! command_exists emacs ; then
     echo "Adding repository to sources list..."
     sudo add-apt-repository ppa:kelleyk/emacs
 
-    install emacs27
+    install emacs28
 fi
 
 #installing ccls (c/c++ language server)
