@@ -465,7 +465,7 @@
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  (block-comment--init-comment-style 80
+  (block-comment--set-comment-style 80
                                      "***"
                                      " "
                                      "***"
@@ -515,7 +515,7 @@
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            (block-comment--init-comment-style 80
+            (block-comment--set-comment-style 80
                                                "\"\"\""
                                                " "
                                                "\"\"\""
@@ -537,7 +537,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
-            (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
+            (block-comment--set-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
             (local-set-key (kbd "C-M-k") 'block-comment-start)
        )
      )
@@ -548,7 +548,7 @@
 
 (add-hook 'sh-mode-hook
           (lambda ()
-            (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
+            (block-comment--set-comment-style 80 "#" " " "#" "#" "#" "#")
             (local-set-key (kbd "C-M-k") 'block-comment-start)
             )
           )
