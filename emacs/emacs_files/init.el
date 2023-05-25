@@ -30,7 +30,6 @@
 (add-to-list 'load-path gendoxy-dir)
 (add-to-list 'load-path functions-dir)
 (add-to-list 'load-path block-comment-mode-dir)
-;; (add-to-list 'load-path "/home/danth@syntec.local/git/Config-files/emacs/emacs_files/Block-Comment-Mode")
 
 (require 'package) ;; Emacs builtin
 
@@ -466,7 +465,7 @@
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
-  (block-comment--init-comment-style 80
+  (block-comment--set-comment-style 80
                                      "***"
                                      " "
                                      "***"
@@ -516,7 +515,7 @@
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
 
-            (block-comment--init-comment-style 80
+            (block-comment--set-comment-style 80
                                                "\"\"\""
                                                " "
                                                "\"\"\""
@@ -538,7 +537,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
      (lambda ()
-            (block-comment--init-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
+            (block-comment--set-comment-style 80 "\"\"\"" " " "\"\"\""  ";;" ";" ";;")
             (local-set-key (kbd "C-M-k") 'block-comment-start)
        )
      )
@@ -549,7 +548,7 @@
 
 (add-hook 'sh-mode-hook
           (lambda ()
-            (block-comment--init-comment-style 80 "#" " " "#" "#" "#" "#")
+            (block-comment--set-comment-style 80 "#" " " "#" "#" "#" "#")
             (local-set-key (kbd "C-M-k") 'block-comment-start)
             )
           )
