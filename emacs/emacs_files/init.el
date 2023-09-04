@@ -35,10 +35,13 @@
 
 ;; set package.el repositories
 (setq package-archives
-'(
-   ("gnu" . "https://elpa.gnu.org/packages/")
-   ("melpa" . "https://melpa.org/packages/")
-))
+      '(
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ))
+
+;; No signature check for use with internal melpa mirror
+(setq package-check-signature nil)
 
 ;; initialize built-in package management
 (package-initialize)
@@ -83,6 +86,8 @@
 """                           Initialize packages                            """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'image-types 'svg)
+
 ;; General packages
 
 (use-package buttercup
@@ -91,6 +96,7 @@
 ;;NOTE: Must run M-x 'all-the-icons-install-fonts' for this to work
 (use-package all-the-icons
   :ensure t
+  :init (all-the-icons-install-fonts)
   :if (display-graphic-p)
   :hook doom-themes
   )
@@ -118,14 +124,17 @@
          ("C-S-<mouse-1>" . 'mc/add-cursor-on-click)
          )
   )
+
 (use-package counsel
   :ensure t
   :bind (
          ("M-x" . counsel-M-x)
          ("C-s" . swiper)
          ("C-c C-y" . counsel-yank-pop)
+         ;; ("C-x C-f" . counsel-find-file)
          )
   )
+
 (use-package neotree
   :ensure t
   :config
@@ -133,14 +142,17 @@
   (setq neo-window-fixed-size nil)
   (setq neo-window-width 40)
   )
+
 (use-package dashboard
   :ensure t
   :config (dashboard-setup-startup-hook)
   :init (setq dashboard-startup-banner 'logo)
   )
+
 (use-package magit
   :ensure t
   :defer t)
+
 (use-package diff-hl
   :ensure t
   :hook (prog-mode . diff-hl-mode)
@@ -153,7 +165,7 @@
          )
   :config
   (grep-apply-setting 'grep-find-command
-                      '("find . -type f \\( ! -iname \"*.so\" ! -iname \"*.bin\" ! -iname \"*.o\" ! -iname \"*~\" ! -iname \"*.#\" ! -path \"*/.ccls-cache/*\" ! -path \"*/x86/*\" ! -path \"*/.git/*\" \\) -exec grep -inH -e  \\{\\} +" . 181))
+                      '("find . -type f \\( ! -iname \"\.\*\" ! -iname \"\*\.so\" ! -iname \"\*\.bin\" ! -iname \"\*\.o\" ! -iname \"\*~\" ! -iname \"\*\.#\" ! -path \"\*/\.\*/\*\" ! -path \"\*/x86/\*\" ! -path \"\*/build/\*\" \\) -exec grep -inH -e  \\{\\} +" . 187))
   )
 
 (use-package hl-todo
@@ -178,11 +190,45 @@
   (setq smooth-scroll-margin 5)
   )
 
+(use-package dockerfile-mode
+  :ensure t)
+
+;; Spell correction tool
+(use-package flyspell
+  :ensure t
+  :hook
+  (prog-mode . flyspell-prog-mode)
+  (org-mode . flyspell-mode)
+  :config
+  (define-key flyspell-mode-map (kbd "C-,") nil)
+  (define-key flyspell-mode-map (kbd "C-.") nil)
+  (define-key flyspell-mode-map (kbd "C-c $") nil)
+  (define-key flyspell-mode-map (kbd "C-c $") nil)
+  )
+
 ;
 ;; Prog mode packages
 ;
 
+(use-package projectile
+  :ensure t
+  :bind (
+         ("C-c c" . projectile-compile-project)
+         )
+  :config
+  ;; Make compilation buffer scroll with output
+  (setq compilation-scroll-output t)
+  ;; If a compilation buffer is already open, use that instead of
+  ;; opening a new buffer
+  (add-to-list 'display-buffer-alist
+               (cons "\\`\\*compilation\\*\\'"
+                     (cons 'display-buffer-reuse-window
+                           '((reusable-frames . visible)
+                             (inhibit-switch-frame . nil)))))
+  )
+
 (use-package company-mode
+  :after lsp-mode
   :ensure company
   :bind ("C-<return>" . company-complete-common)
   :hook (c-mode
@@ -190,6 +236,7 @@
          lisp-mode
          lsp-mode
          emacs-lisp-mode
+         python-mode-hook
          )
   :init(company-mode)
     (setq company-idle-delay              nil)
@@ -211,10 +258,6 @@
   :config
   (add-to-list 'company-backends 'company-jedi))
 
-(use-package pyvenv
-  :ensure t
-  :hook ((python-mode . pyvenv-mode)))
-
 (use-package lsp-mode
   :ensure t
   :bind (:map lsp-mode-map
@@ -222,11 +265,12 @@
               ("M-I" . xref-find-definitions-other-window)
               ("C-M-i" . xref-pop-marker-stack)
               ("C-c r" . lsp-rename))
-  :hook
-  (c-mode . lsp)
-  (c++-mode . lsp)
-  (python-mode . lsp)
-  (java-mode . lsp)
+  :hook (
+         (c-mode . lsp)
+         (c++-mode . lsp)
+         (python-mode . lsp)
+         (java-mode . lsp)
+         )
 
   :init
   (setq lsp-keymap-prefix "C-c l")
@@ -287,18 +331,17 @@
   :config
   (setq ccls-sem-highlight-method 'font-lock)
   (when (string-equal system-type "windows-nt")
-  (progn
     (message "Windows ccls settings")
+    (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
     )
-  (setq ccls-executable "C:\ProgramData\chocolatey\lib\ccls\tools")
-  )
   )
 
 (use-package flycheck
   :ensure t
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  :init (global-flycheck-mode))
+  :init (global-flycheck-mode)
+  )
 
 (use-package dap-mode
   :ensure t
@@ -331,6 +374,27 @@
 
 (use-package cmake-mode
   :ensure t)
+
+(use-package ansi-color
+  :ensure t
+  :config
+  (defun colorize-compilation-buffer ()
+    (ansi-color-apply-on-region compilation-filter-start (point-max))
+    )
+
+  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+  )
+
+(use-package clang-format
+  :ensure t
+  )
+
+(use-package clang-format+
+  :ensure t
+  :after clang-format
+  :hook (c-mode
+         c++-mode)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """     Set up white space mode      """
@@ -381,44 +445,6 @@
    '(face trailing empty spaces indentation space-mark tab-mark)) ;; lines
   :hook
   ((prog-mode text-mode) . bmw/whitespace-mode))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-"""                   el-get and packages from emacs-wiki                    """
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; Auto install el-get package
-;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-;; (unless (require 'el-get nil 'noerror)
-;;   (with-current-buffer
-;;       (url-retrieve-synchronously
-;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-;;     (goto-char (point-max))
-;;     (eval-print-last-sexp)))
-
-;; (el-get 'sync)
-
-
-;; ;; List of packages you want to install
-;; (defvar my-packages '(
-;;                       dired+
-;;                       grep+
-;;                       )
-;;   )
-;; ;; This will install any package from my-packages which is not already installed
-;; (el-get 'sync my-packages)
-
-
-;; ;; Configure dired+
-;; (setq diredp-hide-details-initially-flag nil) ;; If t, hide details by default
-;; (setq diredp-hide-details-propagate-flag t)   ;; If t, use previous hide/show scheme
-;; (set-face-foreground 'diredp-dir-name "green" ) ;; Set dirs color to green
-;;(add-hook 'dired-mode-hook (lambda () (dired-omit-mode))) ;; Hide uninteresting files by default
-
-;; TODO: Bind function: diredp-move-named-in-kill-ring to key
-;; TODO: Bind [C-0 w] to better key (copy files)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                        Language specific settings                        """
@@ -609,8 +635,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))))
+   '(dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))
+ '(safe-local-variable-values
+   '((projectile-project-compilation-cmd . "cd /home/da-thr/git/netenc-l3/; ./build.sh -t=b"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
