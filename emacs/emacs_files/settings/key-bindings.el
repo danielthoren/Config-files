@@ -41,5 +41,4 @@
 (global-set-key (kbd "<C-left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "<C-right>") 'shrink-window-horizontally)
 
-
 (provide 'key-bindings)

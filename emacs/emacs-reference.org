@@ -1,3 +1,4 @@
+#+STARTUP: overview
 #+OPTIONS: ^:{}
 
 * Installation steps
@@ -529,14 +530,15 @@
 
 ** Good global settings
 
-   Start with all headings expanded:
-   - #+STARTUP: showeverything
-
-   Disable default underscore behaviour:
-   - #+OPTIONS: ^:{}
-
-   Show all images inline:
-   - #+STARTUP: inlineimages
+   |---------------------------+--------------------------------------|
+   | Command                   | Description                          |
+   |---------------------------+--------------------------------------|
+   | #+STARTUP: showeverything | Start with all headings expanded     |
+   | #+STARTUP: inlineimages   | Show all images inline               |
+   | #+STARTUP: overview       | Start with headings collapsed        |
+   | #+OPTIONS: ^:{}           | Disable default underscore behaviour |
+   |                           |                                      |
+   |---------------------------+--------------------------------------|
 
 
 ** Latex export
