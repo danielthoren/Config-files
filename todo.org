@@ -8,20 +8,26 @@
 ** TODO Emacs: Change behaviour of yanking from the kill-ring.
    Make a yank not move the yank pointer
 
+
 * Medium priority
 ** TODO Emacs: Fix quick position save using registers
    A quicker command that saves the current position to a register,
    not requiring the user to enter a register.
 
-** TODO Config: Add colored output from config scripts
 ** TODO Config: Add dependency list to keep track of dependencies
    instead of having one if statement per dependency scattered among
    the config files
 
+
 * Low Priority
+** TODO Shell: Fix automatic configuration of AltGr key code for remapping
+   Fix so that the script 'remap_keys' use a . file to read the key code of
+   AltGr. If not present, use default.
+
 ** TODO Emacs: Change ediff buffer positions. Now the buffers are
    split horizontally, want vertical split
 
+** TODO Config: Add colored output from config scripts
 ** TODO Config: Determine how scoping works for argument parser
 ** TODO Config: Look over config script structure
 ** TODO Config: Look over emacs conf script and remove unused packages
