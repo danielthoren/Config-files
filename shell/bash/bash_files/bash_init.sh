@@ -8,6 +8,8 @@ export COMMON_BASH_DIR=$HOME/.config/common_bash
 source $COMMON_BASH_DIR/alias.sh
 source $FIFUNC/functions.sh
 
+source $COMMON_BASH_DIR/remap_keys.sh
+
 ################################################################################
 #                              Init WSL settings                               #
 ################################################################################
@@ -32,5 +34,3 @@ fi
 ################################################################################
 #                               Fix keybindings                                #
 ################################################################################
-
-#source remap_keys.sh

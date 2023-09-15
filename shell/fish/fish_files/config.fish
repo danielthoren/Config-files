@@ -9,3 +9,4 @@ export FISH_FUNC_DIR="$HOME/.config/fish/functions"
 source $COMMON_BASH_DIR/alias.sh
 
 source ~/.config/fish/functions/wsl_config.fish
+source $COMMON_BASH_DIR/remap_keys.sh
