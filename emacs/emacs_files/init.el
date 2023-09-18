@@ -199,6 +199,8 @@
   :hook
   (prog-mode . flyspell-prog-mode)
   (org-mode . flyspell-mode)
+  (markdown-mode . flyspell-mode)
+  (text-mode . flyspell-mode)     ;; Mode used for git commit
   :config
   (define-key flyspell-mode-map (kbd "C-,") nil)
   (define-key flyspell-mode-map (kbd "C-.") nil)
