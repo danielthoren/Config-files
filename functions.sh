@@ -4,6 +4,10 @@ APT_INSTALL="sudo apt -qq install -y"
 APT_UPDATE="sudo apt update"
 APT_UPGRADE="sudo apt upgrade"
 
+top_level () {
+    git rev-parse --show-toplevel
+}
+
 command_exists () {
     type "$1" &> /dev/null ;
 }
@@ -55,4 +59,26 @@ in_wsl () {
 
 init_repo () {
     bash init_repo.sh
+}
+
+#################################################################################
+#  Color functions                                                              #
+#################################################################################
+
+bold_yellow_prefix='\033[1;33m'
+bold_green_prefix='\033[1;32m'
+bold_red_prefix='\033[1;31m'
+
+color_suffix='\033[00m'
+
+print_yellow() {
+    printf "${bold_yellow_prefix} $1 ${color_suffix}"
+}
+
+print_red() {
+    printf "${bold_red_prefix} $1 ${color_suffix}"
+}
+
+print_green() {
+    printf "${bold_green_prefix} $1 ${color_suffix}"
 }
