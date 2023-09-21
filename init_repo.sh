@@ -22,4 +22,10 @@ if git submodule status | grep --quiet '^-'; then
     git submodule update --init --recursive
 fi
 
+if ! $(cat .git/hooks/pre-commit | grep "todo_warning");
+then
+    echo "Installing git hooks"
+    $workingDir/git/install_hooks.sh
+fi
+
 bash "$workingDir/emacs/emacs_files/Block-Comment-Mode/init_repo.sh"
