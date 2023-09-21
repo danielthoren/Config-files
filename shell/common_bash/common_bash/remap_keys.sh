@@ -18,7 +18,7 @@
 # ------------------------------------------------------------------------------
 
 # Set us layout
-setxkbmap -layout us
+# setxkbmap -layout us
 
 # Set caps lock as control
 # setxkbmap -option ctrl:nocaps
@@ -29,6 +29,8 @@ setxkbmap -layout us
 # layout. Thus, swapping to another language removes the bindings, but
 # they are restored when swapping back to the language in which they
 # were set.
+
+# NOTE: Deprecated by 'Xmodmap' config folder. Kept while validating
 
 # Set Caps_Lock as Control
 xmodmap -e 'clear lock'
