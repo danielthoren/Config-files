@@ -391,12 +391,12 @@
   :ensure t
   )
 
-(use-package clang-format+
-  :ensure t
-  :after clang-format
-  :hook (c-mode
-         c++-mode)
-  )
+;; (use-package clang-format+
+;;   :ensure t
+;;   :after clang-format
+;;   :hook (c-mode
+;;          c++-mode)
+;;   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """     Set up white space mode      """
@@ -452,18 +452,24 @@
 """                        Language specific settings                        """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package csharp-mode
+  :ensure t
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """              C/C++               """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'gendoxy)
-(defun my-c-mode-hook ()
+(defun my-c-mode-common-settings ()
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.cpp\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;; Style options ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Set indentation for new { statement to 0 (ex after if statement)
   (setq c-default-style "linux")
@@ -472,7 +478,6 @@
   (c-set-offset 'arglist-intro '+)
   ;; Fixed indentation of switch statements
   (c-set-offset 'case-label '+)
-
 
   (c-set-offset 'substatement-open 0)
   (c-set-offset 'inline-open 0)
@@ -487,9 +492,10 @@
   ;; (c-set-offset 'brace-list-intro 'tab-width)
   (c-set-offset 'brace-list-entry 0)
 
-
   (setq c-basic-offset 2)
   (setq c-indent-level 2)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;; Comment options ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (local-set-key (kbd "C-M-j") 'c-doc-comment)
 
@@ -512,6 +518,8 @@
   (local-set-key (kbd "C-c d g") 'gendoxy-group)
   (local-set-key (kbd "C-c d t") 'gendoxy-tag)
 
+  ;;;;;;;;;;;;;;;;;;;;;;;;;; Mode specific functions ;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   (defun toggle-indent ()
     """  Toggles between 2 and 4 spaces of indentation    """
     (interactive)
@@ -526,14 +534,22 @@
     )
   )
 
-(defun my-c++-mode-hook ()
-  ;; Disable namespace indent
-  (c-set-offset 'innamespace 0)
+(defun my-c-mode-hook ()
+  (my-c-mode-common-settings)
+  (setq flycheck-clang-language-standard "c23")
   )
 
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-(add-hook 'c++-mode-hook 'my-c-mode-hook)
+(defun my-c++-mode-hook ()
+  (my-c-mode-common-settings)
+  ;; Disable namespace indent
+  (c-set-offset 'innamespace 0)
+
+  (setq flycheck-clang-language-standard "c++17")
+  )
+
 (add-hook 'c-mode-hook 'my-c-mode-hook)
+;; (add-hook 'c++-mode-hook 'my-c-mode-hook)
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """              Python              """
@@ -620,9 +636,6 @@
            )
          )
 
-(use-package csharp-mode
-  :ensure t
-  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                     End of user configurable section                     """
@@ -637,9 +650,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag))
- '(safe-local-variable-values
-   '((projectile-project-compilation-cmd . "cd /home/da-thr/git/netenc-l3/; ./build.sh -t=b"))))
+   '(impatient-mode markdown-preview-eww dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

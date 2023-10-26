@@ -41,25 +41,6 @@ else
     install irony-server
 fi
 
-#Regex program used for dumb-jump-mode
-if ! command_exists ag ; then
-    if flag_exists no-sudo ; then
-        echo "ag not installed, cant install without sudo..."
-    else
-        echo "ag not installed, installing..."
-        install silversearcher-ag
-    fi
-fi
-
-if ! command_exists ditaa ; then
-    if flag_exists no-sudo ; then
-        echo "ditaa not installed, cant install without sudo..."
-    else
-        echo "ditaa not installed, installing..."
-        install ditaa
-    fi
-fi
-
 if ! command_exists pip3 ; then
     if command_exists no-sudo ; then
         echo "pip3 not installed, cant install without sudo..."
@@ -89,7 +70,7 @@ if ! command_exists virtualenv ; then
 fi
 
 # Markdown parser
-if ! command_exists virtualenv ; then
+if ! command_exists markdown ; then
     if command_exists no-sudo ; then
         echo "markdown not installed, cant install without sudo..."
     else
