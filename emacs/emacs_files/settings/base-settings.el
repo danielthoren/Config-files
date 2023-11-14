@@ -28,7 +28,8 @@
 (put 'kill-ring 'history-length 25)
 
 ;; Auto update when files change on disk
-(global-auto-revert-mode 1)
+(global-auto-revert-mode)
+(setq auto-revert-mode t)
 
 ;; Set indent mode to use spaces instead of tabs
 ;; (setq-default tab-width 2)
