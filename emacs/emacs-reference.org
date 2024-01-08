@@ -263,13 +263,11 @@
   All operations in dired are applied to the file the marker stands on
 
   Refresh contents               : [g]
+  Create directory               : [+]
   Rename or move                 : [R]
   Copy file                      : [C]
-  Delete marked file             : [D]
-  Create directory               : [+]
   sort                           : [s]
   Hide/show uninteresting files  : [C-x M-o]
-
   Open sub directory in buffer   : [i]
 
 **  Rename multiple files inline
@@ -287,24 +285,9 @@
 
 ** Move/copy multiple files to buffer
   - Put marker             : [m]
-  - Copy to buffer         : [W]
-  - Move to buffer         : [X]
+  - Copy to file at point  : [W]
+  - Move to current dir    : [X]
   - Paste to current dir   : [Y]
-
-
-* Dired+ (Extension of Dired)
-  Dired+ is a extension of Dired. Most of dired:s key-bindings work
-  here to, plus the one listed below (among others not listed here)
-
-  mark              : [m]
-  unmark            : [u]
-  mark for deletion : [d]
-
-  delete marked     : [x]
-
-  copy marked files : [C-0 w]
-  paste copied files: [C-y]
-  move copied files : [C-w]
 
 
 * Diff/E-Diff mode

@@ -34,13 +34,6 @@ else
     install ccls
 fi
 
-if flag_exists no-sudo ; then
-    echo "cant install irony-server without sudo..."
-else
-    echo "installing irony-server..."
-    install irony-server
-fi
-
 if ! command_exists pip3 ; then
     if command_exists no-sudo ; then
         echo "pip3 not installed, cant install without sudo..."

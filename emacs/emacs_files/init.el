@@ -107,6 +107,16 @@
   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   )
 
+(use-package dired-ranger
+  :ensure t
+  :after dired
+  :hook dired
+  :bind (:map dired-mode-map
+              ("W" . dired-ranger-copy)
+              ("X" . dired-ranger-move)
+              ("Y" . dired-ranger-paste))
+  )
+
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
   :config
@@ -240,7 +250,8 @@
          emacs-lisp-mode
          python-mode-hook
          )
-  :init(company-mode)
+  :init
+    (company-mode)
     (setq company-idle-delay              nil)
     (setq company-minimum-prefix-length   0)
     (setq company-show-numbers            nil)
@@ -353,19 +364,6 @@
   (setq dap-auto-configure-features '(sessions locals controls tooltip))
   (require 'dap-gdb-lldb)
   (dap-gdb-lldb-setup)
-  )
-
-;; Python language server used with lsp
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
-
-
-(use-package highlight-indent-guides-mode
-  :ensure highlight-indent-guides
-  :hook python-mode
   )
 
 (use-package powershell
@@ -555,6 +553,19 @@
 """              Python              """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Python language server used with lsp
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
+
+(use-package highlight-indent-guides-mode
+  :ensure highlight-indent-guides
+  :hook python-mode
+  )
+
 (add-hook 'python-mode-hook
           (lambda ()
             (local-set-key (kbd "C-M-j") 'my/python-doc-comment)
@@ -571,7 +582,7 @@
             ;; Replace 'py-hugry-delete-backwards' with traditional 'backwards-kill-word'
             (define-key python-mode-map (kbd "<C-backspace>") 'backward-kill-word)
             ;; Disable auto-complete-mode since it interferes with company
-            (auto-complete-mode nil)
+            ;; (auto-complete-mode nil)
             )
           )
 
@@ -650,7 +661,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(impatient-mode markdown-preview-eww dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
+   '(dired-ranger impatient-mode markdown-preview-eww dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
