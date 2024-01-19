@@ -212,10 +212,21 @@
   (markdown-mode . flyspell-mode)
   (text-mode . flyspell-mode)     ;; Mode used for git commit
   :config
+  ;; Disable default keybindings
   (define-key flyspell-mode-map (kbd "C-,") nil)
   (define-key flyspell-mode-map (kbd "C-.") nil)
   (define-key flyspell-mode-map (kbd "C-c $") nil)
   (define-key flyspell-mode-map (kbd "C-c $") nil)
+
+  (use-package flyspell-correct
+    :ensure t
+    :config
+    (use-package flyspell-correct-popup
+      :ensure t
+      :bind ("<f8>" . flyspell-correct-wrapper)
+      :init (setq flyspell-correct-interface #'flyspell-correct-popup)
+      )
+    )
   )
 
 ;
@@ -429,17 +440,18 @@
   :ensure t
   :preface
   (defun bmw/whitespace-mode ()
-    (unless (or (eq major-mode 'org-mode)
-                (eq buffer-file-name nil)
-                (string-match "\\.json\\'" buffer-file-name)
-                (string-match "\\.md\\'" buffer-file-name)
-                (string-match "\\.txt\\'" buffer-file-name)
-                )
+    (unless (eq buffer-file-name nil)
       (progn
         (whitespace-mode)
         (bmw/theme-whitespace))))
   :custom
-  (whitespace-action '(auto-cleanup))
+  (unless (or (eq major-mode 'org-mode)
+              (string-match "\\.mk\\'" buffer-file-name)
+              (string-match "\\.json\\'" buffer-file-name)
+              (string-match "\\.md\\'" buffer-file-name)
+              (string-match "\\.txt\\'" buffer-file-name))
+    (whitespace-action '(auto-cleanup))
+    )
   (whitespace-line-column 81)
   (whitespace-style
    '(face trailing empty spaces indentation space-mark tab-mark)) ;; lines
@@ -459,6 +471,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'gendoxy)
+(setq gendoxy-details-empty-line t)
+(setq gendoxy-default-text "")
+
 (defun my-c-mode-common-settings ()
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
