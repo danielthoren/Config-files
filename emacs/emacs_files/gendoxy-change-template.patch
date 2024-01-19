@@ -1,0 +1,35 @@
+diff --git a/gendoxy.el b/gendoxy.el
+index 8d9a1dd..298d9ac 100644
+--- a/gendoxy.el
++++ b/gendoxy.el
+@@ -672,15 +672,21 @@
+ (defun gendoxy-dump-function (name return-code parameters)
+   "Dump the function documentation"
+   (gendoxy-add-line-before)
+-  (insert (concat "/**" gendoxy-nl " * " (gendoxy-get-tag "brief")
+-                  "Summary" gendoxy-nl))
+-  (gendoxy-add-details)
+-  (gendoxy-dump-parameters parameters 0)
+-  (when (>= return-code 1)
+-    (insert (concat " * " (gendoxy-get-tag "return")
+-                    (if (eq return-code 2) "A pointer to a function"
+-                      gendoxy-default-text) gendoxy-nl)))
+-  (insert (concat " */" gendoxy-nl)))
++  (insert (concat "/**" gendoxy-nl))
++  (save-excursion
++    (gendoxy-add-details)
++    (gendoxy-dump-parameters parameters 0)
++    (when (>= return-code 1)
++          (insert (concat " * " gendoxy-nl))
++          (insert (concat " * " (gendoxy-get-tag "return")
++                          (if (eq return-code 2) "A pointer to a function"
++                              gendoxy-default-text) gendoxy-nl)))
++    (insert (concat " */" gendoxy-nl))
++    (delete-char -1))
++  (end-of-line)
++  (save-buffer)
++  (insert " ")
++  )
+ 
+ (defun gendoxy-handle-complex-function (statement)
+   "Handle a prototype to a function with some function's pointer"
