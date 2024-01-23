@@ -64,9 +64,6 @@
 """                          Initialize local files                          """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Init theme
-(require 'theme-init)
-
 ;; Init settings without dependencies
 (require 'base-settings)
 
@@ -105,6 +102,24 @@
   :ensure t
   :if (display-graphic-p)
   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  )
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (setq neo-theme 'icons)
+   (doom-themes-neotree-config)
+  )
+
+(use-package solaire-mode
+  :ensure t
+  :config
+  (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
+  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
+  (add-hook 'minibuffer-setup-hook #'turn-on-solaire-mode)
+  (solaire-global-mode +1)
   )
 
 (use-package dired-ranger
@@ -561,7 +576,6 @@
   )
 
 (add-hook 'c-mode-hook 'my-c-mode-hook)
-;; (add-hook 'c++-mode-hook 'my-c-mode-hook)
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -661,7 +675,6 @@
            :hook markdown
            )
          )
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                     End of user configurable section                     """

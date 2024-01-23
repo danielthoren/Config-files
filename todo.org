@@ -4,7 +4,8 @@
 ** DONE Emacs: Fix release 1 of block comment mode
    CLOSED: [2023-06-21 Wed 16:29]
 
-** TODO Emacs: Config dired to make moving/copying files easier
+** DONE Emacs: Config dired to make moving/copying files easier
+CLOSED: [2024-01-23 Tue 12:29]
 ** TODO Emacs: Change behaviour of yanking from the kill-ring.
    Make a yank not move the yank pointer
 
