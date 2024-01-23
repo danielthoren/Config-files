@@ -6,7 +6,8 @@
 
 ** DONE Emacs: Config dired to make moving/copying files easier
 CLOSED: [2024-01-23 Tue 12:29]
-** TODO Emacs: Change behaviour of yanking from the kill-ring.
+** DONE Emacs: Change behaviour of yanking from the kill-ring.
+CLOSED: [2024-01-23 Tue 13:46]
    Make a yank not move the yank pointer
 
 
