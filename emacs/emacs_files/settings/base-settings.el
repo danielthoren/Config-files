@@ -1,16 +1,7 @@
-;; Remove GUI bloat
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(setq inhibit-splash-screen t)
 
-;; Line numbering
-(if (version< emacs-version "26")
-    (global-linum-mode)
-  (global-display-line-numbers-mode))
-
-;; Column numbering
-(setq column-number-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                               Base settings                               """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Autofollow symlinks
 (setq vc-follow-symlinks t)
@@ -42,10 +33,53 @@
 ;;disable the version control
 (setq vc-handled-backends nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Scroll settings to make scrolling more smooth
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                               GUI settings                                """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Remove GUI bloat
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(setq inhibit-splash-screen t)
+
+;; Line numbering
+(if (version< emacs-version "26")
+    (global-linum-mode)
+  (global-display-line-numbers-mode))
+
+;; Column numbering
+(setq column-number-mode t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                                  Opacity                                  """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+
+;; Toggle opacity
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+		    ((numberp (cdr alpha)) (cdr alpha))
+		    ;; Also handle undocumented (<active> <inactive>) form.
+		    ((numberp (cadr alpha)) (cadr alpha)))
+	      100)
+	 '(95 . 95) '(100 . 100)))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
+
+(toggle-transparency)
+;; (toggle-transparency)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                              Scroll settings                              """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Make scrolling more smooth
 (setq
  scroll-conservatively 1000                     ;; only 'jump' when moving this far
  scroll-margin 4                                ;; scroll N lines to screen edge
@@ -60,6 +94,7 @@
  fast-but-imprecise-scrolling nil
  jit-lock-defer-time 0
  )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                                ediff mode                                 """
