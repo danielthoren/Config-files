@@ -124,6 +124,33 @@
 (eval-after-load "diff-mode"
   '(update-diff-colors))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"""                        Yank behavior modification                         """
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Change behavior of yank pointer when calling yank-pop. By default,
+;; the pointer is moved to the yanked element, this mod changes that
+;; behavior so that the pointer is not moved.
+
+(defvar my-yank-pop-offset)
+(setq my-yank-pop-offset 0)
+
+(defun my-yank (&optional arg)
+  (interactive)
+  (rotate-yank-pointer (- my-yank-pop-offset))
+  (setq my-yank-pop-offset 0)
+  (yank arg)
+  )
+
+(defun my-yank-pop (&optional arg)
+  (interactive)
+  (setq my-yank-pop-offset (+ my-yank-pop-offset 1))
+  (yank-pop arg)
+  )
+
+(global-set-key (kbd "C-y") 'my-yank)
+(global-set-key (kbd "M-y") 'my-yank-pop)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-hl-line-mode 0)
 
