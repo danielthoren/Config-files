@@ -14,6 +14,8 @@ alias usbl="$COMMON_BASH_DIR/list_usb.sh"
 
 alias lla="ls -la"
 
+alias fromTba="python3 $COMMON_BASH_DIR/tbas_written_to_human_readable.py"
+
 alias us="setxkbmap us -variant intl"
 alias se="setxkbmap se"
 
