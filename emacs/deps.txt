@@ -1,0 +1,6 @@
+emacs28
+ccls
+python3-pip
+pyright
+virtualenv
+markdown

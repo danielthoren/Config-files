@@ -3,22 +3,12 @@
 workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 dir="$HOME/.config/fish"
 
-# Make sure common bash is installed
-bash "$workingDir/../common_bash/conf.sh"
-
 source $workingDir/../../functions.sh
 source $workingDir/../../commandParser.sh -scope fish "$@"
 
-if ! command_exists fish ; then
-    if flag_exists no-sudo ; then
-        echo "fish not installed, cant install without sudo, exiting..."
-        exit no-sudo
-    fi
+print_green "  -> Configuring fish in folder $dir"
 
-    echo "fish not installed, installing..."
-    update
-    install fish
-fi
+install_all $workingDir/deps.txt
 
 fpath=$(which fish)
 
@@ -29,15 +19,13 @@ else
     #    sudo usermod --shell $fpath $USER
 fi
 
-echo "Set fish as default shell"
-
-echo "Configuring fish in folder $dir"
+echo "    Set fish as default shell"
 
 if [ ! -d $dir ]; then
-    echo "Folder does not exist, creating folder"
+    echo "    Folder does not exist, creating folder"
     mkdir -p $dir
 else
-    echo "Folder exists, purging existing data"
+    echo "    Folder exists, purging existing data"
     rm "${dir}/config.fish"
     rm -r "${dir}/functions"
 fi
@@ -45,4 +33,5 @@ fi
 ln -s "$workingDir/fish_files/functions" "${dir}"
 ln -s "$workingDir/fish_files/config.fish" "${dir}"
 
-echo "Done configuring fish"
+echo "    Done configuring fish"
+echo ""

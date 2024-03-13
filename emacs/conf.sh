@@ -6,79 +6,17 @@ dir=~/.emacs.d
 source $workingDir/../functions.sh
 source $workingDir/../commandParser.sh "$@"
 
-if flag_exists no-sudo ; then
-    echo exists
-fi
+print_green "Configuring emacs in folder $dir"
 
-if ! command_exists emacs ; then
-    if flag_exists no-sudo ; then
-        echo "emacs not installed, cant install without sudo, exiting..."
-        exit no-sudo
-    fi
+add_source ppa:kelleyk/emacs
 
-    add_source ppa:kelleyk/emacs
-
-    echo "emacs not installed, installing..."
-
-    echo "Adding repository to sources list..."
-    sudo add-apt-repository ppa:kelleyk/emacs
-
-    install emacs28
-fi
-
-#installing ccls (c/c++ language server)
-if flag_exists no-sudo ; then
-    echo "cant install ccls without sudo..."
-else
-    echo "installing ccls..."
-    install ccls
-fi
-
-if ! command_exists pip3 ; then
-    if command_exists no-sudo ; then
-        echo "pip3 not installed, cant install without sudo..."
-    else
-        echo "pip3 not installed, installing..."
-        install python3-pip
-    fi
-fi
-
-#Python language server
-if ! command_exists pyright ; then
-    if command_exists no-sudo ; then
-        echo "pyright not installed, cant install without sudo..."
-    else
-        echo "pyright not installed, installing..."
-        pip3 install pyright
-    fi
-fi
-
-if ! command_exists virtualenv ; then
-    if command_exists no-sudo ; then
-        echo "virtualenv not installed, cant install without sudo..."
-    else
-        echo "virtualenv not installed, installing..."
-        install virtualenv
-    fi
-fi
-
-# Markdown parser
-if ! command_exists markdown ; then
-    if command_exists no-sudo ; then
-        echo "markdown not installed, cant install without sudo..."
-    else
-        echo "markdown not installed, installing..."
-        install markdown
-    fi
-fi
-
-echo "Configuring emacs in folder $dir"
+install_all $workingDir/deps.txt
 
 if [ ! -d $dir ]; then
-    echo "Folder does not exist, creating folder"
+    echo "  Folder does not exist, creating folder"
     mkdir -p $dir
 else
-    echo "Folder exists, purging data"
+    echo "  Folder exists, purging data"
     rm "${dir}/init.el"
     rm -r "${dir}/functions"
     rm -r "${dir}/settings"
@@ -86,22 +24,22 @@ else
     rm -r "${dir}/Block-Comment-Mode"
 fi
 
-git submodule init
-git submodule update
+echo "  Initalizing submodules"
+git submodule init 2>&1 >/dev/null
+git submodule update 2>&1 >/dev/null
 
 if [[ -d "$workingDir/emacs_files/gendoxy" ]]; then
     cd ./emacs_files/gendoxy
     if ! [[ $(git apply --check ../gendoxy-change-template.patch 2>&1 | grep "error") ]]; then
-        print_green "Applying gendoxy patch"
+        echo "  Applying gendoxy patch"
         git apply ../gendoxy-change-template.patch
     else
-        print_green "gendoxy patch already applied "
+        echo "  gendoxy patch already applied "
     fi
     cd ..
 else
-    print_red "gendoxy dir not found"
+    print_red "  gendoxy dir not found"
 fi
-
 
 ln -s "$workingDir/emacs_files/settings" "${dir}"
 ln -s "$workingDir/emacs_files/functions" "${dir}"
@@ -110,4 +48,5 @@ ln -s "$workingDir/emacs_files/Block-Comment-Mode" "${dir}"
 
 ln -s "$workingDir/emacs_files/init.el" "${dir}"
 
-echo "Done configuring emacs"
+echo "  Done configuring emacs"
+echo ""
