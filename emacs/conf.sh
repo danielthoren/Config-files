@@ -49,7 +49,7 @@ if ! command_exists pyright ; then
         echo "pyright not installed, cant install without sudo..."
     else
         echo "pyright not installed, installing..."
-        sudo pip3 install pyright
+        pip3 install pyright
     fi
 fi
 
@@ -88,6 +88,20 @@ fi
 
 git submodule init
 git submodule update
+
+if [[ -d "$workingDir/emacs_files/gendoxy" ]]; then
+    cd ./emacs_files/gendoxy
+    if ! [[ $(git apply --check ../gendoxy-change-template.patch 2>&1 | grep "error") ]]; then
+        print_green "Applying gendoxy patch"
+        git apply ../gendoxy-change-template.patch
+    else
+        print_green "gendoxy patch already applied "
+    fi
+    cd ..
+else
+    print_red "gendoxy dir not found"
+fi
+
 
 ln -s "$workingDir/emacs_files/settings" "${dir}"
 ln -s "$workingDir/emacs_files/functions" "${dir}"
