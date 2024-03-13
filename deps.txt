@@ -1,0 +1,5 @@
+htop
+gparted
+net-tools
+sshpass
+git

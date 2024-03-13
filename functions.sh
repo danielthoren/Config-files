@@ -1,8 +1,8 @@
 #!/bin/bash
 
-APT_INSTALL="sudo apt -qq install -y"
-APT_UPDATE="sudo apt update"
-APT_UPGRADE="sudo apt upgrade"
+APT_INSTALL="sudo apt-get -qq install -y"
+APT_UPDATE="sudo apt-get update"
+APT_UPGRADE="sudo apt-get upgrade -y"
 
 #################################################################################
 #  Color functions                                                              #
@@ -72,7 +72,7 @@ is_package_installed() {
         return 1
     fi
 
-    return $(dpkg-query -W --showformat='${Status}\n' $1 | grep -q "install ok installed")
+    return $(dpkg-query -W --showformat='${Status}\n' $1 2>&1 | grep -q "install ok installed" 2>&1 >/dev/null)
 }
 
 install() {
@@ -82,45 +82,44 @@ install() {
     fi
 
     update
-    $APT_INSTALL "$1" 2>&1 /dev/null
+    $APT_INSTALL "$1" 2>&1 >/dev/null
 
     ## Check exit code of last command to see if install failed
     if [[ $? > 0 ]]; then
-        print_red "Failed to install $1"
+        print_red "      Install failed: $1"
         return 1
     fi
 
-    print_green "Installed $1"
+    print_green "      Installed:      $1"
     return 0
 }
 
 install_all() {
+    echo "    Installing packages:"
     while read line; do
         result=""
-        words=( $line )
-        if ! is_package_installed $1 ; then
-            if [[ $(echo $line | wc -w) = 2 ]]; then
-                install ${words[1]}
-            else
-                install ${words[0]}
-            fi
+        if ! is_package_installed $line ; then
+            install $line
+        else
+            echo "      Ensured:        $line"
         fi
     done < $1
+    echo ""
 }
 
 add_source () {
     echo $1
 
-    if ! grep -q "^deb .*$1" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-        sudo add-apt-repository the_ppa 2>&1 >/dev/null
+    if ! grep -q "^deb .*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* ; then
+        sudo add-apt-repository $1 2>&1 >/dev/null
 
         ## Check exit code of last command to see if install failed
         if [[ $? > 0 ]]; then
-            print_red "Failed to add PPA: ${the_ppa}"
+            print_red "  Failed to add PPA: ${the_ppa}"
             return 1
         fi
 
-        print_green "Added PPA: ${the_ppa}"
+        print_green "  Added PPA: ${the_ppa}"
         sudo apt update
     fi
 
