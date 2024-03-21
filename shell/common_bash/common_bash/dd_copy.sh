@@ -1,7 +1,12 @@
 #!/bin/bash
 
-src=ddtest_1.txt
-dest=ddtest_2.txt
+workingDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+dir="$HOME/.config/common_bash"
+
+source $workingDir/../../functions.sh
+
+src=$1
+dest=$2
 
 dd if=$src of=$dest
 
@@ -18,4 +23,4 @@ echo ""
 srcSum=$(echo $srcSumRaw | cut -d' ' -f1)
 destSum=$(echo $destSumRaw | cut -d' ' -f1)
 
-[ "$srcSum" == "$destSum" ] && echo "Success" || echo "Fail"
+[ "$srcSum" == "$destSum" ] && print_green "Success" || print_red "Fail"
