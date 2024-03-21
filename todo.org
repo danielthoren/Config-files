@@ -16,7 +16,12 @@ CLOSED: [2024-01-23 Tue 13:46]
    A quicker command that saves the current position to a register,
    not requiring the user to enter a register.
 
-** TODO Config: Add dependency list to keep track of dependencies
+** TODO Fix indentation of output from funstions.sh
+   Depending on the nesting level of the caller, the output from functions.sh should
+   be indented differently
+
+** DONE Config: Add dependency list to keep track of dependencies
+   CLOSED: [2024-03-21 Thu 11:11]
    instead of having one if statement per dependency scattered among
    the config files
 
@@ -29,7 +34,14 @@ CLOSED: [2024-01-23 Tue 13:46]
 ** TODO Emacs: Change ediff buffer positions. Now the buffers are
    split horizontally, want vertical split
 
-** TODO Config: Add colored output from config scripts
+** TODO Add doxygen comments to bash function
+   https://github.com/z-shell/zsdoc/tree/main
+
+** STARTED Config: Add colored output from config scripts
+
+** STARTED Config: Look over config script structure
+
 ** TODO Config: Determine how scoping works for argument parser
-** TODO Config: Look over config script structure
-** TODO Config: Look over emacs conf script and remove unused packages
+
+** DONE Config: Look over emacs conf script and remove unused packages
+   CLOSED: [2024-03-21 Thu 11:12]

@@ -108,7 +108,16 @@ install_all() {
 }
 
 add_source () {
-    echo $1
+    if ! command_exists apt ; then
+        print_red "Command 'apt' does not exist"
+        return 1
+    elif ! command_exists add-apt-repository ; then
+        print_yellow "Command 'add-apt-repository' does not exist, installing 'software-properties-common'..."
+        if ! install software-properties-common ; then
+            print_red "Installation failed, aborting..."
+            return 2
+        fi
+    fi
 
     if ! grep -q "^deb .*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* ; then
         sudo add-apt-repository $1 2>&1 >/dev/null
@@ -116,7 +125,7 @@ add_source () {
         ## Check exit code of last command to see if install failed
         if [[ $? > 0 ]]; then
             print_red "  Failed to add PPA: ${the_ppa}"
-            return 1
+            return 3
         fi
 
         print_green "  Added PPA: ${the_ppa}"
