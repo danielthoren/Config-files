@@ -17,11 +17,13 @@ if [ ! -d $dir ]; then
     mkdir -p $dir
 else
     echo "  Folder exists, purging data"
-    rm "${dir}/init.el"
-    rm -r "${dir}/functions"
-    rm -r "${dir}/settings"
-    rm -r "${dir}/gendoxy"
-    rm -r "${dir}/Block-Comment-Mode"
+    {
+        rm "${dir}/init.el"
+        rm -r "${dir}/functions"
+        rm -r "${dir}/settings"
+        rm -r "${dir}/gendoxy"
+        rm -r "${dir}/Block-Comment-Mode"
+    } 2> /dev/null
 fi
 
 echo "  Initalizing submodules"
