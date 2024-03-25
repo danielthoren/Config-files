@@ -3,6 +3,8 @@
 """                               Base settings                               """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'image-types 'svg)
+
 ;; Autofollow symlinks
 (setq vc-follow-symlinks t)
 
