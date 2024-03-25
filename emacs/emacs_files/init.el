@@ -30,7 +30,6 @@
 (add-to-list 'load-path gendoxy-dir)
 (add-to-list 'load-path functions-dir)
 (add-to-list 'load-path block-comment-mode-dir)
-;; (add-to-list 'load-path "/home/danth@syntec.local/git/Config-files/emacs/emacs_files/Block-Comment-Mode")
 
 (require 'package) ;; Emacs builtin
 
