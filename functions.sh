@@ -4,6 +4,9 @@ APT_INSTALL="sudo apt-get -qq install -y"
 APT_UPDATE="sudo apt-get update"
 APT_UPGRADE="sudo apt-get upgrade -y"
 
+SNAP_INSTALL="sudo snap install"
+SNAP_REFRESH="sudo snap refresh"
+
 #################################################################################
 #  Color functions                                                              #
 #################################################################################
@@ -86,8 +89,18 @@ install() {
 
     ## Check exit code of last command to see if install failed
     if [[ $? > 0 ]]; then
-        print_red "      Install failed: $1"
-        return 1
+        print_red    "      Install with apt failed: $1"
+
+	if command_exists snap ; then
+            print_yellow "      Falling back to snap..."
+            $SNAP_REFRESH 2>&1 > /dev/null
+            $SNAP_INSTALL $1 2>&1 > /dev/null
+
+            if [[ $? > 0 ]]; then
+                print_red "      Install with snap failed: $1"
+                return 1
+            fi
+        fi
     fi
 
     print_green "      Installed:      $1"
@@ -99,7 +112,7 @@ install_all() {
     while read line; do
         result=""
         if ! is_package_installed $line ; then
-            install $line
+            install "$line"
         else
             echo "      Ensured:        $line"
         fi
@@ -120,7 +133,7 @@ add_source () {
     fi
 
     if ! grep -q "^deb .*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* ; then
-        sudo add-apt-repository $1 2>&1 >/dev/null
+        sudo add-apt-repository -y $1 2>&1 >/dev/null
 
         ## Check exit code of last command to see if install failed
         if [[ $? > 0 ]]; then
