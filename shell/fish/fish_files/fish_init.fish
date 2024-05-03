@@ -7,5 +7,3 @@ export FISH_FUNC_DIR="$HOME/.config/fish/functions"
 
 # Source common alias betwee fish and bash
 source $COMMON_BASH_DIR/alias.sh
-
-source ~/.config/fish/functions/wsl_config.fish

@@ -148,6 +148,28 @@ add_source () {
     return 0
 }
 
+yes_no_question() {
+    read -p "$1 (y/n)? " answer
+    while true; do
+        case ${answer:0:1} in
+            y|Y )
+                return 0;
+                ;;
+            n|N )
+                return 1;
+                ;;
+            * )
+                read -p "Invalid answer, expected (y/n)? " answer
+                ;;
+        esac
+    done
+
+}
+
+#################################################################################
+#                                 General util                                  #
+#################################################################################
+
 flag_exists () {
     [[ -n ${booleans[$1]} || -z ${booleans[$1]-foo} ]]
 }
