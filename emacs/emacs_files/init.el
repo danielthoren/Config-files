@@ -247,7 +247,7 @@
     )
   )
 
-(setq-default display-fill-column-indicator-column 80)
+(setq-default display-fill-column-indicator-column fill-column)
 (add-hook 'prog-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c i") 'my-indent-buffer)

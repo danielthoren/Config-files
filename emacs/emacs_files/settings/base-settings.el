@@ -3,6 +3,9 @@
 """                               Base settings                               """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Change default wolumn width
+(setq-default fill-column 100)
+
 (add-to-list 'image-types 'svg)
 
 ;; Autofollow symlinks
