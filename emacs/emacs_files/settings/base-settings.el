@@ -152,7 +152,6 @@
 
 (defun my-yank (&optional arg)
   (interactive)
-  (rotate-yank-pointer (- my-yank-pop-offset))
   (setq my-yank-pop-offset 0)
   (yank arg)
   )
@@ -160,7 +159,8 @@
 (defun my-yank-pop (&optional arg)
   (interactive)
   (setq my-yank-pop-offset (+ my-yank-pop-offset 1))
-  (yank-pop arg)
+  (yank-pop my-yank-pop-offset)
+  (rotate-yank-pointer (- my-yank-pop-offset))
   )
 
 (global-set-key (kbd "C-y") 'my-yank)
