@@ -1,6 +1,6 @@
-emacs28
+emacs
 ccls
 python3-pip
-pyright --classic
+pyright
 virtualenv
 markdown

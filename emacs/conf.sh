@@ -8,8 +8,7 @@ source $workingDir/../commandParser.sh "$@"
 
 print_green "Configuring emacs in folder $dir"
 
-add_source ppa:kelleyk/emacs
-
+add_source ppa:ubuntuhandbook1/emacs
 install_all $workingDir/deps.txt
 
 if [ ! -d $dir ]; then

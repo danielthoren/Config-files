@@ -70,6 +70,11 @@ upgrade() {
 }
 
 is_package_installed() {
+
+    if command_exists $1 ; then
+        return 0
+    fi
+
     if ! command_exists dpkg-query ; then
         print_red "Command 'dpkg-query' does not exist"
         return 1
@@ -98,7 +103,14 @@ install() {
 
             if [[ $? > 0 ]]; then
                 print_red "      Install with snap failed: $1"
-                return 1
+
+                print_yellow "      Trying with '--classic'"
+                $SNAP_INSTALL $1 --classic
+
+                if [[ $? > 0 ]]; then
+                    print_red "      Install with snap classic failed: $1"
+                    return 1
+                fi
             fi
         fi
     fi
