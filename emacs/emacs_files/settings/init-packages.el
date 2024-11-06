@@ -1,13 +1,71 @@
 
 ;; General packages
 
+(defun my-god-mode-update-cursor-type ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
+
+(defun my-god-mode-update-mode-line ()
+  (cond
+   (god-local-mode
+    (set-face-attribute 'mode-line nil
+                        :foreground "#604000"
+                        :background "#fff29a")
+    (set-face-attribute 'mode-line-inactive nil
+                        :foreground "#3f3000"
+                        :background "#fff3da"))
+   (t
+    (set-face-attribute 'mode-line nil
+                        :foreground "#0a0a0a"
+                        :background "#d7d7d7")
+    (set-face-attribute 'mode-line-inactive nil
+                        :foreground "#404148"
+                        :background "#efefef"))))
+
+(use-package god-mode
+  :ensure t
+  :config
+  ;; Key to toggle god mode
+  (global-set-key (kbd "<escape>") #'god-mode-all)
+
+  ;; Change the key used to toggle meta from default 'g' and 'G'
+  (setq god-mode-alist (delq (assoc "g" god-mode-alist) god-mode-alist))
+  (setq god-mode-alist (delq (assoc "G" god-mode-alist) god-mode-alist))
+  (add-to-list 'god-mode-alist '("m" . "M-"))
+  (add-to-list 'god-mode-alist '("M" . "C-M-"))
+
+  ;; Useful key bindings that enable god mode to to manipulate windows more easily
+  (global-set-key (kbd "C-x C-1") #'delete-other-windows)
+  (global-set-key (kbd "C-x C-2") #'split-window-below)
+  (global-set-key (kbd "C-x C-3") #'split-window-right)
+  (global-set-key (kbd "C-x C-0") #'delete-window)
+
+  (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
+  (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
+
+  ;; Remove modes that are skipped by default
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil)
+
+  ;; Exempt modes from using god mode
+  ;; (add-to-list 'god-exempt-major-modes 'dired-mode)
+
+  ;; Add god mode lighter. Inherits from error to make it visible
+  (custom-set-faces
+   '(god-mode-lighter ((t (:inherit error)))))
+
+  ;; Change cursor style when in god mode
+  (add-hook 'post-command-hook #'my-god-mode-update-cursor-type)
+
+  ;; Change foreground/background style if in god mode
+  (add-hook 'post-command-hook #'my-god-mode-update-mode-line)
+  )
+
 (use-package buttercup
   :ensure t)
 
 ;;NOTE: Must run M-x 'all-the-icons-install-fonts' for this to work
 (use-package all-the-icons
   :ensure t
-  :init (all-the-icons-install-fonts)
   :if (display-graphic-p)
   :hook doom-themes
   )
