@@ -76,6 +76,12 @@
   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   )
 
+(use-package abbrev
+  :diminish abbrev-mode
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
+
 (use-package doom-themes
   :ensure t
   :config
@@ -104,8 +110,14 @@
               ("Y" . dired-ranger-paste))
   )
 
+;; Used to supress lighter string of packages. Built in support in use-package
+(use-package diminish
+  :ensure t
+  )
+
 (use-package dtrt-indent ;; Auto detect indentation strategy in file
   :ensure t
+  :diminish
   :config
   (setq dtrt-indent-run-after-smie t) ;; Run even if SMIE is active
   (dtrt-indent-global-mode)
@@ -193,6 +205,7 @@
 ;; Spell correction tool
 (use-package flyspell
   :ensure t
+  :diminish
   :hook
   (prog-mode . flyspell-prog-mode)
   (org-mode . flyspell-mode)
@@ -222,6 +235,7 @@
 
 (use-package projectile
   :ensure t
+  :diminish
   :bind (
          ("C-c c" . projectile-compile-project)
          )
@@ -260,6 +274,7 @@
   :config
   (use-package company-quickhelp
     :ensure t
+    :diminish
     :hook company-mode)
   )
 
@@ -267,6 +282,7 @@
 ;; Using company causes issues
 (use-package company-jedi
   :ensure t
+  :diminish
   :config
   (add-to-list 'company-backends 'company-jedi))
 
@@ -346,6 +362,7 @@
 
 (use-package ccls
   :ensure t
+  :diminish
   :after lsp-ui company-mode
   :hook (c-mode
          c++-mode
@@ -362,6 +379,7 @@
 
 (use-package flycheck
   :ensure t
+  :diminish
   :config
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   :init (global-flycheck-mode)
@@ -451,6 +469,7 @@
 
 (use-package whitespace
   :ensure t
+  :diminish
   :preface
   (defun bmw/whitespace-mode ()
     (unless (eq buffer-file-name nil)
@@ -516,6 +535,10 @@
 (use-package rust-mode
   :init
   (setq rust-mode-treesitter-derive t))
+
+(use-package eldoc
+  :diminish
+  )
 
 (use-package rustic
   :ensure t
