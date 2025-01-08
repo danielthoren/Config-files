@@ -486,7 +486,7 @@
     )
   (whitespace-line-column 81)
   (whitespace-style
-   '(face trailing empty spaces indentation space-mark tab-mark)) ;; lines
+   '(face trailing empty indentation tab-mark)) ;; What should be visualized by whitespace mode
   :hook
   ((prog-mode text-mode) . bmw/whitespace-mode))
 
@@ -505,6 +505,7 @@
 (use-package highlight-indent-guides-mode
   :ensure highlight-indent-guides
   :hook python-mode
+  :init (setq highlight-indent-guides-auto-even-face-perc 15)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
