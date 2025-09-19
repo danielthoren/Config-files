@@ -271,7 +271,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rust-mode dired-ranger impatient-mode markdown-preview-eww dockerfile-mode copy-as-format js3-mode use-package-el-get markdown-preview-mode company-mode xref-rst which-key virtualenvwrapper virtualenv use-package tree-sitter-langs tree-sitter-indent tern-auto-complete solaire-mode smooth-scrolling python-mode python pyenv-mode-auto powershell org-bullets neotree multiple-cursors magit lsp-ui lsp-pyright lsp-java lsp-ivy js2-mode jedi hl-todo highlight-indent-guides helm-lsp grep-a-lot git-grep git flymake-python-pyflakes flycheck-irony exec-path-from-shell elpy dumb-jump dtrt-indent doxy-graph-mode doom-themes diff-hl dashboard csharp-mode cquery counsel company-quickhelp company-jedi cmake-mode cmake-ide ccls all-the-icons aggressive-indent ag)))
+   '(ag aggressive-indent all-the-icons ccls cmake-ide cmake-mode company-jedi company-mode
+        company-quickhelp copy-as-format counsel cquery csharp-mode dashboard diff-hl dired-ranger
+        dockerfile-mode doom-themes doxy-graph-mode dtrt-indent dumb-jump elpy exec-path-from-shell
+        flycheck-irony flymake-python-pyflakes git git-grep grep-a-lot helm-lsp
+        highlight-indent-guides hl-todo impatient-mode jedi js2-mode js3-mode lsp-ivy lsp-java
+        lsp-pyright lsp-ui magit markdown-preview-eww markdown-preview-mode multiple-cursors neotree
+        org-bullets ox-mdx-deck powershell pyenv-mode-auto python python-mode rust-mode
+        smooth-scrolling solaire-mode tern-auto-complete tree-sitter-indent tree-sitter-langs
+        use-package use-package-el-get virtualenv virtualenvwrapper which-key xref-rst)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

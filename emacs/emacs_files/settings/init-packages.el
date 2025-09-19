@@ -213,10 +213,18 @@
   (text-mode . flyspell-mode)     ;; Mode used for git commit
   :config
   ;; Disable default keybindings
-  (define-key flyspell-mode-map (kbd "C-,") nil)
-  (define-key flyspell-mode-map (kbd "C-.") nil)
-  (define-key flyspell-mode-map (kbd "C-c $") nil)
-  (define-key flyspell-mode-map (kbd "C-c $") nil)
+  ;; (define-key flyspell-mode-map (kbd "C-,") nil)
+  ;; (define-key flyspell-mode-map (kbd "C-.") nil)
+  ;; (define-key flyspell-mode-map (kbd "C-c $") nil)
+  ;; (define-key flyspell-mode-map (kbd "C-c $") nil)
+
+  (bind-keys
+   :map flyspell-mode-map
+   ;; Stop flyspell overriding other key bindings
+   ("C-," . nil)
+   ("C-." . nil)
+   ("<C-f9>" . flyspell-correct-previous)
+   ("<C-f10>" . flyspell-correct-next))
 
   (use-package flyspell-correct
     :ensure t
