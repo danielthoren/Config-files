@@ -31,6 +31,23 @@
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
+;; Configure how to open https links
+(setq browse-url-browser-function #'browse-url-firefox)
+
+;; Disable follow-link on left mouse click
+(setq org-mouse-1-follows-link nil)
+
+;; Function that copies the link at point. Good for using with hyperlinks when org-open-at-point
+;; does not work. One such example is when running emacs in wsl and opening firefox will open wsl
+;; version of firefox.
+(defun org/link-fast-copy ()
+   (interactive)
+   (pcase (org-element-context) (`(link ,(map (:raw-link href))) (kill-new href)))
+   )
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c z") #'org/link-fast-copy))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 """                            TODO items config                             """
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

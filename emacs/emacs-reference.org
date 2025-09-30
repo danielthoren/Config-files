@@ -511,6 +511,13 @@
     Adjust column width                            : [C-c C-c <] [C-c C-c >]
 
 
+** Links
+   A custom command has been added that copies the hyperlink of a org formatted link.
+   The keybinding of the function, as well as for other link related behaviour, is listed below:
+
+   Copy hyperlink of link at point       : [C-c z]
+   Open link at point                    : [C-c C-o]
+
 ** Good global settings
 
    |---------------------------+--------------------------------------|
