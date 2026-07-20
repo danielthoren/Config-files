@@ -16,7 +16,7 @@
 (global-unset-key (kbd "<prior>"))
 
 ;; Don't show buffer kill prompt.
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 (global-set-key (kbd "C-c k") 'comment-or-uncomment-region)
 
